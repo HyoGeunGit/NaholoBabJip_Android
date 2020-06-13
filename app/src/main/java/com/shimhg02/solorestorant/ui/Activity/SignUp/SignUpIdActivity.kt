@@ -30,13 +30,11 @@ class SignUpIdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         SharedPref.openSharedPrep(this)
         setContentView(R.layout.activity_signup_id)
-
+        onBackPressed()
         duplicate_chk_btn.setOnClickListener {
             checkDuplicate()
         }
-
         checkPassWord()
-
     }
 
     fun checkPassWord(){
@@ -66,6 +64,7 @@ class SignUpIdActivity : AppCompatActivity() {
                             editor.putString("pw_signup",pw_tv.text.toString())
                             editor.apply()
                             startActivity<SignUpProfileActivity>()
+                            finish()
                         }
                     }
                 }
@@ -105,9 +104,9 @@ class SignUpIdActivity : AppCompatActivity() {
         dialog.show()
         duplicate_chk_btn.visibility = View.INVISIBLE
         id_tv.inputType = InputType.TYPE_NULL
-        id_tv.backgroundResource = R.drawable.textinput_locked
         id_tv.isFocusable = false
         id_tv.isClickable = false
+        id_ti.backgroundResource = R.drawable.textinput_locked
         duplicate_chk_btn.visibility = View.GONE
     }
     fun duplicateNotCheckedDiaglog(){
@@ -118,5 +117,9 @@ class SignUpIdActivity : AppCompatActivity() {
         dialog.setMessage("사용하실 수 없는 아이디입니다.")
         dialog.setIcon(R.mipmap.ic_launcher)
         dialog.show()
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
     }
 }

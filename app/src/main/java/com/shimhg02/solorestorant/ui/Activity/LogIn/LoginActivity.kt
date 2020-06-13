@@ -101,6 +101,7 @@ class LoginActivity : BaseActivity() {
                 when(which){
                     DialogInterface.BUTTON_POSITIVE ->{
                         startActivity<TermActivity>()
+                        finish()
                     }
                     DialogInterface.BUTTON_NEGATIVE ->{
                         editor.clear()
@@ -116,6 +117,4 @@ class LoginActivity : BaseActivity() {
         dialog.show()
 
     }
-
-
 }

@@ -51,6 +51,7 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_ti"
             android:layout_width="360dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"

@@ -46,11 +46,11 @@ class SignUpPhoneActivity : AppCompatActivity() {
                         send_btn.setOnClickListener {
                             Toast.makeText(
                                 this@SignUpPhoneActivity,
-                                "success",
+                                "인증되었습니다.",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                             startActivity(Intent(this@SignUpPhoneActivity, SignUpInfoActivity::class.java))
+                            finish()
                         }
                     }
                     if(visible_access.visibility != View.VISIBLE){
@@ -99,7 +99,7 @@ class SignUpPhoneActivity : AppCompatActivity() {
                 send_btn.setBackgroundResource(R.drawable.not_access_btn)
             }
         })
-        already_regi.setOnClickListener { startActivity<LoginActivity>() }
+        already_regi.setOnClickListener { finish() }
 
     }
 }

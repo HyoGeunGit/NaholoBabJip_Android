@@ -30,6 +30,7 @@ class SignUpInfoActivity : AppCompatActivity() {
         SharedPref.openSharedPrep(this)
         setContentView(R.layout.activity_signup_info)
         keyBoardCheck()
+        onBackPressed()
 
         ph_tv.setText(pref.getString("phone_signup",""))
         ph_tv.inputType = InputType.TYPE_NULL
@@ -137,10 +138,16 @@ class SignUpInfoActivity : AppCompatActivity() {
             editor.apply()
             System.out.println("LOGD: " + pref.getString("name_signup","") + pref.getString("birth_signup","") + pref.getString("mail_signup","") + pref.getString("sex_signup",""))
             startActivity<SignUpIdActivity>()
+            finish()
         }
 
         else{
             Toast.makeText(this@SignUpInfoActivity, "입력란을 전부 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
     }
 }

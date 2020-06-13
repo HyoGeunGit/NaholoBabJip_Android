@@ -25,6 +25,7 @@ class SignUpProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup_profile)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         SharedPref.openSharedPrep(this)
+        onBackPressed()
         if(pref.getBoolean("sex_signup",false) == false){
             profile_img.setImageResource(R.drawable.profile_male)
         }
@@ -77,5 +78,9 @@ class SignUpProfileActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
     }
 }
