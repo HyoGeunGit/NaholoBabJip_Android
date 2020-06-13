@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필 설정"
+            android:fontFamily="@font/hanna_11"
+            android:layout_marginEnd="115dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:fontFamily="@font/hanna_11"
+            android:layout_height="wrap_content"
+            android:text="자신을 표현할 프로필을 설정해주세요!"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="70dp"
+            android:gravity="center"
+            android:textColor="#6c6b6b"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:id="@+id/profile_img"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile_male"
+            android:layout_width="190dp"
+            android:layout_height="190dp"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임"
+            android:layout_gravity="center"
+            android:layout_marginRight="160dp"
+            android:fontFamily="@font/hanna_11"
+            android:gravity="center"
+            android:textColor="#6c6b6b"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="360dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            app:hintEnabled="true"
+            android:layout_height="50dp"
+            android:background="@drawable/textinput_login">
+            <EditText
+                android:id="@+id/nick_tv"
+                android:fontFamily="@font/hanna_11"
+                android:textColor="#000"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아하는 음식 태그! (ex.족발, 떡볶이)"
+            android:layout_gravity="center"
+            android:layout_marginRight="68dp"
+            android:fontFamily="@font/hanna_11"
+            android:gravity="center"
+            android:textColor="#6c6b6b"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="360dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            app:hintEnabled="true"
+            android:layout_height="50dp"
+            android:background="@drawable/textinput_login">
+            <EditText
+                android:id="@+id/pw_chk_tv"
+                android:fontFamily="@font/hanna_11"
+                android:textColor="#000"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/signup_btn"
+            android:layout_width="360dp"
+            android:layout_gravity="center"
+            android:text="다음"
+            android:gravity="center"
+            android:fontFamily="@font/hanna_11"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+</ScrollView>

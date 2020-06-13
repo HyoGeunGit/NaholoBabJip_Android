@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="약관"
+        android:fontFamily="@font/hanna_11"
+        android:layout_marginEnd="160dp"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_marginRight="20dp"
+        />
+
+    <TextView android:layout_width="wrap_content"
+        android:fontFamily="@font/hanna_11"
+        android:layout_height="wrap_content"
+        android:text="우리끼리의 약속!"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="135dp"
+        android:gravity="center"
+        android:textColor="#6c6b6b"
+        android:textSize="15dp"
+        />
+
+    <ScrollView
+        android:layout_margin="10dp"
+        android:background="@drawable/textinput_login"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+        <TextView
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/term"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </ScrollView>
+    <androidx.appcompat.widget.AppCompatRadioButton
+        android:id="@+id/access_radio"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:textColor="#a8a8a8"
+        android:text="약관에 동의하십니까?"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/term_ok_btn"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/not_access_btn"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:text="완료"
+        android:gravity="center"
+        android:fontFamily="@font/hanna_11"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:layout_height="50dp"/>
+
+</LinearLayout>
