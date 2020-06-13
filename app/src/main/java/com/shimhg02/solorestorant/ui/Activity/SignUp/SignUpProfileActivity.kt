@@ -9,6 +9,7 @@ import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
 import kotlinx.android.synthetic.main.activity_signup_profile.*
+import org.jetbrains.anko.defaultSharedPreferences
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +25,7 @@ class SignUpProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup_profile)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         SharedPref.openSharedPrep(this)
-        if(pref.getString("sex_signup","") == "남자"){
+        if(pref.getBoolean("sex_signup",false) == false){
             profile_img.setImageResource(R.drawable.profile_male)
         }
         else{
@@ -48,7 +49,8 @@ class SignUpProfileActivity : AppCompatActivity() {
             pref.getString("birth_signup",""),
             pref.getString("mail_signup",""),
             nick_tv.text.toString(),
-            pref.getString("sex_signup",""))
+            pref.getBoolean("sex_signup", false)
+        )
             .enqueue(object : Callback<LogIn> {
             override fun onResponse(call: Call<LogIn>?, response: Response<LogIn>?) {
                 when (response!!.code()) {

@@ -47,7 +47,7 @@ class TermActivity : AppCompatActivity() {
                     404 -> {
                         Toast.makeText(
                             this@TermActivity,
-                            "서버에러",
+                            "서버 점검중입니다. 잠시 후 다시 시도해 주세요.",
                             Toast.LENGTH_LONG).show()
                     }
                     500 -> Toast.makeText(this@TermActivity, "서버에러", Toast.LENGTH_LONG).show()

@@ -17,7 +17,7 @@ object Client {
         val logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(20, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS).build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://sonssage.herokuapp.com/")
+            .baseUrl("http:/13.59.89.201:8001")
             .addConverterFactory(GsonConverterFactory.create())
             .client(logger)
             .build()

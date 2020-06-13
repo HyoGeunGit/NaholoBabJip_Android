@@ -84,7 +84,7 @@ class SignUpInfoActivity : AppCompatActivity() {
     fun boyClicked(){
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putString("sex_signup", "남자")
+        editor.putBoolean("sex_signup",false)
         boy_btn.setBackgroundResource(R.drawable.signup_btn)
         boy_btn.setTextColor(Color.WHITE)
         girl_btn.setTextColor(Color.BLACK)
@@ -95,7 +95,7 @@ class SignUpInfoActivity : AppCompatActivity() {
     fun girlClicked(){
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putString("sex_signup","여자")
+        editor.putBoolean("sex_signup",true)
         girl_btn.setTextColor(Color.WHITE)
         boy_btn.setTextColor(Color.BLACK)
         girl_btn.setBackgroundResource(R.drawable.signup_btn)
