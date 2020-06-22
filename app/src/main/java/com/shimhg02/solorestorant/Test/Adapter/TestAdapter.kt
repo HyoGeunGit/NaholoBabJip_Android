@@ -41,7 +41,7 @@ class TestAdapter(val testDataList:ArrayList<TestData>): RecyclerView.Adapter<Te
                 data.image
             )
             System.out.println("LOGD1: " + testDataListOn)
-            val a = Intent(itemView.context, StatusStoriesActivity::class.java)
+            val a = Intent(itemView.context, StatusStoriesActivity::class.java) //TODO: StatusStoriesActivitiy 포맷 변경
             a.putExtra(StatusStoriesActivity.STATUS_RESOURCES_KEY, testDataListOn)
             a.putExtra(StatusStoriesActivity.STATUS_DURATION_KEY, 3000L)
             a.putExtra(StatusStoriesActivity.IS_IMMERSIVE_KEY, true)

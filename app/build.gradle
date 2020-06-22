@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.shimhg02.solorestorant"
-        minSdkVersion 21 //project crush by multidex when use 30 and lower than sdk 21
+        minSdkVersion 24 //project crush by multidex when use 30 and lower than sdk 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,9 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
+
     //defines
     def moshiVersion="1.8.0"
     def retrofit2_version = "2.5.0"
@@ -44,7 +47,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.12'
 
-
     //Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
@@ -62,6 +64,11 @@ dependencies {
     //Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutineVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
+
+    //Google Apis
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation 'com.google.android.gms:play-services-places:15.0.1'
 
     //Anko
     implementation "org.jetbrains.anko:anko:0.10.8"

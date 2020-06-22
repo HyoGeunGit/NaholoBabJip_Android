@@ -1,5 +1,6 @@
 package com.shimhg02.solorestorant.network.Api
 
+import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LogIn
 import retrofit2.Call
 import retrofit2.http.*
@@ -33,4 +34,7 @@ interface API {
     @FormUrlEncoded
     fun autoLogin(@Field("token") token : String) :  Call<LogIn>
 
+    @POST("/getPlace")
+    @FormUrlEncoded
+    fun getPlace(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number) :  Call<ArrayList<LocationRepo>>
 }

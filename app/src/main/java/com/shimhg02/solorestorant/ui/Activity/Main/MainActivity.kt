@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Fragment.MapTestFragment
 import com.shimhg02.solorestorant.Test.Fragment.TestFragment
 import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -108,7 +109,7 @@ class MainActivity : BaseActivity() {
                 0 ->
                     TestFragment()
                 1 ->
-                    TestFragment()
+                    MapTestFragment()
                 2 ->
                     TestFragment()
                 3 ->
