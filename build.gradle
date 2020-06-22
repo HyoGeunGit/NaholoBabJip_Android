@@ -18,6 +18,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven { name 'glide-snapshot'; url 'http://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
 
