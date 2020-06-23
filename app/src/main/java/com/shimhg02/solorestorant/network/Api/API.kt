@@ -6,7 +6,6 @@ import retrofit2.Call
 import retrofit2.http.*
 interface API {
 
-
     @POST("/signin")
     @FormUrlEncoded
     fun logIn(@Field("id") id : String, @Field("passwd") pw : String) :  Call<LogIn>
@@ -37,4 +36,9 @@ interface API {
     @POST("/getPlace")
     @FormUrlEncoded
     fun getPlace(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number) :  Call<ArrayList<LocationRepo>>
+
+    @POST("/getCategory ")
+    @FormUrlEncoded
+    fun getCategory(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number, @Field("category") category : String) :  Call<ArrayList<LocationRepo>>
+
 }

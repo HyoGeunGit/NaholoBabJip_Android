@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil;
+package com.shimhg02.solorestorant.utils.GpsUtil;
 
 
 

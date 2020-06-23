@@ -21,9 +21,6 @@ object Client {
             .addConverterFactory(GsonConverterFactory.create())
             .client(logger)
             .build()
-
         retrofitService = retrofit.create(API::class.java)
-
-
     }
 }

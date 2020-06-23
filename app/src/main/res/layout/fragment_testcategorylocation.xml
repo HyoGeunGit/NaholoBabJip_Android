@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/category_test_edtv"
+        android:layout_marginLeft="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:text="search"
+        android:id="@+id/category_test_btn"
+        android:layout_width="90dp"
+        android:layout_height="60dp"/>
+
+    <fragment
+        android:layout_marginTop="60dp"
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/cardview_googlemap"
+        app:cardCornerRadius="20dp"
+        android:elevation="10dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_hello"
+                android:scaleType="centerCrop"
+                android:layout_width="120dp"
+                android:layout_height="120dp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:text="ㅎㅇㅎ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/subtitle_tv"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="11dp"
+                    android:text="ㅎㅇㅎ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/findloadt_btn"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_margin="30dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

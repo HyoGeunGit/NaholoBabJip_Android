@@ -5,17 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/story_box"
-            android:layout_width="160dp"
-            android:layout_height="250dp">
+            android:layout_width="110dp"
+            android:layout_height="200dp">
 
                 <androidx.cardview.widget.CardView
+                    android:backgroundTint="#8E8E8E"
                     app:cardCornerRadius="37.5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                         <ImageView
+                            android:backgroundTint="#8E8E8E"
                             android:id="@+id/image_story"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

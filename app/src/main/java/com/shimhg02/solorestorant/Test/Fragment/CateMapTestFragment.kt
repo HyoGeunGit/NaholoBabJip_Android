@@ -28,13 +28,14 @@ import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_locationtest.*
+import kotlinx.android.synthetic.main.fragment_testcategorylocation.*
+import kotlinx.android.synthetic.main.fragment_testcategorylocation.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
+class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
@@ -50,23 +51,23 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.activity_locationtest, container, false)
+        val view = inflater.inflate(R.layout.fragment_testcategorylocation, container, false)
         val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
-        getPlaceData()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+        view.category_test_btn.setOnClickListener {
+            getCategoryData()
+        }
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(p0: LocationResult) {
+                super.onLocationResult(p0)
 
-            locationCallback = object : LocationCallback() {
-                override fun onLocationResult(p0: LocationResult) {
-                    super.onLocationResult(p0)
-
-                    lastLocation = p0.lastLocation
-                    placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
-                }
+                lastLocation = p0.lastLocation
+                placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
             }
-            createLocationRequest()
-
-            return view
+        }
+        createLocationRequest()
+        return view
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -213,13 +214,12 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
 //        return addressText
 //    }
 
-    fun getPlaceData(){
-
+    fun getCategoryData(){
         var gpsTracker =
             GpsTracker(this.context)
         val latitude: Double = gpsTracker.getLatitude()
         val longitude: Double = gpsTracker.getLongitude()
-        Client.retrofitService.getPlace(latitude.toString(),longitude.toString(),1000).enqueue(object : Callback<ArrayList<LocationRepo>> {
+        Client.retrofitService.getCategory(latitude.toString(),longitude.toString(),1000, category_test_edtv.text.toString()).enqueue(object : Callback<ArrayList<LocationRepo>> {
             override fun onResponse(call: Call<ArrayList<LocationRepo>>?, response: Response<ArrayList<LocationRepo>>?) {
                 val repo = response!!.body()
 
