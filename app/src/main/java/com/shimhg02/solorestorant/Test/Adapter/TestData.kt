@@ -1,4 +1,4 @@
 package com.shimhg02.solorestorant.Test.Adapter
 
 
-class TestData(val name: String, val image : String)
+class TestData(val name: String, val image : String, val profileImage : String)

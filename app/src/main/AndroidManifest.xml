@@ -35,6 +35,7 @@
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpProfileActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.Term.TermActivity"/>
         <activity android:name=".ui.Activity.Story.StoryTest"/>
+        <activity android:name=".Test.TestUtil.StatusStoriesActivity"/>
     </application>
 
 </manifest>

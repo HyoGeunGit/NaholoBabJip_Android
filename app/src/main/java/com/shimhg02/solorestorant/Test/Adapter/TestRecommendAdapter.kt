@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
-import com.rahuljanagouda.statusstories.StatusStoriesActivity
-import com.rahuljanagouda.statusstories.glideProgressBar.OkHttpProgressGlideModule
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.ui.Activity.Story.StoryTest
 import com.squareup.picasso.Picasso

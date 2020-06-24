@@ -27,13 +27,13 @@ class TestFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     @SuppressLint("WrongConstant")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val testDataList = arrayListOf( //테스트용 더미데이터1
-            TestData("심효근", "https://i.pinimg.com/originals/fc/c2/de/fcc2ded6298590d814a8e5c349467f63.jpg"),
-            TestData("강은서", "https://steamuserimages-a.akamaihd.net/ugc/781851765953128487/1BF4AB9F9D350192D88DA1B5422A05D908E2B54B/"),
-            TestData("박태욱", "https://cdn.class101.net/images/c854f359-2b91-48f7-9ec9-694931f45fec/412xauto"),
-            TestData("이유진", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLji8PMdMmR5034_w0fIKumzLFgCl5fuHrJPonCg5O9ZHnsfqg&usqp=CAU"),
-            TestData("이민혁", "https://lh3.googleusercontent.com/proxy/qBjp0UbVFfArGEBTr_tXnwar4UxIlVWn1laTjb9Liot9FHuY7JFZabCMKKVPcbRseGUQBiR0HLtuu1AOmqr5js5Tcua_WNW_ijXett_BJG1svWhQ4lIXBI8Rx88RA3IOMZQaxuqOkbAdepAA2iL6uIkW7je02lbWiSQR0kZfUHeO6wA"),
-            TestData("임수민", "https://i.pinimg.com/originals/3a/97/b1/3a97b1ff7ba1338dda57533416a6d08f.png"),
-            TestData("박종훈", "https://pbs.twimg.com/media/ERo04MOU0AATugV.jpg")
+            TestData("심효근", "https://i.pinimg.com/originals/fc/c2/de/fcc2ded6298590d814a8e5c349467f63.jpg", "https://cdn.class101.net/images/8062f865-c1ec-459c-b3f6-3d67a928cda7/1200x630"),
+            TestData("강은서", "https://steamuserimages-a.akamaihd.net/ugc/781851765953128487/1BF4AB9F9D350192D88DA1B5422A05D908E2B54B/", "https://pbs.twimg.com/profile_images/1182930100024594434/BRQu9Kpy_400x400.jpg"),
+            TestData("박태욱", "https://cdn.class101.net/images/c854f359-2b91-48f7-9ec9-694931f45fec/412xauto", "https://cdn.class101.net/images/11f4e712-6132-4a19-b4d3-7712e4546672/1200xauto"),
+            TestData("이유진", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSLji8PMdMmR5034_w0fIKumzLFgCl5fuHrJPonCg5O9ZHnsfqg&usqp=CAU", "https://i.pinimg.com/originals/f7/95/bd/f795bd9971dd4df0c8ddd14c3ac9a965.jpg"),
+            TestData("이민혁", "https://lh3.googleusercontent.com/proxy/qBjp0UbVFfArGEBTr_tXnwar4UxIlVWn1laTjb9Liot9FHuY7JFZabCMKKVPcbRseGUQBiR0HLtuu1AOmqr5js5Tcua_WNW_ijXett_BJG1svWhQ4lIXBI8Rx88RA3IOMZQaxuqOkbAdepAA2iL6uIkW7je02lbWiSQR0kZfUHeO6wA", "https://i.pinimg.com/originals/4f/49/53/4f4953b636a8bb4377fe8ddf3f37bb5f.jpg"),
+            TestData("임수민", "https://i.pinimg.com/originals/3a/97/b1/3a97b1ff7ba1338dda57533416a6d08f.png", "https://pbs.twimg.com/media/EKSPb2RU0AAr9g6.jpg"),
+            TestData("박종훈", "https://pbs.twimg.com/media/ERo04MOU0AATugV.jpg", "https://i.pinimg.com/originals/49/72/d4/4972d4c65f3b1ebdeda26bd2b524ea33.jpg")
         )
 
         val recommendTestDataList = arrayListOf( //테스트용 더미데이터2

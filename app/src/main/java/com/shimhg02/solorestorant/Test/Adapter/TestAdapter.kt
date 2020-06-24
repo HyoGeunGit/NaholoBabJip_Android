@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
-import com.rahuljanagouda.statusstories.StatusStoriesActivity
-import com.rahuljanagouda.statusstories.glideProgressBar.OkHttpProgressGlideModule
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.TestUtil.StatusStoriesActivity
 import com.shimhg02.solorestorant.ui.Activity.Story.StoryTest
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_story.view.*
@@ -44,8 +43,11 @@ class TestAdapter(val testDataList:ArrayList<TestData>): RecyclerView.Adapter<Te
             val a = Intent(itemView.context, StatusStoriesActivity::class.java) //TODO: StatusStoriesActivitiy 포맷 변경
             a.putExtra(StatusStoriesActivity.STATUS_RESOURCES_KEY, testDataListOn)
             a.putExtra(StatusStoriesActivity.STATUS_DURATION_KEY, 3000L)
+            a.putExtra(StatusStoriesActivity.STATUS_DURATION_KEY, 3000L)
             a.putExtra(StatusStoriesActivity.IS_IMMERSIVE_KEY, true)
             a.putExtra(StatusStoriesActivity.IS_CACHING_ENABLED_KEY, true)
+            a.putExtra(StatusStoriesActivity.STATUS_WRITER_KEY, data.name)
+            a.putExtra(StatusStoriesActivity.STATUS_PROFILE_KEY, data.profileImage)
             a.putExtra(StatusStoriesActivity.IS_TEXT_PROGRESS_ENABLED_KEY, true)
             Picasso.get().load(data.image).into(itemView.image_story)
             itemView.name_tv.setText(data.name)

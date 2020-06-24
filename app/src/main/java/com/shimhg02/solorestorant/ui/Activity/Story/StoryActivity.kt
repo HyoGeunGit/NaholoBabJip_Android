@@ -4,7 +4,6 @@ package com.shimhg02.solorestorant.ui.Activity.Story
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.rahuljanagouda.statusstories.StatusStoriesActivity
 import com.shimhg02.solorestorant.R
 
 
