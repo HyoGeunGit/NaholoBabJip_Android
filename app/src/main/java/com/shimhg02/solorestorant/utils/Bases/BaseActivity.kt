@@ -22,7 +22,9 @@ abstract class BaseActivity : AppCompatActivity() {
         instance = this
         setContentView(viewId)
         onCreate()
+
     }
+
 
     fun disableToggle() {
         this.supportActionBar?.setDisplayHomeAsUpEnabled(false)

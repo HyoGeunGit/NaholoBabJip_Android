@@ -21,7 +21,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCR1fDuBuZ8BFG6oSkKSPZXupnKNCEED4w"/>
-        <activity android:name="com.shimhg02.solorestorant.ui.Activity.LogIn.LoginActivity" >
+        <activity android:name=".ui.Activity.LogIn.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,8 +34,10 @@
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpIdActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpProfileActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.Term.TermActivity"/>
+        <activity android:name=".utils.StoryUtil.ActivityView.StoryActivity"/>
+        <activity android:name=".Test.Activity.TestInfoActivity"/>
         <activity android:name=".ui.Activity.Story.StoryTest"/>
-        <activity android:name=".Test.TestUtil.StatusStoriesActivity"/>
+        <activity android:name=".Test.Activity.ImageViewrActivity"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil
+package com.shimhg02.solorestorant.utils.StoryUtil.ActivityView
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.shimhg02.solorestorant.R
 import java.util.*
 
-class StoryStatusView : LinearLayout {
+class StoryView : LinearLayout {
     private val progressBars: MutableList<ProgressBar> =
         ArrayList()
     private val animators: MutableList<ObjectAnimator> =
@@ -58,7 +58,8 @@ class StoryStatusView : LinearLayout {
         removeAllViews()
         for (i in 0 until storiesCount) {
             val p = createProgressBar()
-            p.max = MAX_PROGRESS
+            p.max =
+                MAX_PROGRESS
             progressBars.add(p)
             addView(p)
             if (i + 1 < storiesCount) {

@@ -1,10 +1,11 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar;
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target;
 
 import android.graphics.drawable.Drawable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.Target;
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp.OkHttpProgressGlideModule;
 
 public abstract class ProgressTarget<T, Z> extends WrappingTarget<Z> implements OkHttpProgressGlideModule.UIProgressListener {
     private T model;

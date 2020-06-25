@@ -1,0 +1,48 @@
+package com.shimhg02.solorestorant.Test.Adapter
+
+
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.ImageViewrActivity
+import kotlinx.android.synthetic.main.item_food.view.*
+
+
+class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.Adapter<TestFoodAdapter.ViewHolder>() {
+
+    //아이템의 갯수를 설정해줍니다 (저 안의 숫자는 보통 .size로 지정해줍니다.)
+    override fun getItemCount(): Int {
+        return testDataList.size
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_food, parent, false)
+        return ViewHolder(v, testDataList)
+    }
+
+    override fun onBindViewHolder(holder: TestFoodAdapter.ViewHolder, position: Int) {
+        holder.bindItems(testDataList[position])
+    }
+
+
+    class ViewHolder(view: View, var testDataList:ArrayList<FoodImageRepo>): RecyclerView.ViewHolder(view) {
+        fun bindItems(data : FoodImageRepo){
+            System.out.println("PHOTO: "+data.photo.toString())
+            Glide.with(itemView.context).load(data.photo).into(itemView.image_food)
+            itemView.setOnClickListener {
+                val a = Intent(itemView.context, ImageViewrActivity::class.java) //TODO: StorieActivity 포맷 변경
+                a.putExtra("imageView",data.photo)
+                itemView.context.startActivity(a)
+            }
+        }
+
+    }
+}
+
+private fun Any.putExtra(statusResourcesKey: String, testDataAsset: MutableList<String>) {
+
+}

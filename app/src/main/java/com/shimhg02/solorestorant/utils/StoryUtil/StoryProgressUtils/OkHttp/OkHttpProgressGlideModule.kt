@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp
 
 import android.content.Context
 import android.os.Handler
@@ -14,9 +14,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.*
 
-/**
- * Created by rahuljanagouda on 30/09/17.
- */
+
 class OkHttpProgressGlideModule : GlideModule {
     override fun applyOptions(
         context: Context,
@@ -60,7 +58,8 @@ class OkHttpProgressGlideModule : GlideModule {
         )
     }
 
-    private class DispatchingProgressListener internal constructor() : ResponseProgressListener {
+    private class DispatchingProgressListener internal constructor() :
+        ResponseProgressListener {
         private val handler: Handler
         override fun update(
             url: HttpUrl,
@@ -72,7 +71,9 @@ class OkHttpProgressGlideModule : GlideModule {
             val listener =
                 LISTENERS[key] ?: return
             if (contentLength <= bytesRead) {
-                forget(key)
+                forget(
+                    key
+                )
             }
             if (needsDispatch(key, bytesRead, contentLength, listener.granualityPercentage)) {
                 handler.post { listener.onProgress(bytesRead, contentLength) }
@@ -168,19 +169,30 @@ class OkHttpProgressGlideModule : GlideModule {
                 val request = chain.request()
                 val response = chain.proceed(request)
                 response.newBuilder()
-                    .body(OkHttpProgressResponseBody(request.url(), response.body(), listener))
+                    .body(
+                        OkHttpProgressResponseBody(
+                            request.url(),
+                            response.body(),
+                            listener
+                        )
+                    )
                     .build()
             }
         }
 
         @JvmStatic
         fun forget(url: String) {
-            DispatchingProgressListener.forget(url)
+            DispatchingProgressListener.forget(
+                url
+            )
         }
 
         @JvmStatic
         fun expect(url: String, listener: UIProgressListener) {
-            DispatchingProgressListener.expect(url, listener)
+            DispatchingProgressListener.expect(
+                url,
+                listener
+            )
         }
     }
 }

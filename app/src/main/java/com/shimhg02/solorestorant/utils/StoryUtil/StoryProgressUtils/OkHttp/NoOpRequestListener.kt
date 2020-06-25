@@ -1,11 +1,8 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp
 
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-/**
- * Created by rahuljanagouda on 30/09/17.
- */
 class NoOpRequestListener<A, B> private constructor() : RequestListener<A, B> {
     override fun onException(
         e: Exception,

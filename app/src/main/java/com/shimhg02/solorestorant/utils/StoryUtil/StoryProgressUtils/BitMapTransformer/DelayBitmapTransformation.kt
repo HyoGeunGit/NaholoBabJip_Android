@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.BitMapTransformer
 
 import android.graphics.Bitmap
 import android.util.Log

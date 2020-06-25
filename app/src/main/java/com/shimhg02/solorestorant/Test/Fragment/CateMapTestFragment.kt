@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,7 +28,6 @@ import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_testcategorylocation.*
 import kotlinx.android.synthetic.main.fragment_testcategorylocation.view.*
 import retrofit2.Call
@@ -83,12 +83,8 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         var resultAdress = str?.split("end")
         if(!p0!!.isInfoWindowShown){
             cardview_googlemap.visibility = View.VISIBLE
-            if (resultAdress?.get(0)==null|| resultAdress.get(0) =="") {
-                Picasso.get().load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
-            }
-            else{
-                Picasso.get().load(resultAdress?.get(0)).into(image_hello)
-            }
+            if (resultAdress?.get(0)==null|| resultAdress.get(0) =="")  Glide.with(this.context).load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
+            else Glide.with(this.context).load(resultAdress?.get(0)).into(image_hello)
             name_tv.text = p0.title
             subtitle_tv.text = resultAdress?.get(1)
             if(name_tv.text == null|| name_tv.text == "" || subtitle_tv.text == null){

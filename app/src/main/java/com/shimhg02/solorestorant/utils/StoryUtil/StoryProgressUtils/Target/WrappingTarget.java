@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar;
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;

@@ -1,5 +1,6 @@
 package com.shimhg02.solorestorant.network.Api
 
+import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LogIn
 import retrofit2.Call
@@ -36,6 +37,10 @@ interface API {
     @POST("/getPlace")
     @FormUrlEncoded
     fun getPlace(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number) :  Call<ArrayList<LocationRepo>>
+
+    @POST("/getDetail")
+    @FormUrlEncoded
+    fun getDetail(@Field("place_id") placeid : String) :   Call<TestInfoData>
 
     @POST("/getCategory ")
     @FormUrlEncoded

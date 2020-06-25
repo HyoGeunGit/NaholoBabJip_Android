@@ -1,0 +1,72 @@
+package com.shimhg02.solorestorant.Test.Activity
+
+
+import android.annotation.SuppressLint
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Adapter.FoodImageRepo
+import com.shimhg02.solorestorant.Test.Adapter.FoodReviewRepo
+import com.shimhg02.solorestorant.Test.Adapter.TestFoodAdapter
+import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
+import com.shimhg02.solorestorant.network.Retrofit.Client
+import com.shimhg02.solorestorant.utils.Bases.BaseActivity
+import com.shimhg02.solorestorant.utils.Preference.SharedPref
+import kotlinx.android.synthetic.main.activity_info_test.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+
+class TestInfoActivity : BaseActivity() {
+    private val itemss = java.util.ArrayList<FoodImageRepo>()
+    private val items2 = java.util.ArrayList<FoodReviewRepo>()
+    private var recyclerView: RecyclerView? = null
+    private var recyclerView2: RecyclerView? = null
+    private var adapterd: TestFoodAdapter? = null
+    override var viewId: Int = R.layout.activity_info_test
+
+    @SuppressLint("WrongConstant")
+    override fun onCreate() {
+        SharedPref.openSharedPrep(this)
+        recyclerView = findViewById(R.id.recyfood)
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
+        recyclerView?.adapter =  TestFoodAdapter(itemss)
+
+
+        Client.retrofitService.getDetail(intent.getStringExtra("chekOn").toString()).enqueue(object :
+            Callback<TestInfoData> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<TestInfoData>?, response: Response<TestInfoData>?) {
+
+                val repo = response!!.body()
+                when (response!!.code()) {
+                    200 -> {
+                        System.out.println("LOGDD" + response.body()!!.photo)
+                            tv_1.text = response.body()!!.name
+                            tv_2.text = response.body()!!.vicinity
+                            tv_3.text = response.body()!!.formatted_phone_number
+                            tv_4.text = response.body()!!.openTime +"  "+ if(response.body()!!.openNow == true){"영업중"}else{"문닫음"}
+                            response.body()!!.photo.indices.forEach {
+                                itemss += FoodImageRepo(
+                                    response.body()!!.photo[it]
+                                )
+                                recyclerView?.adapter?.notifyDataSetChanged()
+                            }
+                        System.out.println("LOGDD items" +  response.body()!!.reviews)
+                    }
+                    203-> {
+                    }
+                }
+            }
+            override fun onFailure(call: Call<TestInfoData>?, t: Throwable?) {
+
+            }
+        })
+    }
+}
+
+private fun <T> Call<T>.enqueue(callback: Callback<TestInfoData>) {
+}

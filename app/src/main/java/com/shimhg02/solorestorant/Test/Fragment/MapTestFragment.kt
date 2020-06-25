@@ -11,9 +11,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,10 +26,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.TestInfoActivity
+import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
 import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_locationtest.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,9 +54,10 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.activity_locationtest, container, false)
-        val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
         getPlaceData()
+        val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment!!.getMapAsync(this)
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
             locationCallback = object : LocationCallback() {
@@ -82,21 +86,28 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
         var resultAdress = str?.split("end")
         if(!p0!!.isInfoWindowShown){
             cardview_googlemap.visibility = View.VISIBLE
-            if (resultAdress?.get(0)==null|| resultAdress.get(0) =="") {
-                Picasso.get().load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
+            if (resultAdress!!.get(0)==null|| resultAdress.get(0) =="") {
+                Glide.with(this.context).load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
+
             }
             else{
-                Picasso.get().load(resultAdress?.get(0)).into(image_hello)
+                Glide.with(this.context).load(resultAdress.get(0)).into(image_hello)
             }
             name_tv.text = p0.title
-            subtitle_tv.text = resultAdress?.get(1)
+            subtitle_tv.text = resultAdress!!.get(1)
+            test_secure.text = resultAdress!!.get(2)
+            Toast.makeText(context,test_secure.text,Toast.LENGTH_SHORT).show()
             if(name_tv.text == null|| name_tv.text == "" || subtitle_tv.text == null){
                 cardview_googlemap.visibility = View.GONE
+            }
+            cardview_googlemap.setOnClickListener {
+                val intent = Intent(context, TestInfoActivity::class.java)
+                intent.putExtra("chekOn", test_secure.text.toString())
+                startActivity(intent)
             }
         }
         return true
     }
-
     override fun onMapClick(p0: LatLng?) {
         cardview_googlemap.visibility = View.GONE
     }
@@ -227,7 +238,7 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
                     200 -> {
                         repo!!.indices.forEach {
                             val marker = LatLng(repo[it].lat.toDouble(), repo[it].lng.toDouble())
-                            mMap.addMarker(MarkerOptions().position(marker).title(repo[it].placeName).snippet(repo[it].placePhoto + "end" + repo[it].vicinity))
+                            mMap.addMarker(MarkerOptions().position(marker).title(repo[it].placeName).snippet(repo[it].placePhoto + "end" + repo[it].vicinity + "end" + repo[it].placeId))
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(marker))
                             setUpMap()
                         }

@@ -84,7 +84,7 @@
             android:layout_weight="1" />
     </LinearLayout>
 
-    <com.shimhg02.solorestorant.Test.TestUtil.StoryStatusView
+    <com.shimhg02.solorestorant.utils.StoryUtil.ActivityView.StoryView
         android:id="@+id/storiesStatus"
         android:layout_width="match_parent"
         android:layout_height="3dp"

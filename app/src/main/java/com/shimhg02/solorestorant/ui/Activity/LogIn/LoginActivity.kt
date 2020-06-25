@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.widget.Toast
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.TestInfoActivity
 import com.shimhg02.solorestorant.network.Data.LogIn
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity

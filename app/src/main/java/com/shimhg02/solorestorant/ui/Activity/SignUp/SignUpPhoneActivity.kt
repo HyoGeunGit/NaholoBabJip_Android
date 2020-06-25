@@ -11,10 +11,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.ui.Activity.LogIn.LoginActivity
 import kotlinx.android.synthetic.main.activity_signup_phone.*
 import org.jetbrains.anko.backgroundResource
-import org.jetbrains.anko.startActivity
 
 
 class SignUpPhoneActivity : AppCompatActivity() {

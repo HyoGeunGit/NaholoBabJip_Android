@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar
+package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -8,7 +8,8 @@ import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.target.ViewTarget
-import com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar.NoOpRequestListener.Companion.get
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp.NoOpRequestListener.Companion.get
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target.WrappingTarget
 import java.util.*
 
 
@@ -38,7 +39,9 @@ class LoggingListener<A, B> @JvmOverloads constructor(
                 name,
                 e,
                 model,
-                strip(target),
+                strip(
+                    target
+                ),
                 isFirst(isFirstResource),
                 Log.getStackTraceString(e)
             )
@@ -54,9 +57,13 @@ class LoggingListener<A, B> @JvmOverloads constructor(
         isFirstResource: Boolean
     ): Boolean {
         val resourceString =
-            strip(getResourceDescription(resource))
+            strip(
+                getResourceDescription(resource)
+            )
         val targetString =
-            strip(getTargetDescription(target))
+            strip(
+                getTargetDescription(target)
+            )
         Log.println(
             level, "GLIDE", String.format(
                 Locale.ROOT,

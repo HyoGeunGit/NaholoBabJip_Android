@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.TestUtil;
+package com.shimhg02.solorestorant.utils.StoryUtil.ActivityView;
 
 
 import android.annotation.SuppressLint;
@@ -18,16 +18,13 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.shimhg02.solorestorant.R;
-import com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar.DelayBitmapTransformation;
-import com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar.LoggingListener;
-import com.shimhg02.solorestorant.Test.TestUtil.GlideProgressBar.ProgressTarget;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.BitMapTransformer.DelayBitmapTransformation;
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp.LoggingListener;
+import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target.ProgressTarget;
 
 import java.util.Locale;
 
-public class StatusStoriesActivity extends AppCompatActivity implements StoryStatusView.UserInteractionListener {
+public class StoryActivity extends AppCompatActivity implements StoryView.UserInteractionListener {
 
     public static final String STATUS_RESOURCES_KEY = "statusStoriesResources";
     public static final String STATUS_DURATION_KEY = "statusStoriesDuration";
@@ -38,7 +35,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
     public static final String IS_CACHING_ENABLED_KEY = "isCaching";
     public static final String IS_TEXT_PROGRESS_ENABLED_KEY = "isText";
 
-    private static StoryStatusView storyStatusView;
+    private static StoryView storyView;
     private ImageView image;
     private TextView Writer;
     ImageView Profile;
@@ -68,28 +65,28 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
         TextView textView = findViewById(R.id.textView);
         image = findViewById(R.id.image);
 
-        storyStatusView = findViewById(R.id.storiesStatus);
-        storyStatusView.setStoriesCount(statusResources.length);
-        storyStatusView.setStoryDuration(statusDuration);
+        storyView = findViewById(R.id.storiesStatus);
+        storyView.setStoriesCount(statusResources.length);
+        storyView.setStoryDuration(statusDuration);
 
         Writer = findViewById(R.id.writer_tv);
         Writer.setText(getIntent().getStringExtra(STATUS_WRITER_KEY));
 
         Profile = findViewById(R.id.profile_image);
-        Picasso.get().load(getIntent().getStringExtra(STATUS_PROFILE_KEY)).into(Profile);
+        Glide.with(this).load(getIntent().getStringExtra(STATUS_PROFILE_KEY)).into(Profile);
         // or
         // statusView.setStoriesCountWithDurations(statusResourcesDuration);
-        storyStatusView.setUserInteractionListener(this);
-        storyStatusView.playStories();
+        storyView.setUserInteractionListener(this);
+        storyView.playStories();
         target = new MyProgressTarget<>(new BitmapImageViewTarget(image), imageProgressBar, textView);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storyStatusView.skip();
+                storyView.skip();
             }
         });
 
-        storyStatusView.pause();
+        storyView.pause();
         target.setModel(statusResources[counter]);
         Glide.with(image.getContext())
                 .load(target.getModel())
@@ -105,7 +102,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
         findViewById(R.id.reverse).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storyStatusView.reverse();
+                storyView.reverse();
             }
         });
 
@@ -113,7 +110,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
         findViewById(R.id.skip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storyStatusView.skip();
+                storyView.skip();
             }
         });
 
@@ -121,9 +118,9 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                    storyStatusView.pause();
+                    storyView.pause();
                 } else {
-                    storyStatusView.resume();
+                    storyView.resume();
                 }
                 return true;
             }
@@ -133,7 +130,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
     @Override
     public void onNext() {
 
-        storyStatusView.pause();
+        storyView.pause();
         ++counter;
         target.setModel(statusResources[counter]);
         Glide.with(image.getContext())
@@ -152,7 +149,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
     public void onPrev() {
 
         if (counter - 1 < 0) return;
-        storyStatusView.pause();
+        storyView.pause();
         --counter;
         target.setModel(statusResources[counter]);
         Glide.with(image.getContext())
@@ -189,7 +186,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
     @Override
     protected void onDestroy() {
         // Very important !
-        storyStatusView.destroy();
+        storyView.destroy();
         super.onDestroy();
     }
 
@@ -233,7 +230,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
             } else {
                 text.setVisibility(View.INVISIBLE);
             }
-            storyStatusView.pause();
+            storyView.pause();
         }
 
         @Override
@@ -250,7 +247,7 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
             }
 
 
-            storyStatusView.pause();
+            storyView.pause();
 
         }
 
@@ -265,14 +262,14 @@ public class StatusStoriesActivity extends AppCompatActivity implements StorySta
             }
 
 
-            storyStatusView.pause();
+            storyView.pause();
         }
 
         @Override
         protected void onDelivered() {
             progress.setVisibility(View.INVISIBLE);
             text.setVisibility(View.INVISIBLE);
-            storyStatusView.resume();
+            storyView.resume();
         }
     }
 }

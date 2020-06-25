@@ -16,6 +16,10 @@ class LocationRepo {
     @SerializedName("photo")
     var placePhoto = ""
 
+
+    @SerializedName("place_id")
+    var placeId = ""
+
     @SerializedName("vicinity")
     var vicinity = ""
 }
