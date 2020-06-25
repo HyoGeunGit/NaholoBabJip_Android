@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.utils.StoryUtil.ActivityView;
+package com.shimhg02.solorestorant.ui.Activity.Story;
 
 
 import android.annotation.SuppressLint;
@@ -18,6 +18,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.shimhg02.solorestorant.R;
+import com.shimhg02.solorestorant.utils.StoryUtil.ActivityView.StoryView;
 import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.BitMapTransformer.DelayBitmapTransformation;
 import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.OkHttp.LoggingListener;
 import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target.ProgressTarget;
