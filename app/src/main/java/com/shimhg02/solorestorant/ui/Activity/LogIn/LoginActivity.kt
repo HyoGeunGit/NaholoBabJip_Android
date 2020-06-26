@@ -4,6 +4,7 @@ package com.shimhg02.solorestorant.ui.Activity.LogIn
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.facebook.*
 import com.facebook.AccessToken
@@ -17,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.shimhg02.solorestorant.R
@@ -42,11 +44,17 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     private lateinit var googleSignInClient: GoogleSignInClient
     private var mGoogleApiClient: GoogleApiClient? = null
     private var mAuth: FirebaseAuth? = null
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate() {
+        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         SharedPref.openSharedPrep(this)
         facebookLogin()
         googleLogin()
         AutoLogin()
+        System.out.println("token Test1 : "+ pref.getString("fbToken",""))
+        System.out.println("token Test2 : "+ pref.getString("ggToken",""))
+
         login_btn.setOnClickListener { login() }
         signup_go.setOnClickListener {  startActivity<SignUpPhoneActivity>() }
     }
@@ -113,6 +121,8 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     }
 
     private fun facebookLogin(){
+        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        val editor = pref.edit()
         lateinit var auth: FirebaseAuth
         fb_btn.setOnClickListener {
             facebookOauthCall()
@@ -130,9 +140,11 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                         }
                     }
                     var accessToken = AccessToken.getCurrentAccessToken()
+                    handleFacebookAccessToken(accessToken)
+                    System.out.println("fbID: "+ accessToken)
                     System.out.println("fbID: "+ accessToken.token)
-                    val isLoggedIn = accessToken != null && !accessToken.isExpired
-
+                    editor.putString("fbToken", accessToken.token)
+                    editor.apply()
                 }
                 override fun onCancel() {
                     Toast.makeText(this@LoginActivity,"OnCancle",Toast.LENGTH_SHORT).show()
@@ -144,6 +156,30 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
         }
     }
+
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:$token")
+        auth = FirebaseAuth.getInstance()
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = auth.currentUser
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithCredential:failure", task.exception)
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+                // ...
+            }
+    }
+
+
+
     private fun googleLogin() {
         google_btn.setOnClickListener {
             getGoogleApi()
@@ -168,12 +204,16 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount): Unit {
         mAuth = FirebaseAuth.getInstance();
+        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        val editor = pref.edit()
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         mAuth!!.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (!task.isSuccessful()) {
                 Toast.makeText(this@LoginActivity, "실패", Toast.LENGTH_SHORT).show()
             } else {
                 System.out.println("GGToken: "+  acct.id +","+acct.account+", Token:" +acct.idToken)
+                editor.putString("ggToken",acct.idToken)
+                editor.apply()
                 Toast.makeText(this@LoginActivity, "성공", Toast.LENGTH_SHORT).show()
             }
         }

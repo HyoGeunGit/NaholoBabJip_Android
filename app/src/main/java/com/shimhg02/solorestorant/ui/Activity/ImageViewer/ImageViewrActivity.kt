@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Activity
+package com.shimhg02.solorestorant.ui.Activity.ImageViewer
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
