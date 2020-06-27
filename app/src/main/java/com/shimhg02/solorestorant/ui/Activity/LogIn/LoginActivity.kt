@@ -31,6 +31,7 @@ import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -145,6 +146,31 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     System.out.println("fbID: "+ accessToken.token)
                     editor.putString("fbToken", accessToken.token)
                     editor.apply()
+                    Client.retrofitService.getFacebookAccess(accessToken.token).enqueue(object : Callback<Void> {
+                        override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                            when (response!!.code()) {
+                                200 -> {
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        "체크 성공",
+                                        Toast.LENGTH_LONG).show()
+                                }
+                                203 -> {
+                                    alertTermDialog()
+                                }
+                                401 -> {
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        "이메일 미아",
+                                        Toast.LENGTH_LONG).show()
+                                }
+                                500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                        override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+                        }
+                    })
                 }
                 override fun onCancel() {
                     Toast.makeText(this@LoginActivity,"OnCancle",Toast.LENGTH_SHORT).show()
@@ -173,8 +199,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                 }
-
-                // ...
             }
     }
 
@@ -215,9 +239,35 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                 editor.putString("ggToken",acct.idToken)
                 editor.apply()
                 Toast.makeText(this@LoginActivity, "성공", Toast.LENGTH_SHORT).show()
+                Client.retrofitService.getGoogleAccess(acct.idToken.toString()).enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                        when (response!!.code()) {
+                            200 -> {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "체크 성공",
+                                    Toast.LENGTH_LONG).show()
+                            }
+                            203 -> {
+                                alertTermDialog()
+                            }
+                            401 -> {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "이메일 미아",
+                                    Toast.LENGTH_LONG).show()
+                            }
+                            500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+                    }
+                })
             }
         }
     }
+
 
     private fun alertTermDialog(){
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
