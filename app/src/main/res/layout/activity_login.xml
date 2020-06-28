@@ -170,16 +170,16 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        android:layout_marginLeft="80dp"
-                        android:layout_marginTop="30dp"
+                        android:id="@+id/google_btn"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:id="@+id/google_btn"
-                        android:src="@drawable/ic_google" />
+                        android:src="@drawable/ic_google"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="60dp"
+                        app:layout_constraintEnd_toStartOf="@+id/fb_btn"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-                    <ImageView
+                    <com.facebook.login.widget.LoginButton
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -187,17 +187,19 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:id="@+id/fb_btn"
-                        android:src="@drawable/ic_fb" />
+                        android:background="@drawable/ic_fb"
+                        />
 
-                    <ImageView
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:layout_marginRight="80dp"
-                        android:layout_marginTop="30dp"
+                    <com.kakao.usermgmt.LoginButton
+                        android:id="@+id/kako_btn"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:id="@+id/kako_btn"
-                        android:src="@drawable/ic_kakao"/>
+                        android:background="@drawable/ic_kakao"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="60dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fb_btn"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

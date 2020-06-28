@@ -3,13 +3,18 @@ package com.shimhg02.solorestorant.Test.Activity
 
 import android.annotation.SuppressLint
 import android.widget.LinearLayout
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Adapter.FoodImageRepo
 import com.shimhg02.solorestorant.Test.Adapter.FoodReviewRepo
 import com.shimhg02.solorestorant.Test.Adapter.TestFoodAdapter
-import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
+import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
@@ -26,6 +31,7 @@ class TestInfoActivity : BaseActivity() {
     private var recyclerView2: RecyclerView? = null
     private var adapterd: TestFoodAdapter? = null
     override var viewId: Int = R.layout.activity_info_test
+    lateinit var mAdView : AdView
 
     @SuppressLint("WrongConstant")
     override fun onCreate() {
@@ -34,7 +40,10 @@ class TestInfoActivity : BaseActivity() {
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = LinearLayoutManager(this, LinearLayout.HORIZONTAL, false)
         recyclerView?.adapter =  TestFoodAdapter(itemss)
-
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111")
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
 
         Client.retrofitService.getDetail(intent.getStringExtra("chekOn").toString()).enqueue(object :
             Callback<TestInfoData> {

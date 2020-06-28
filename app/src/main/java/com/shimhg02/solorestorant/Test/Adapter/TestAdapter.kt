@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.utils.StoryUtil.ActivityView.StoryActivity
+import com.shimhg02.solorestorant.Test.Data.TestData
+import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
 import kotlinx.android.synthetic.main.item_story.view.*
 
 
 class TestAdapter(val testDataList:ArrayList<TestData>): RecyclerView.Adapter<TestAdapter.ViewHolder>() {
 
-    //아이템의 갯수를 설정해줍니다 (저 안의 숫자는 보통 .size로 지정해줍니다.)
-    override fun getItemCount(): Int {
+     override fun getItemCount(): Int {
         return testDataList.size
     }
 

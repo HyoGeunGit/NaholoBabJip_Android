@@ -27,7 +27,6 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Activity.TestInfoActivity
-import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
 import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
@@ -233,7 +232,6 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
         Client.retrofitService.getPlace(latitude.toString(),longitude.toString(),1000).enqueue(object : Callback<ArrayList<LocationRepo>> {
             override fun onResponse(call: Call<ArrayList<LocationRepo>>?, response: Response<ArrayList<LocationRepo>>?) {
                 val repo = response!!.body()
-
                 when (response.code()) {
                     200 -> {
                         repo!!.indices.forEach {

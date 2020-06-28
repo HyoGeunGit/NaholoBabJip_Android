@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "301747024886",
+    "firebase_url": "https://naholo-babjip.firebaseio.com",
+    "project_id": "naholo-babjip",
+    "storage_bucket": "naholo-babjip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301747024886:android:21c0d8584cfc7919984dd7",
+        "android_client_info": {
+          "package_name": "com.shimhg02.solorestorant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301747024886-vk9ciilu4ev0hupmvbkhk68ol5cl9601.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY6sFagKy1Dg-XjbJMBWaB_WewwuhSfhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301747024886-vk9ciilu4ev0hupmvbkhk68ol5cl9601.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.ImageViewrActivity
+import com.shimhg02.solorestorant.ui.Activity.ImageViewer.ImageViewerActivity
 import kotlinx.android.synthetic.main.item_food.view.*
 
 
 class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.Adapter<TestFoodAdapter.ViewHolder>() {
 
-    //아이템의 갯수를 설정해줍니다 (저 안의 숫자는 보통 .size로 지정해줍니다.)
     override fun getItemCount(): Int {
         return testDataList.size
     }
@@ -28,18 +27,16 @@ class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.A
         holder.bindItems(testDataList[position])
     }
 
-
     class ViewHolder(view: View, var testDataList:ArrayList<FoodImageRepo>): RecyclerView.ViewHolder(view) {
         fun bindItems(data : FoodImageRepo){
             System.out.println("PHOTO: "+data.photo.toString())
             Glide.with(itemView.context).load(data.photo).into(itemView.image_food)
             itemView.setOnClickListener {
-                val a = Intent(itemView.context, ImageViewrActivity::class.java) //TODO: StorieActivity 포맷 변경
+                val a = Intent(itemView.context, ImageViewerActivity::class.java) //TODO: StorieActivity 포맷 변경
                 a.putExtra("imageView",data.photo)
                 itemView.context.startActivity(a)
             }
         }
-
     }
 }
 

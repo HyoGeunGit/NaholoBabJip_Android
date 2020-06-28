@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/profile_imgs"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_launcher_background"
+            />
+
+        <TextView
+            android:id="@+id/name_tv_friend"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="NameSpace"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/molle_token"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+
+        <TextView
+            android:id="@+id/molle_my_token"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/momo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+</LinearLayout>

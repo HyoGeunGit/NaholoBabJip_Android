@@ -78,4 +78,11 @@ OO사이버 몰(이 하 “몰”이라 한다)에서 제공하는 인터넷 관
 방문판매 등에 관한 법률」, 「소비자기본법」 등
 
 관련 법을 위배하지 않 는 범위에서 이 약관을 개정할 수 있습니다.</string>
+    <string name="facebook_app_id" translatable="false">2651961561683113</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2651961561683113</string>
+    <string name="kakao_app_key" translatable="false">bc6c622337a78f4ced9163615149e411</string>
+    <string name="geo_api_key" translatable="false">AIzaSyDY6sFagKy1Dg-XjbJMBWaB_WewwuhSfhc</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>

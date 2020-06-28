@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Adapter
+package com.shimhg02.solorestorant.Test.Data
 
 data class TestInfoData(
     val formatted_phone_number: String,

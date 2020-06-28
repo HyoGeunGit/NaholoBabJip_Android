@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Data.TestRecommendData
 import kotlinx.android.synthetic.main.item_recomendfood.view.*
 import kotlinx.android.synthetic.main.item_story.view.image_story
 import kotlinx.android.synthetic.main.item_story.view.name_tv
@@ -15,7 +16,6 @@ import kotlinx.android.synthetic.main.item_story.view.name_tv
 
 class TestRecommendAdapter(val testDataList:ArrayList<TestRecommendData>): RecyclerView.Adapter<TestRecommendAdapter.ViewHolder>() {
 
-    //아이템의 갯수를 설정해줍니다 (저 안의 숫자는 보통 .size로 지정해줍니다.)
     override fun getItemCount(): Int {
         return testDataList.size
     }

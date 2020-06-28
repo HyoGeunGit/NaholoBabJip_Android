@@ -1,11 +1,12 @@
 package com.shimhg02.solorestorant.network.Api
 
-import com.shimhg02.solorestorant.Test.Adapter.TestInfoData
+import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LogIn
 import retrofit2.Call
 import retrofit2.http.*
-interface API {
+
+interface   API {
 
     @POST("/signin")
     @FormUrlEncoded
@@ -21,6 +22,20 @@ interface API {
               @Field("email") email: String?,
               @Field("nick") nickName: String?,
               @Field("sex") sex: Boolean?) : Call<LogIn>
+
+
+    @POST("/social/facebook")
+    @FormUrlEncoded
+    fun getFacebookAccess(@Field("token") accessToken : String) :   Call<Void>
+
+    @POST("/social/google")
+    @FormUrlEncoded
+    fun getGoogleAccess(@Field("token") accessToken : String) :   Call<Void>
+
+    @POST("/social/google")
+    @FormUrlEncoded
+    fun socialVerify(@Field("token") accessToken : String) :   Call<Void>
+
 
     @POST("/termsCheck")
     @FormUrlEncoded
@@ -45,5 +60,16 @@ interface API {
     @POST("/getCategory ")
     @FormUrlEncoded
     fun getCategory(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number, @Field("category") category : String) :  Call<ArrayList<LocationRepo>>
+
+    @POST("/social/verifySave ")
+    @FormUrlEncoded
+    fun socialVerifySave(
+        @Field("name") name : String,
+        @Field("email") email : String,
+        @Field("nick") nick : Number,
+        @Field("phone") phone : String,
+        @Field("birth") birth : String,
+        @Field("sex") sex : String,
+        @Field("uuid") uuid : String) :  Call<ArrayList<LocationRepo>>
 
 }
