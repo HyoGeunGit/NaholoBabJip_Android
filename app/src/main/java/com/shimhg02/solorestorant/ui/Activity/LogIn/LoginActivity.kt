@@ -20,6 +20,7 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.LogIn
@@ -31,7 +32,6 @@ import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,7 +55,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         AutoLogin()
         System.out.println("token Test1 : "+ pref.getString("fbToken",""))
         System.out.println("token Test2 : "+ pref.getString("ggToken",""))
-
         login_btn.setOnClickListener { login() }
         signup_go.setOnClickListener {  startActivity<SignUpPhoneActivity>() }
     }
@@ -142,35 +141,8 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     }
                     var accessToken = AccessToken.getCurrentAccessToken()
                     handleFacebookAccessToken(accessToken)
-                    System.out.println("fbID: "+ accessToken)
-                    System.out.println("fbID: "+ accessToken.token)
-                    editor.putString("fbToken", accessToken.token)
-                    editor.apply()
-                    Client.retrofitService.getFacebookAccess(accessToken.token).enqueue(object : Callback<Void> {
-                        override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                            when (response!!.code()) {
-                                200 -> {
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "체크 성공",
-                                        Toast.LENGTH_LONG).show()
-                                }
-                                203 -> {
-                                    alertTermDialog()
-                                }
-                                401 -> {
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "이메일 미아",
-                                        Toast.LENGTH_LONG).show()
-                                }
-                                500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
-                            }
-                        }
-                        override fun onFailure(call: Call<Void>?, t: Throwable?) {
-
-                        }
-                    })
+                    System.out.println("TOKENS $accessToken")
+                    System.out.println("TOKENS ${accessToken.token}")
                 }
                 override fun onCancel() {
                     Toast.makeText(this@LoginActivity,"OnCancle",Toast.LENGTH_SHORT).show()
@@ -190,11 +162,43 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
+                        user!!.getIdToken(true)
+                            .addOnCompleteListener { task ->
+                            if (task.isSuccessful()) {
+                                val idToken: String? = task.getResult()!!.getToken()
+                                System.out.println("TESTTOKEN$idToken")
+                                Client.retrofitService.getFacebookAccess(idToken!!).enqueue(object : Callback<Void> {
+                                    override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                                        when (response!!.code()) {
+                                            200 -> {
+                                                Toast.makeText(
+                                                    this@LoginActivity,
+                                                    "체크 성공",
+                                                    Toast.LENGTH_LONG).show()
+                                            }
+                                            203 -> {
+                                                alertTermDialog()
+                                            }
+                                            401 -> {
+                                                Toast.makeText(
+                                                    this@LoginActivity,
+                                                    "이메일 미아",
+                                                    Toast.LENGTH_LONG).show()
+                                            }
+                                            500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+                                    }
+                                })
+                            } else {
+                            }
+                        }
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
@@ -226,11 +230,14 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
 
     }
 
+
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount): Unit {
         mAuth = FirebaseAuth.getInstance();
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
+
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+//        val decodedToken = FirebaseToken = FirebaseAuth.getInstance().verifyIdToken(idToken)
         mAuth!!.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (!task.isSuccessful()) {
                 Toast.makeText(this@LoginActivity, "실패", Toast.LENGTH_SHORT).show()
@@ -238,35 +245,47 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                 System.out.println("GGToken: "+  acct.id +","+acct.account+", Token:" +acct.idToken)
                 editor.putString("ggToken",acct.idToken)
                 editor.apply()
-                Toast.makeText(this@LoginActivity, "성공", Toast.LENGTH_SHORT).show()
-                Client.retrofitService.getGoogleAccess(acct.idToken.toString()).enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                        when (response!!.code()) {
-                            200 -> {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "체크 성공",
-                                    Toast.LENGTH_LONG).show()
-                            }
-                            203 -> {
-                                alertTermDialog()
-                            }
-                            401 -> {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "이메일 미아",
-                                    Toast.LENGTH_LONG).show()
-                            }
-                            500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                val mUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+                mUser!!.getIdToken(true)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful()) {
+                            val idToken: String? = task.getResult()!!.getToken()
+                            Client.retrofitService.getGoogleAccess(idToken!!).enqueue(object : Callback<Void> {
+                                override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                                    when (response!!.code()) {
+                                        200 -> {
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "체크 성공",
+                                                Toast.LENGTH_LONG).show()
+                                        }
+                                        203 -> {
+                                            alertTermDialog()
+                                        }
+                                        401 -> {
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "이메일 미아",
+                                                Toast.LENGTH_LONG).show()
+                                        }
+                                        500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+                                }
+                            })
+                        } else {
+                            // Handle error -> task.getException();
                         }
                     }
-                    override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                Toast.makeText(this@LoginActivity, "성공", Toast.LENGTH_SHORT).show()
 
-                    }
-                })
             }
         }
     }
+
 
 
     private fun alertTermDialog(){
@@ -297,6 +316,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         dialog.show()
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         callbackManager.onActivityResult(requestCode, resultCode, data)
@@ -310,8 +330,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     firebaseAuthWithGoogle(account)
                 }
             } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
             }
         }
     }

@@ -6,8 +6,7 @@ import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
 import kotlinx.android.synthetic.main.activity_image_viewer.*
 
-
-class ImageViewrActivity : AppCompatActivity() {
+class ImageViewerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
