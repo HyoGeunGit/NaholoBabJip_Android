@@ -64,6 +64,7 @@
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.Term.TermActivity"/>
         <activity android:name=".ui.Activity.Story.StoryActivity"/>
         <activity android:name=".Test.Activity.TestInfoActivity"/>
+        <activity android:name=".Test.Activity.AddGroupActivity"/>
         <activity android:name=".ui.Activity.ImageViewer.ImageViewerActivity"/>
     </application>
 </manifest>

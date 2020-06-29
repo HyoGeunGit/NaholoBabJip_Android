@@ -1,5 +1,39 @@
 <resources>
-    <string name="app_name">SoloRestorant</string>
+    <string name="app_name">나홀로 밥집</string>
+    <string name="activity_login_login_text">LOGIN</string>
+    <string name="activity_login_subtitle_text">혼밥할 사람 찾아? 아님 혼밥맛집?</string>
+    <string name="activity_login_isfirsttime_text">나홀로 집밥에 처음이신가요?</string>
+    <string name="activity_login_signupgo_text">회원가입</string>
+    <string name="activity_login_sns_text">SNS계정이 있으신가요?</string>
+    <string name="activity_signup_id_title_text">아이디 생성</string>
+    <string name="activity_signup_id_subtitle_text">자신만의 멋진 아이디를 만들어보세요!</string>
+    <string name="multifie">증복확인</string>
+    <string name="password_text">비밀번호</string>
+    <string name="password_duplicate_text">비밀번호 확인</string>
+    <string name="next">다음</string>
+    <string name="activity_signup_info_title_text">회원정보 입력</string>
+    <string name="activity_signup_info_subtitle_text">여러분의 정보, 혼밥이에게 알려줄레요?</string>
+    <string name="namet_text">이름</string>
+    <string name="birth_text">생년월일</string>
+    <string name="phone_text">전화번호</string>
+    <string name="sext_text">성별</string>
+    <string name="boy_text">남</string>
+    <string name="girl_text">여</string>
+    <string name="activity_signup_phone_title_text">SIGNUP</string>
+    <string name="activity_signup_phone_subtitle_text">나홀로 밥집 첫 방문인가요?</string>
+    <string name="activity_signup_phone_send_number_text">인증문자 보내기</string>
+    <string name="activity_signup_phone_back_text">이미 회원이신가요? 뒤로가기!</string>
+    <string name="access_number_text">인증번호</string>
+    <string name="activity_signup_profile_title_text">프로필 설정</string>
+    <string name="activity_signup_profile_subtitle_text">자신을 표현할 프로필을 설정해주세요!</string>
+    <string name="nick_text">닉네임</string>
+    <string name="activity_signup_profile_tag_text">좋아하는 음식 태그! (ex.족발, 떡볶이)</string>
+    <string name="term_text">약관</string>
+    <string name="activity_signup_term_subtitle_text">우리끼리의 약속!</string>
+    <string name="activity_signup_term_accept_text">약관에 동의하십니까?</string>
+    <string name="finish_text">완료</string>
+    <string name="feed_text">피드!</string>
+
     <string name="term">제1조(목적)
 
 이 약관은 O O 회사(전자상거래 사업자)가 운영하는
@@ -78,6 +112,7 @@ OO사이버 몰(이 하 “몰”이라 한다)에서 제공하는 인터넷 관
 방문판매 등에 관한 법률」, 「소비자기본법」 등
 
 관련 법을 위배하지 않 는 범위에서 이 약관을 개정할 수 있습니다.</string>
+
     <string name="facebook_app_id" translatable="false">2651961561683113</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb2651961561683113</string>
     <string name="kakao_app_key" translatable="false">bc6c622337a78f4ced9163615149e411</string>

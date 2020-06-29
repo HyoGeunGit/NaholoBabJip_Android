@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/realative_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,6 +19,7 @@
             android:layout_marginTop="70dp"
             android:layout_alignTop="@id/group_search_bar"
             tools:listitem="@layout/item_group"
+            android:id="@+id/group_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -36,12 +38,25 @@
             app:fabSize="normal" />
 
 
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/fabsub1"
+            android:fontFamily="@font/hanna_11"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="그룹 생성"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignTop="@id/fab_sub1"
+            android:layout_toLeftOf="@id/fab_sub1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_sub2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/fab_main"
+            android:layout_above="@+id/fab_sub3"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="15dp"
             android:layout_marginRight="20dp"
@@ -49,6 +64,48 @@
             android:visibility="invisible"
             app:borderWidth="0dp"
             app:fabSize="normal" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/fabsub2"
+            android:fontFamily="@font/hanna_11"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="랜덤참가"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignTop="@id/fab_sub2"
+            android:layout_toLeftOf="@id/fab_sub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_sub3"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/fab_main"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#000"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/fabsub3"
+            android:fontFamily="@font/hanna_11"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:text="1대 1 매칭"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignTop="@id/fab_sub3"
+            android:layout_toLeftOf="@id/fab_sub3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_main"

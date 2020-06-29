@@ -4,6 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/molle_group_token"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@drawable/textinput_login"
@@ -23,6 +27,7 @@
                             android:layout_height="60dp"/>
 
                         <TextView
+                            android:id="@+id/name_tv"
                             android:layout_marginLeft="70dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="@id/image_icon"
@@ -56,6 +61,7 @@
                             android:layout_height="20dp"/>
 
                         <TextView
+                            android:id="@+id/location_tv"
                             android:layout_marginLeft="30dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="@id/ic_location"
@@ -68,6 +74,7 @@
 
 
                         <TextView
+                            android:id="@+id/time_tv"
                             android:layout_marginLeft="30dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintLeft_toLeftOf="@id/ic_time"
@@ -90,6 +97,7 @@
 
 
                         <TextView
+                            android:id="@+id/people_tv"
                             android:layout_marginRight="15dp"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintRight_toRightOf="parent"

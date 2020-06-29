@@ -15,7 +15,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LOGIN"
+                android:text="@string/activity_login_login_text"
                 android:fontFamily="@font/hanna_11"
                 android:layout_marginEnd="135dp"
                 android:layout_marginTop="110dp"
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/hanna_11"
                 android:layout_height="wrap_content"
-                android:text="혼밥할 사람 찾아? 아님 혼밥맛집?"
+                android:text="@string/activity_login_subtitle_text"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="78dp"
@@ -121,7 +121,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="나홀로 집밥에 처음이신가요?"
+                android:text="@string/activity_login_isfirsttime_text"
                 android:textColor="#c3c3c3"
                 android:fontFamily="@font/hanna_11"
                 android:layout_marginTop="30dp"
@@ -136,7 +136,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/hanna_11"
                 android:gravity="center"
-                android:text="회원가입"
+                android:text="@string/activity_login_signupgo_text"
                 android:textColor="#c3c3c3"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -161,7 +161,7 @@
                     android:textStyle="bold"
                     android:textColor="#c3c3c3"
                     android:fontFamily="@font/hanna_11"
-                    android:text="SNS계정이 있으신가요?"
+                    android:text="@string/activity_login_sns_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

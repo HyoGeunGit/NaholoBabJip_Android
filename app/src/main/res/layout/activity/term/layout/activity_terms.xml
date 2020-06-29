@@ -10,7 +10,7 @@
 
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="약관"
+        android:text="@string/term_text"
         android:fontFamily="@font/hanna_11"
         android:layout_marginEnd="160dp"
         android:layout_marginTop="100dp"
@@ -25,7 +25,7 @@
     <TextView android:layout_width="wrap_content"
         android:fontFamily="@font/hanna_11"
         android:layout_height="wrap_content"
-        android:text="우리끼리의 약속!"
+        android:text="@string/activity_signup_term_subtitle_text"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="135dp"
@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:textColor="#a8a8a8"
-        android:text="약관에 동의하십니까?"
+        android:text="@string/activity_signup_term_accept_text"
         android:layout_height="wrap_content"/>
     <Button
         android:layout_marginTop="20dp"
@@ -64,7 +64,7 @@
         android:background="@drawable/not_access_btn"
         android:layout_width="360dp"
         android:layout_gravity="center"
-        android:text="완료"
+        android:text="@string/finish_text"
         android:gravity="center"
         android:fontFamily="@font/hanna_11"
         android:textSize="16dp"

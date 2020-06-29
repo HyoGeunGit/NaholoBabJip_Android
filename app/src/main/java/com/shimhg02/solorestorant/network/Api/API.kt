@@ -1,5 +1,7 @@
 package com.shimhg02.solorestorant.network.Api
 
+import com.shimhg02.solorestorant.Test.Data.GroupData
+import com.shimhg02.solorestorant.Test.Data.GroupJoinData
 import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Data.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LogIn
@@ -36,6 +38,16 @@ interface   API {
     @FormUrlEncoded
     fun socialVerify(@Field("token") accessToken : String) :   Call<Void>
 
+    @POST("/social/verifySave ")
+    @FormUrlEncoded
+    fun socialVerifySave(
+        @Field("name") name : String,
+        @Field("email") email : String,
+        @Field("nick") nick : Number,
+        @Field("phone") phone : String,
+        @Field("birth") birth : String,
+        @Field("sex") sex : String,
+        @Field("uuid") uuid : String) :  Call<ArrayList<LocationRepo>>
 
     @POST("/termsCheck")
     @FormUrlEncoded
@@ -61,15 +73,31 @@ interface   API {
     @FormUrlEncoded
     fun getCategory(@Field("lat") lat : String, @Field("lng") lng : String, @Field("range") range : Number, @Field("category") category : String) :  Call<ArrayList<LocationRepo>>
 
-    @POST("/social/verifySave ")
+    @POST("/addGroup")
     @FormUrlEncoded
-    fun socialVerifySave(
-        @Field("name") name : String,
-        @Field("email") email : String,
-        @Field("nick") nick : Number,
-        @Field("phone") phone : String,
-        @Field("birth") birth : String,
-        @Field("sex") sex : String,
-        @Field("uuid") uuid : String) :  Call<ArrayList<LocationRepo>>
+    fun addGroup(@Field("token") token : String,
+                 @Field("groupName") groupName : String,
+                 @Field("maximum") maximun : String,
+                 @Field("lat") lat : Number,
+                 @Field("lng") lng : Number,
+                 @Field("vicinity") vicinity : String,
+                 @Field("time") time : String,
+                 @Field("isAdult") isAdult : Boolean,
+                 @Field("category") category : String
+                 ) :   Call<GroupData>
+
+    @POST("/readGroup/maxPage")
+    @FormUrlEncoded
+    fun getGroup(@Field("index") index : Number, @Field("token") token : String) :  Call<ArrayList<GroupData>>
+
+
+    @POST("/joinGroup")
+    @FormUrlEncoded
+    fun joinGroup(@Field("token") token : String, @Field("groupUUID") groupUUID : String) :   Call<GroupJoinData>
+
+
+    @POST("/searchGroup")
+    @FormUrlEncoded
+    fun searchGroup(@Field("token") token : String, @Field("searchText") searchText : String) :   Call<GroupJoinData>
 
 }
