@@ -24,6 +24,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/activity/main',
+                            'src/main/res/layout/activity/chat',
+                            'src/main/res/layout/activity/info',
+                            'src/main/res/layout/activity/signin',
+                            'src/main/res/layout/activity/signup',
+                            'src/main/res/layout/activity/story',
+                            'src/main/res/layout/activity/term',
+                            'src/main/res/layout/activity/viewer',
+                            'src/main/res/layout/fragment/event',
+                            'src/main/res/layout/fragment/group',
+                            'src/main/res/layout/fragment/feed',
+                            'src/main/res/layout/fragment/location',
+                            'src/main/res/layout/fragment/story',
+                            'src/main/res/layout/item/chat',
+                            'src/main/res/layout/item/drawer',
+                            'src/main/res/layout/item/food',
+                            'src/main/res/layout/item/group',
+                            'src/main/res/layout/item/story',
+                            'src/main/res/layout/header',
+                            'src/main/res'
+                    ]
+        }
+    }
 }
 
 dependencies {
@@ -91,6 +118,8 @@ dependencies {
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
 }
 tasks.withType(Javadoc) {
     options.addStringOption('Xdoclint:none', '-quiet')
