@@ -92,6 +92,7 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
             view!!.fabsub1.startAnimation(fab_close)
             view!!.fabsub2.startAnimation(fab_close)
             view!!.fabsub3.startAnimation(fab_close)
+            view!!.blurView.visibility = View.GONE
             view!!.fab_sub1.setClickable(false)
             view!!.fab_sub2.setClickable(false)
             isFabOpen = false
@@ -103,6 +104,7 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
             view!!.fabsub1.startAnimation(fab_open)
             view!!.fabsub2.startAnimation(fab_open)
             view!!.fabsub3.startAnimation(fab_open)
+            view!!.blurView.visibility = View.VISIBLE
             view!!.fab_sub1.setClickable(true)
             view!!.fab_sub2.setClickable(true)
             isFabOpen = true

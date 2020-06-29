@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/realative_view"
+    android:background="#FFF"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
 
         <androidx.appcompat.widget.SearchView
             android:background="@drawable/textinput_login"
@@ -23,6 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/blurView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#00FFFFFF" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_sub1"
@@ -119,4 +128,5 @@
             android:src="@drawable/ic_plus"
             android:backgroundTint="#000"
             app:fabSize="normal" />
+
 </RelativeLayout>
