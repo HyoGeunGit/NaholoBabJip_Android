@@ -85,6 +85,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     }
 
     private fun login() {
+        login_btn.isClickable = false
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         val editor = pref.edit()
             Client.retrofitService.logIn(id_tv.text.toString(), pw_tv.text.toString()).enqueue(object : Callback<LogIn> {
@@ -98,15 +99,20 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                         finish()
                     }
                     203 -> {
+                        login_btn.isClickable = true
                         alertTermDialog()
                     }
                     404 -> {
+                        login_btn.isClickable = true
                         Toast.makeText(
                             this@LoginActivity,
                             "로그인 실패: PW나 ID를 다시 확인하세요.",
                             Toast.LENGTH_LONG).show()
                     }
-                    500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                    500 -> {
+                        login_btn.isClickable = true
+                        Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
             override fun onFailure(call: Call<LogIn>?, t: Throwable?) {
@@ -173,18 +179,27 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                                     override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                                         when (response!!.code()) {
                                             200 -> {
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "체크 성공",
+                                                Toast.LENGTH_LONG).show()
+                                        }
+                                            201 -> {
                                                 Toast.makeText(
                                                     this@LoginActivity,
-                                                    "체크 성공",
-                                                    Toast.LENGTH_LONG).show()
-                                            }
-                                            203 -> {
-                                                alertTermDialog()
+                                                    "체크 성공, 이미 있는 유저",
+                                                   Toast.LENGTH_LONG).show()
                                             }
                                             401 -> {
                                                 Toast.makeText(
                                                     this@LoginActivity,
                                                     "이메일 미아",
+                                                    Toast.LENGTH_LONG).show()
+                                            }
+                                            404 -> {
+                                                Toast.makeText(
+                                                    this@LoginActivity,
+                                                    "없는 유저",
                                                     Toast.LENGTH_LONG).show()
                                             }
                                             500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
@@ -259,13 +274,22 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                                                 "체크 성공",
                                                 Toast.LENGTH_LONG).show()
                                         }
-                                        203 -> {
-                                            alertTermDialog()
+                                        201 -> {
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "체크 성공, 이미 있는 유저",
+                                                Toast.LENGTH_LONG).show()
                                         }
                                         401 -> {
                                             Toast.makeText(
                                                 this@LoginActivity,
                                                 "이메일 미아",
+                                                Toast.LENGTH_LONG).show()
+                                        }
+                                        404 -> {
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                "없는 유저",
                                                 Toast.LENGTH_LONG).show()
                                         }
                                         500 -> Toast.makeText(this@LoginActivity, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()

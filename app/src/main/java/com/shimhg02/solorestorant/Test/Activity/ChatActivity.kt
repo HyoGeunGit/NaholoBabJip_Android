@@ -1,20 +1,18 @@
 package com.shimhg02.solorestorant.Test.Activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -28,8 +26,12 @@ import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Adapter.DrawerAdapter
 import com.shimhg02.solorestorant.Test.Data.ChatDTO
 import com.shimhg02.solorestorant.Test.Data.DrawerData
+import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.chat_content_main.*
+import java.io.IOException
+import java.util.*
+
 
 class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val itemss = java.util.ArrayList<DrawerData>()
@@ -38,7 +40,6 @@ class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     var CHAT_NAME:String = ""
     var USER_NAME:String = ""
     var chat_view: ListView? = null
-    var chat_edit: EditText? = null
     var chat_send: Button? = null
     var chat_name: TextView? = null
     var onon: ImageView? = null
@@ -49,16 +50,16 @@ class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     var onners: LinearLayout? = null
     val firebaseDatabase = FirebaseDatabase.getInstance()
     val databaseReference = firebaseDatabase.reference
+    private val imm: InputMethodManager? = null
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_content_main)
-
+        keyboardEvent()
 
         // 위젯 ID 참조
         chat_view = findViewById<ListView>(R.id.chat_view)
-        chat_edit = findViewById<EditText>(R.id.chat_edit)
         chat_send = findViewById<Button>(R.id.chat_sent)
         chat_name = findViewById<TextView>(R.id.chat_names)
         onon = findViewById<ImageView>(R.id.onon)
@@ -67,12 +68,14 @@ class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         Videoss = findViewById<ImageView>(R.id.video)
         val toolbar = home
         chat_view!!.divider = null
+        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         val i = intArrayOf(0)
         onon!!.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v:View) {
                 if (i[0] == 0)
                 {
                     onners!!.visibility = View.VISIBLE
+                    imm.hideSoftInputFromWindow(chat_edit!!.getWindowToken(),0);
                     i[0]++
                 }
                 else
@@ -84,14 +87,17 @@ class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         })
         Videoss!!.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v:View) {
-                Toast.makeText(this@ChatActivity, "Firebase RTDB err : Too Big String", Toast.LENGTH_SHORT).show()
+                getWholeListViewItemsToBitmap()
             }
         })
 
         cameraas!!.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v:View) {
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivity(intent)
+                var gpsTracker = GpsTracker(this@ChatActivity)
+                val latitude: Double = gpsTracker.getLatitude()
+                val longitude: Double = gpsTracker.getLongitude()
+                val address: String = getCurrentAddress(latitude, longitude).toString()
+                chat_edit.setText(address)
             }
         })
         var navHeader = nav_view.getHeaderView(0)
@@ -195,5 +201,70 @@ class ChatActivity:AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             override fun onCancelled(databaseError:DatabaseError) {
             }
         })
+    }
+
+    private fun keyboardEvent(){
+        chat_edit!!.setOnClickListener {
+            onners!!.visibility = View.GONE
+        }
+    }
+
+    fun getCurrentAddress(latitude: Double, longitude: Double): String? {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        val addresses: List<Address>?
+        addresses = try {
+            geocoder.getFromLocation(
+                latitude,
+                longitude,
+                7
+            )
+        } catch (ioException: IOException) {
+            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show()
+            return "지오코더 서비스 사용불가"
+        } catch (illegalArgumentException: IllegalArgumentException) {
+            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show()
+            return "잘못된 GPS 좌표"
+        }
+        if (addresses == null || addresses.size == 0) {
+            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show()
+            return "주소 미발견"
+        }
+        val address: Address = addresses[0]
+        return address.getAddressLine(0).toString().toString() + "\n"
+    }
+    fun getWholeListViewItemsToBitmap(): Bitmap? {
+        val listview: ListView? = chat_view
+        val adapter = listview!!.adapter
+        val itemscount = adapter.count
+        var allitemsheight = 0
+        val bmps: List<Bitmap> = ArrayList()
+        for (i in 0 until itemscount) {
+            val childView = adapter.getView(i, null, listview)
+            childView.measure(
+                View.MeasureSpec.makeMeasureSpec(listview.width, View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            )
+            childView.layout(0, 0, childView.measuredWidth, childView.measuredHeight)
+            childView.isDrawingCacheEnabled = true
+            childView.buildDrawingCache()
+            bmps.apply {childView.drawingCache }
+            allitemsheight += childView.measuredHeight
+        }
+        val bigbitmap = Bitmap.createBitmap(
+            listview.measuredWidth,
+            allitemsheight,
+            Bitmap.Config.ARGB_8888
+        )
+        val bigcanvas = Canvas(bigbitmap)
+        val paint = Paint()
+        var iHeight = 0
+        for (i in 0 until bmps.size) {
+            var bmp: Bitmap? = bmps[i]
+            bigcanvas.drawBitmap(bmp!!, 0f, iHeight.toFloat(), paint)
+            iHeight += bmp.height
+            bmp.recycle()
+            bmp = null
+        }
+        return bigbitmap
     }
 }
