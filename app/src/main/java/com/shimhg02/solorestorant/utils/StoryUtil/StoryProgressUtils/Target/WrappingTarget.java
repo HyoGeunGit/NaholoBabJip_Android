@@ -1,8 +1,8 @@
 package com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target;
+
+
 import android.graphics.drawable.Drawable;
-
 import androidx.annotation.NonNull;
-
 import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SizeReadyCallback;

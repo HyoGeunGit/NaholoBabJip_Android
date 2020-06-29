@@ -150,9 +150,6 @@ class StoryView : LinearLayout {
         animators[0].start()
     }
 
-    /**
-     * Need to call when Activity or Fragment destroy
-     */
     fun destroy() {
         for (a in animators) {
             a.removeAllListeners()

@@ -17,13 +17,10 @@ import com.shimhg02.solorestorant.Test.Activity.AddGroupActivity
 import com.shimhg02.solorestorant.Test.Adapter.GroupAdapter
 import com.shimhg02.solorestorant.Test.Data.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import kotlinx.android.synthetic.main.activity_addgroup.*
 import kotlinx.android.synthetic.main.fragment_group.view.*
-import okhttp3.Request
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 
 class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.

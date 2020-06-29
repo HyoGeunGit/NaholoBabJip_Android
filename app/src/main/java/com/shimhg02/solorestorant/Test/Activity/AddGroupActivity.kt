@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Adapter.FoodImageRepo
 import com.shimhg02.solorestorant.Test.Data.GroupData
-import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import kotlinx.android.synthetic.main.activity_addgroup.*
 import retrofit2.Call

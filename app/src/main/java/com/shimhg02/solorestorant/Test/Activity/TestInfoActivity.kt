@@ -3,11 +3,9 @@ package com.shimhg02.solorestorant.Test.Activity
 
 import android.annotation.SuppressLint
 import android.widget.LinearLayout
-import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.shimhg02.solorestorant.R

@@ -2,7 +2,6 @@ package com.shimhg02.solorestorant.Test.Adapter
 
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +12,8 @@ import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Data.GroupData
 import com.shimhg02.solorestorant.Test.Data.GroupJoinData
-import com.shimhg02.solorestorant.network.Data.LogIn
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 import kotlinx.android.synthetic.main.item_group.view.*
-import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

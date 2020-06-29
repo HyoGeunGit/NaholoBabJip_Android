@@ -9,7 +9,6 @@ import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
 import kotlinx.android.synthetic.main.activity_signup_profile.*
-import org.jetbrains.anko.defaultSharedPreferences
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
