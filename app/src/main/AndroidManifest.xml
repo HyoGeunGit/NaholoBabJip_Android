@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shimhg02.solorestorant">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -24,6 +27,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/geo_api_key"/>
 
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6649255540388920~8296787332"/>
@@ -36,6 +40,28 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="4c27f017ecb1b962ceef6f6cc1c336bb" />
 
+<!--        <service-->
+<!--            android:name=".java.MyFirebaseMessagingService"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <activity android:name=".ui.Activity.LogIn.LoginActivity">
             <intent-filter>
@@ -56,6 +82,7 @@
                         <data android:scheme="@string/fb_login_protocol_scheme" />
                     </intent-filter>
                 </activity>
+        <activity android:name=".Test.Activity.ChatActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.Main.MainActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpPhoneActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpInfoActivity"/>

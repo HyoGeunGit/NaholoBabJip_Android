@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +19,11 @@ import com.shimhg02.solorestorant.Test.Activity.AddGroupActivity
 import com.shimhg02.solorestorant.Test.Adapter.GroupAdapter
 import com.shimhg02.solorestorant.Test.Data.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
+import kotlinx.android.synthetic.main.activity_addgroup.*
 import kotlinx.android.synthetic.main.fragment_group.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 
@@ -42,6 +46,36 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
         recyclerView?.adapter = GroupAdapter(items)
         adapter = recyclerView!!.adapter as GroupAdapter?
 
+
+        view.group_search_bar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+//                System.out.println("query test2: " + newText)
+                items.clear()
+                recyclerView!!.adapter?.notifyDataSetChanged()
+                Client.retrofitService.searchGroup(pref.getString("token","").toString(), newText.toString()).enqueue(object :
+                    retrofit2.Callback<ArrayList<GroupData>> {
+                    override fun onResponse(call: Call<ArrayList<GroupData>>?, response: Response<ArrayList<GroupData>>?) {
+                        val repo = response!!.body()
+                        when (response.code()) {
+                            200 -> {
+                                repo!!.indices.forEach {
+                                    items += GroupData(repo[it].category,repo[it].groupName,repo[it].isAdult,repo[it].lat,repo[it].lng,repo[it].maximum,repo[it].time,repo[it].users,repo[it].vicinity, repo[it].groupUUID)
+                                    recyclerView!!.adapter?.notifyDataSetChanged()
+                                }
+                            }
+                        }
+                    }
+                    override fun onFailure(call: Call<ArrayList<GroupData>>?, t: Throwable?) {
+                        Log.v("C2cTest", "fail!!")
+                    }
+                })
+                return false
+            }
+        })
 
         Client.retrofitService.getGroup(1, pref.getString("token","").toString()).enqueue(object :
             retrofit2.Callback<ArrayList<GroupData>> {

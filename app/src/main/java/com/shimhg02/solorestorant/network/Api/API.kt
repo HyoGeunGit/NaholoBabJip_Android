@@ -98,6 +98,6 @@ interface   API {
 
     @POST("/searchGroup")
     @FormUrlEncoded
-    fun searchGroup(@Field("token") token : String, @Field("searchText") searchText : String) :   Call<GroupJoinData>
+    fun searchGroup(@Field("token") token : String, @Field("searchText") searchText : String) :   Call<ArrayList<GroupData>>
 
 }

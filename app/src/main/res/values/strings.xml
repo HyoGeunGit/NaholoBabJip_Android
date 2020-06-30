@@ -34,6 +34,10 @@
     <string name="finish_text">완료</string>
     <string name="feed_text">피드!</string>
 
+    <string name="sendPhoto">Photo Camera</string>
+    <string name="select_picture_title">Get Photo From</string>
+    <string name="sendPhotoGallery">Photo Gallery</string>
+
     <string name="term">제1조(목적)
 
 이 약관은 O O 회사(전자상거래 사업자)가 운영하는
@@ -116,7 +120,7 @@ OO사이버 몰(이 하 “몰”이라 한다)에서 제공하는 인터넷 관
     <string name="facebook_app_id" translatable="false">2651961561683113</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb2651961561683113</string>
     <string name="kakao_app_key" translatable="false">bc6c622337a78f4ced9163615149e411</string>
-    <string name="geo_api_key" translatable="false">AIzaSyDY6sFagKy1Dg-XjbJMBWaB_WewwuhSfhc</string>
+    <string name="geo_api_key" translatable="false">AIzaSyB5m_d9Ba-SZuHN46cESn7o-f2XIXGoqxM</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 

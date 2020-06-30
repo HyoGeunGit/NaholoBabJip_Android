@@ -23,6 +23,7 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { name 'glide-snapshot'; url 'http://oss.sonatype.org/content/repositories/snapshots' }
         maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' }
+        maven { url "https://dl.bintray.com/hani-momanii/maven"}
     }
 }
 

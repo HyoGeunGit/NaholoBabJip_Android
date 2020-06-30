@@ -2,9 +2,13 @@ package com.shimhg02.solorestorant.ui.Activity.Main
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.iid.FirebaseInstanceId
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Fragment.MapTestFragment
 import com.shimhg02.solorestorant.Test.Fragment.TestEventMainFragment
@@ -17,6 +21,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+//        FirebaseInstanceId.getInstance().instanceId
+//            .addOnCompleteListener(OnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                       return@OnCompleteListener
+//                }
+//
+//                // Get new Instance ID token
+//                val token = task.result?.token
+//
+//                // Log and toast
+//                val msg = getString(R.string.msg_token_fmt, token)
+//                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+//            })
+
         supportFragmentManager.beginTransaction().replace(R.id.main_layout, TestFragment()).commitAllowingStateLoss()
         bottomNavigationView.setSelectedItemId(R.id.tab3);
         bottomNavigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->

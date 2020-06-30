@@ -76,6 +76,8 @@ dependencies {
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+    implementation 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
+    implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     testImplementation 'junit:junit:4.12'
 
     //Moshi
@@ -115,6 +117,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.google.firebase:firebase-database:19.3.1'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.firebaseui:firebase-ui-database:0.4.1'
+    implementation 'com.google.firebase:firebase-messaging:20.1.7'
 
     //OAuth
     implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
