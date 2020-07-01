@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.network.Data.LogIn
+import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref

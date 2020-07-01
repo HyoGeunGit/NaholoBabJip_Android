@@ -1,10 +1,13 @@
 package com.shimhg02.solorestorant.network.Api
 
-import com.shimhg02.solorestorant.Test.Data.GroupData
-import com.shimhg02.solorestorant.Test.Data.GroupJoinData
+import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
+import com.shimhg02.solorestorant.network.Data.GroupData.GroupJoinData
 import com.shimhg02.solorestorant.Test.Data.TestInfoData
-import com.shimhg02.solorestorant.network.Data.LocationRepo
-import com.shimhg02.solorestorant.network.Data.LogIn
+import com.shimhg02.solorestorant.network.Data.LocationData.LocationRepo
+import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
+import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
+import com.shimhg02.solorestorant.network.Data.StoryData.StoryDataSubList
+import com.shimhg02.solorestorant.network.Data.StoryData.StoryDataSubListItem
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -94,14 +97,18 @@ interface API {
     @FormUrlEncoded
     fun getGroup(@Field("index") index : Number, @Field("token") token : String) :  Call<ArrayList<GroupData>>
 
-
     @POST("/joinGroup")
     @FormUrlEncoded
     fun joinGroup(@Field("token") token : String, @Field("groupUUID") groupUUID : String) :   Call<GroupJoinData>
-
 
     @POST("/searchGroup")
     @FormUrlEncoded
     fun searchGroup(@Field("token") token : String, @Field("searchText") searchText : String) :   Call<ArrayList<GroupData>>
 
+    @POST("/addStory")
+    @FormUrlEncoded
+    fun addStory(@Field("token") token : String, @Field("img") img : String) :   Call<ArrayList<GroupData>>
+
+    @POST("/getStoryList")
+    fun getStory() : Call<List<List<StoryDataSubListItem>>>
 }

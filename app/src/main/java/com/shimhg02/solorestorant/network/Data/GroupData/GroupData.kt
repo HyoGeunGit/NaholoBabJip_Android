@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Data
+package com.shimhg02.solorestorant.network.Data.GroupData
 
 /**
  * @description 그룹 데이터

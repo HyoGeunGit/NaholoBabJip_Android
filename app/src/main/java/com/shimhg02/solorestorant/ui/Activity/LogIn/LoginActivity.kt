@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.network.Data.LogIn
+import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 import com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpPhoneActivity
@@ -98,6 +98,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     200 -> {
                         editor.putString("userName", response.body()!!.name.toString())
                         editor.putString("token", response.body()!!.token.toString())
+                        editor.putString("uuid", response.body()!!.uuid.toString())
                         editor.apply()
                         startActivity<MainActivity>()
                         finish()

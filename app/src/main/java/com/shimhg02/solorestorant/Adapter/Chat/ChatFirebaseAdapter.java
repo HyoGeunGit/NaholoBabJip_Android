@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Adapter;
+package com.shimhg02.solorestorant.Adapter.Chat;
 
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.shimhg02.solorestorant.R;
-import com.shimhg02.solorestorant.Test.Data.ChatModel;
+import com.shimhg02.solorestorant.network.Data.ChatData.ChatModel;
 import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 

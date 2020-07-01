@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Activity.TestInfoActivity
 import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
-import com.shimhg02.solorestorant.network.Data.LocationRepo
+import com.shimhg02.solorestorant.network.Data.LocationData.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import kotlinx.android.synthetic.main.activity_locationtest.*
 import retrofit2.Call
@@ -66,7 +66,6 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
             locationCallback = object : LocationCallback() {
                 override fun onLocationResult(p0: LocationResult) {
                     super.onLocationResult(p0)
-
                     lastLocation = p0.lastLocation
                     placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
                 }
@@ -143,7 +142,6 @@ class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
 
         if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-
             fusedLocationClient.lastLocation.addOnSuccessListener(activity!!) { location ->
                 if (location != null) {
                     lastLocation = location

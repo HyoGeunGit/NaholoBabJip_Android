@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.network.Data
+package com.shimhg02.solorestorant.network.Data.LocationData
 
 /**
  * @description 맛집 위치정보 params

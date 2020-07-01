@@ -2,18 +2,14 @@ package com.shimhg02.solorestorant.ui.Activity.Main
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.iid.FirebaseInstanceId
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Fragment.FeedFragment
 import com.shimhg02.solorestorant.Test.Fragment.MapTestFragment
-import com.shimhg02.solorestorant.Test.Fragment.TestEventMainFragment
-import com.shimhg02.solorestorant.Test.Fragment.TestFragment
-import com.shimhg02.solorestorant.Test.Fragment.TestGroupFragment
+import com.shimhg02.solorestorant.ui.Fragment.Event.EventMainFragment
+import com.shimhg02.solorestorant.ui.Fragment.Group.GroupFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -39,13 +35,15 @@ class MainActivity : AppCompatActivity() {
 //                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
 //            })
 
-        supportFragmentManager.beginTransaction().replace(R.id.main_layout, TestFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(R.id.main_layout, FeedFragment()).commitAllowingStateLoss()
         bottomNavigationView.setSelectedItemId(R.id.tab3);
         bottomNavigationView.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.tab1 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_layout, TestGroupFragment())
+                        .replace(R.id.main_layout,
+                            GroupFragment()
+                        )
                         .commitAllowingStateLoss()
                     title_toolbar.text = "혼밥하기 싫으면?"
                     appbar.visibility = View.VISIBLE
@@ -65,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tab3 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_layout, TestFragment())
+                        .replace(R.id.main_layout, FeedFragment())
                         .commitAllowingStateLoss()
                     title_toolbar.text = "피드!"
                     appbar.visibility = View.VISIBLE
@@ -75,7 +73,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tab4 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_layout, TestEventMainFragment())
+                        .replace(R.id.main_layout,
+                            EventMainFragment()
+                        )
                         .commitAllowingStateLoss()
                     title_toolbar.text = "이벤트/쿠폰"
                     appbar.visibility = View.VISIBLE
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tab5 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_layout, TestFragment())
+                        .replace(R.id.main_layout, FeedFragment())
                         .commitAllowingStateLoss()
                     title_toolbar.text = "설정"
                     title_toolbar.visibility = View.GONE

@@ -13,14 +13,12 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,18 +37,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.shimhg02.solorestorant.BuildConfig;
 import com.shimhg02.solorestorant.R;
-import com.shimhg02.solorestorant.Test.Adapter.ChatFirebaseAdapter;
-import com.shimhg02.solorestorant.Test.Adapter.ClickListenerChatFirebase;
-import com.shimhg02.solorestorant.Test.Data.ChatModel;
+import com.shimhg02.solorestorant.Adapter.Chat.ChatFirebaseAdapter;
+import com.shimhg02.solorestorant.Adapter.Chat.ClickListenerChatFirebase;
+import com.shimhg02.solorestorant.network.Data.ChatData.ChatModel;
 import com.shimhg02.solorestorant.Test.Data.FileModel;
 import com.shimhg02.solorestorant.Test.Data.MapModel;
-import com.shimhg02.solorestorant.Test.Data.UserModel;
+import com.shimhg02.solorestorant.network.Data.ChatData.UserModel;
 import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil;
-
 import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
-
 import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 
@@ -364,7 +360,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
      * Verificar se usuario está logado
      */
     private void verificaUsuarioLogado(){
-           userModel = new UserModel("asdf","https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","asdf");
+           userModel = new UserModel("asdf","https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","tokendfdf", "");
            lerMessagensFirebase();
     }
 

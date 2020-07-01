@@ -1,26 +1,21 @@
-package com.shimhg02.solorestorant.Test.Adapter
+package com.shimhg02.solorestorant.Adapter.Group
 
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Data.GroupData
-import com.shimhg02.solorestorant.Test.Data.GroupJoinData
+import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
+import com.shimhg02.solorestorant.network.Data.GroupData.GroupJoinData
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
-import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
 import kotlinx.android.synthetic.main.item_group.view.*
-import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,10 +32,13 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_group, parent, false)
-        return ViewHolder(v, testDataList)
+        return ViewHolder(
+            v,
+            testDataList
+        )
     }
 
-    override fun onBindViewHolder(holder: GroupAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(testDataList[position])
     }
 

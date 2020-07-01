@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Fragment
+package com.shimhg02.solorestorant.ui.Fragment.Event
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +10,14 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Fragment.EventFragment
 
 /**
  * @notice Test 그룹
  * @description 이벤트 메인화면 프레그먼트
  */
 
-class TestEventMainFragment : Fragment() {
+class EventMainFragment : Fragment() {
 
 
     private var mViewPager: ViewPager? = null
@@ -27,7 +28,10 @@ class TestEventMainFragment : Fragment() {
 
         var fragmentManager = (activity)!!.supportFragmentManager
         mViewPager = view!!.findViewById(R.id.viewPager)
-        mViewPager!!.adapter = PagerAdapter(fragmentManager)
+        mViewPager!!.adapter =
+            PagerAdapter(
+                fragmentManager
+            )
         mViewPager!!.currentItem = 1
 
         val tabLayout = view!!.findViewById<View>(R.id.tabs) as TabLayout

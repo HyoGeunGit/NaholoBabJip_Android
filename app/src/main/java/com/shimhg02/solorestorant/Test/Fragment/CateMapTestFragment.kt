@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.utils.GpsUtil.GpsTracker
-import com.shimhg02.solorestorant.network.Data.LocationRepo
+import com.shimhg02.solorestorant.network.Data.LocationData.LocationRepo
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import kotlinx.android.synthetic.main.fragment_testcategorylocation.*
 import kotlinx.android.synthetic.main.fragment_testcategorylocation.view.*
@@ -73,6 +73,9 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         return view
     }
 
+    /**
+     * @description_function 맵 준비 함수 
+     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.uiSettings.isZoomControlsEnabled = true
@@ -81,6 +84,9 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         setUpMap()
     }
 
+    /**
+     * @description_function 마커 클릭 이벤트용 함수
+     */
     override fun onMarkerClick(p0: Marker?): Boolean {
         val str = p0?.snippet
         var resultAdress = str?.split("end")
@@ -97,10 +103,16 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         return true
     }
 
+    /**
+     * @description_function 맵뷰 클릭 함수
+     */
     override fun onMapClick(p0: LatLng?) {
         cardview_googlemap.visibility = View.GONE
     }
 
+    /**
+     * @description_function 액티비티 result
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CHECK_SETTINGS) {
@@ -112,12 +124,17 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
 
     }
 
-
+    /**
+     * @description_function 생명주기:Pause
+     */
     override fun onPause() {
         super.onPause()
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
+    /**
+     * @description_function 생명주기:Resume
+     */
     override fun onResume() {
         super.onResume()
         if (!locationUpdateState) {
@@ -125,6 +142,10 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         }
     }
 
+
+    /**
+     * @description_function 맵 셋업 함수
+     */
     private fun setUpMap() {
 
         if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -141,6 +162,10 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         }
     }
 
+
+    /**
+     * @description_function 마커 설정 함수
+     */
     private fun placeMarkerOnMap(location: LatLng) {
         val markerOptions = MarkerOptions().position(location)
 //        val titleStr = getAddress(location)
@@ -152,6 +177,9 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
 
 
 
+    /**
+     * @description_function 로케이션 업데이트 함수
+     */
     private fun startLocationUpdates() {
 
         if (ActivityCompat.checkSelfPermission(activity!!,
@@ -165,6 +193,10 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
     }
 
+
+    /**
+     * @description_function 로케이션 리퀘스트 생성 함수
+     */
     private fun createLocationRequest() {
         locationRequest = LocationRequest()
         locationRequest.interval = 10000
@@ -213,6 +245,10 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
 //        return addressText
 //    }
 
+
+    /**
+     * @description_function 카테고리 데이터 받아오는 함수
+     */
     fun getCategoryData(){
         var gpsTracker =
             GpsTracker(this.context)

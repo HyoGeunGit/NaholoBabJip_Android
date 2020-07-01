@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Fragment
+package com.shimhg02.solorestorant.ui.Fragment.Group
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,22 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.AddGroupActivity
-import com.shimhg02.solorestorant.Test.Adapter.GroupAdapter
-import com.shimhg02.solorestorant.Test.Data.GroupData
+import com.shimhg02.solorestorant.ui.Activity.Group.AddGroupActivity
+import com.shimhg02.solorestorant.Adapter.Group.GroupAdapter
+import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import kotlinx.android.synthetic.main.activity_addgroup.*
 import kotlinx.android.synthetic.main.fragment_group.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 /**
@@ -31,7 +28,7 @@ import retrofit2.Response
  * @description 그룹 프레그먼트
  */
 
-class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
+class GroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
 
     private var isFabOpen = false
     private var recyclerView: RecyclerView? = null
@@ -47,7 +44,8 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
         recyclerView = view!!.findViewById(R.id.group_list)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recyclerView?.adapter = GroupAdapter(items)
+        recyclerView?.adapter =
+            GroupAdapter(items)
         adapter = recyclerView!!.adapter as GroupAdapter?
 
 
@@ -56,6 +54,10 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
                 return false
             }
 
+
+            /**
+             * @description_function edittext 쿼리 읽기 함수
+             */
             override fun onQueryTextChange(newText: String?): Boolean {
 //                System.out.println("query test2: " + newText)
                 items.clear()
@@ -67,7 +69,19 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
                         when (response.code()) {
                             200 -> {
                                 repo!!.indices.forEach {
-                                    items += GroupData(repo[it].category,repo[it].groupName,repo[it].isAdult,repo[it].lat,repo[it].lng,repo[it].maximum,repo[it].time,repo[it].users,repo[it].vicinity, repo[it].groupUUID)
+                                    items += GroupData(
+                                        repo[it].category,
+                                        repo[it].groupName,
+                                        repo[it].isAdult,
+                                        repo[it].lat,
+                                        repo[it].lng,
+                                        repo[it].maximum,
+                                        repo[it].time,
+                                        repo[it].users,
+                                        repo[it].vicinity,
+                                        repo[it].groupUUID
+                                    )
+                                    System.out.println("LOGDS GROUP" + items)
                                     recyclerView!!.adapter?.notifyDataSetChanged()
                                 }
                             }
@@ -81,6 +95,10 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
             }
         })
 
+
+        /**
+         * @description_function Retrofit getGroup
+         */
         Client.retrofitService.getGroup(1, pref.getString("token","").toString()).enqueue(object :
             retrofit2.Callback<ArrayList<GroupData>> {
             override fun onResponse(call: Call<ArrayList<GroupData>>?, response: Response<ArrayList<GroupData>>?) {
@@ -88,7 +106,18 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
                 when (response.code()) {
                     200 -> {
                         repo!!.indices.forEach {
-                            items += GroupData(repo[it].category,repo[it].groupName,repo[it].isAdult,repo[it].lat,repo[it].lng,repo[it].maximum,repo[it].time,repo[it].users,repo[it].vicinity, repo[it].groupUUID)
+                            items += GroupData(
+                                repo[it].category,
+                                repo[it].groupName,
+                                repo[it].isAdult,
+                                repo[it].lat,
+                                repo[it].lng,
+                                repo[it].maximum,
+                                repo[it].time,
+                                repo[it].users,
+                                repo[it].vicinity,
+                                repo[it].groupUUID
+                            )
                             recyclerView!!.adapter?.notifyDataSetChanged()
                         }
                     }
@@ -116,6 +145,10 @@ class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주
         return view
     }
 
+
+    /**
+     * @description_function FAB 토글링
+     */
     private fun toggleFab() {
         var fab_open = AnimationUtils.loadAnimation(activity!!.baseContext.applicationContext, R.anim.fab_open)
         var fab_close = AnimationUtils.loadAnimation(activity!!.baseContext.applicationContext, R.anim.fab_close)

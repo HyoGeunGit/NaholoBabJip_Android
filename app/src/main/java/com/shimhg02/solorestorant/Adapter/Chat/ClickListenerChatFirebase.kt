@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Adapter
+package com.shimhg02.solorestorant.Adapter.Chat
 
 import android.view.View
 

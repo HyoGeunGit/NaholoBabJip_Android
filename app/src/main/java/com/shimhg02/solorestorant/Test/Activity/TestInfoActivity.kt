@@ -10,7 +10,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Adapter.FoodImageRepo
-import com.shimhg02.solorestorant.Test.Adapter.FoodReviewRepo
 import com.shimhg02.solorestorant.Test.Adapter.TestFoodAdapter
 import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Retrofit.Client
@@ -29,10 +28,7 @@ import retrofit2.Response
 
 class TestInfoActivity : BaseActivity() {
     private val itemss = java.util.ArrayList<FoodImageRepo>()
-    private val items2 = java.util.ArrayList<FoodReviewRepo>()
     private var recyclerView: RecyclerView? = null
-    private var recyclerView2: RecyclerView? = null
-    private var adapterd: TestFoodAdapter? = null
     override var viewId: Int = R.layout.activity_info_test
     lateinit var mAdView : AdView
 
