@@ -4,8 +4,9 @@ import com.google.firebase.database.Exclude
 
 
 /**
- * Created by Alessandro Barreto on 22/06/2016.
+ * @description 유저모델
  */
+
 class UserModel {
     @get:Exclude
     var id: String? = null

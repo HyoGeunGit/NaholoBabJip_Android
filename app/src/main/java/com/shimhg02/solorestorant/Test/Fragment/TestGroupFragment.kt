@@ -26,6 +26,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @notice Test 그룹
+ * @description 그룹 프레그먼트
+ */
 
 class TestGroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
 

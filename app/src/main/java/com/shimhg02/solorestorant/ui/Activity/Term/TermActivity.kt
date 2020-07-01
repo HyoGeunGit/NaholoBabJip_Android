@@ -15,6 +15,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @description 텀 액티비티
+ */
+
+
 class TermActivity : AppCompatActivity() {
     val PREFERENCE = "com.shimhg02.honbab"
     var checked = 0

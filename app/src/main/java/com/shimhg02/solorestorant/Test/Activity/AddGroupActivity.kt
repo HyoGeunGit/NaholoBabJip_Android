@@ -11,6 +11,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @description 그룹 생성 Activity
+ */
+
 class AddGroupActivity : AppCompatActivity() {
 
     val PREFERENCE = "com.shimhg02.honbab"

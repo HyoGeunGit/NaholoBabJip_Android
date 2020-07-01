@@ -14,6 +14,11 @@ import androidx.core.content.ContextCompat
 import com.shimhg02.solorestorant.R
 import java.util.*
 
+/**
+ * @description 스토리 View
+ */
+
+
 class StoryView : LinearLayout {
     private val progressBars: MutableList<ProgressBar> =
         ArrayList()

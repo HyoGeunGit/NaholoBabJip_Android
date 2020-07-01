@@ -2,6 +2,10 @@ package com.shimhg02.solorestorant.Test.Adapter
 
 import android.view.View
 
+/**
+ * @description 파이어베이스 채팅 클릭 리스너
+ */
+
 interface ClickListenerChatFirebase {
     /**
      * Quando houver click na imagem do chat

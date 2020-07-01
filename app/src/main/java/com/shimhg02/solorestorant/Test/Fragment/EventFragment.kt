@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.shimhg02.solorestorant.R
 
+/**
+ * @description 이벤트 프래그먼트(쿠폰 등)
+ */
 
 class EventFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

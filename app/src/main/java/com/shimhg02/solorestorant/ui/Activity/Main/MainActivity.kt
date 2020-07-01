@@ -16,6 +16,10 @@ import com.shimhg02.solorestorant.Test.Fragment.TestFragment
 import com.shimhg02.solorestorant.Test.Fragment.TestGroupFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * @description 메인 액티비티
+ */
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

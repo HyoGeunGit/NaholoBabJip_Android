@@ -1,5 +1,10 @@
 package com.shimhg02.solorestorant.Test.Data
 
+/**
+ * @notice Test그룹
+ * @description 인포데이터
+ */
+
 data class TestInfoData(
     val formatted_phone_number: String,
     val name: String,

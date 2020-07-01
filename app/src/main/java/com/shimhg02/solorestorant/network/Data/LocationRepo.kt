@@ -1,5 +1,8 @@
 package com.shimhg02.solorestorant.network.Data
 
+/**
+ * @description 맛집 위치정보 params
+ */
 
 import com.google.gson.annotations.SerializedName
 

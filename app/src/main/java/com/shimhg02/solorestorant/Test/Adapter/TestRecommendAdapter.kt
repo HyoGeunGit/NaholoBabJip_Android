@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.item_story.view.image_story
 import kotlinx.android.synthetic.main.item_story.view.name_tv
 
 
+/**
+ * @notice Test그룹
+ * @description 리뷰 어댑터
+ */
 
 class TestRecommendAdapter(val testDataList:ArrayList<TestRecommendData>): RecyclerView.Adapter<TestRecommendAdapter.ViewHolder>() {
 

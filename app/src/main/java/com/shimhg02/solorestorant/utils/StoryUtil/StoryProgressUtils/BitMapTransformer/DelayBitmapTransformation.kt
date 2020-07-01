@@ -5,6 +5,10 @@ import android.util.Log
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 
+/**
+ * @description BitmapTransform Delay Model
+ */
+
 
 class DelayBitmapTransformation(private val delay: Int) :
     BitmapTransformation(null as BitmapPool?) {

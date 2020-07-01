@@ -1,9 +1,14 @@
-package com.shimhg02.solorestorant.Test;
+package com.shimhg02.solorestorant.Test.Utils;
 
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.widget.Toast;
+
+/**
+ * @description 파이어베이스 유틸
+ */
+
 
 public class FirebaseUtil {
 

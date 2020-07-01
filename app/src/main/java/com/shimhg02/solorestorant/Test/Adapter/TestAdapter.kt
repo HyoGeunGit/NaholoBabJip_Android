@@ -12,6 +12,10 @@ import com.shimhg02.solorestorant.Test.Data.TestData
 import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
 import kotlinx.android.synthetic.main.item_story.view.*
 
+/**
+ * @notice Test그룹
+ * @description 스토리 어댑터
+ */
 
 class TestAdapter(val testDataList:ArrayList<TestData>): RecyclerView.Adapter<TestAdapter.ViewHolder>() {
 

@@ -35,6 +35,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @notice Test 그룹
+ * @description 맵 프레그먼트
+ */
 
 class MapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 

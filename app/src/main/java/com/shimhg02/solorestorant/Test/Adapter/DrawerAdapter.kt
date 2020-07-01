@@ -10,6 +10,10 @@ import com.shimhg02.solorestorant.Test.Data.DrawerData
 import java.util.ArrayList
 
 
+/**
+ * @description 네비게이션 드로워 (채팅용) 어댑터
+ */
+
 internal class DrawerAdapter(private val dataList: ArrayList<DrawerData>): RecyclerView.Adapter<DrawerAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {

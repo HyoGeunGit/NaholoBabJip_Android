@@ -1,25 +1,23 @@
 package com.shimhg02.solorestorant.Test.Adapter;
 
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.util.Util;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.shimhg02.solorestorant.R;
 import com.shimhg02.solorestorant.Test.Data.ChatModel;
-import com.shimhg02.solorestorant.Test.FirebaseUtil;
-
+import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
+
+/**
+ * @description 파이어베이스 채팅 어뎁터.
+ */
 
 
 public class ChatFirebaseAdapter extends FirebaseRecyclerAdapter<ChatModel,ChatFirebaseAdapter.MyChatViewHolder> {

@@ -1,5 +1,9 @@
 package com.shimhg02.solorestorant.Test.Data
 
+/**
+ * @description 리뷰 데이터클래스
+ */
+
 data class Review(
     val author_name: String,
     val author_url: String,

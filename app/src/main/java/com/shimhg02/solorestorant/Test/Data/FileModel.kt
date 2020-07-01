@@ -2,8 +2,9 @@ package com.shimhg02.solorestorant.Test.Data
 
 
 /**
- * Created by Alessandro Barreto on 22/06/2016.
+ * @description 파일모델 (파이어베이스 이미지/동영상 전송)
  */
+
 class FileModel {
     var type: String? = null
     var url_file: String? = null

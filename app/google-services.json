@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "301747024886-rvilprg67ecei8m6cdcrsm1f49qb1hen.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shimhg02.solorestorant",
+            "certificate_hash": "cf658c28a850917a29940adfc16f4f50a6d49e5a"
+          }
+        },
+        {
           "client_id": "301747024886-vk9ciilu4ev0hupmvbkhk68ol5cl9601.apps.googleusercontent.com",
           "client_type": 3
         }

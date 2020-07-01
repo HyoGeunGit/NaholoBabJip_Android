@@ -8,6 +8,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * @description Retrofit 클라이언트
+ */
 
 object Client {
     var retrofitService: API

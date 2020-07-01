@@ -21,6 +21,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @notice Test 그룹
+ * @description 음식점 상세정보 보기 Activity
+ */
+
 
 class TestInfoActivity : BaseActivity() {
     private val itemss = java.util.ArrayList<FoodImageRepo>()

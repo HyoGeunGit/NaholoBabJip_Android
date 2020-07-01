@@ -1,5 +1,8 @@
 package com.shimhg02.solorestorant.Test.Data
 
+/**
+ * @description 위치 모델
+ */
 
 class MapModel {
     var latitude: String? = null

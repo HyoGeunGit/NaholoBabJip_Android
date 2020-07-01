@@ -25,6 +25,11 @@ import com.shimhg02.solorestorant.utils.StoryUtil.StoryProgressUtils.Target.Prog
 
 import java.util.Locale;
 
+/**
+ * @description 스토리 액티비티
+ */
+
+
 public class StoryActivity extends AppCompatActivity implements StoryView.UserInteractionListener {
 
     public static final String STATUS_RESOURCES_KEY = "statusStoriesResources";

@@ -1,7 +1,6 @@
 package com.shimhg02.solorestorant.Test.Activity;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,8 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -49,7 +45,7 @@ import com.shimhg02.solorestorant.Test.Data.ChatModel;
 import com.shimhg02.solorestorant.Test.Data.FileModel;
 import com.shimhg02.solorestorant.Test.Data.MapModel;
 import com.shimhg02.solorestorant.Test.Data.UserModel;
-import com.shimhg02.solorestorant.Test.FirebaseUtil;
+import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil;
 
 import java.io.File;
 import java.util.Calendar;
@@ -57,6 +53,10 @@ import java.util.Date;
 
 import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
+
+/**
+ * @description 채팅 Activity
+ */
 
 public class ChatActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, ClickListenerChatFirebase {
 

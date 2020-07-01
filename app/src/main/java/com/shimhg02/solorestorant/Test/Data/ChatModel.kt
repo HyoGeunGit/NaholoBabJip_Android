@@ -2,8 +2,9 @@ package com.shimhg02.solorestorant.Test.Data
 
 
 /**
- * Created by Alessandro Barreto on 17/06/2016.
+ * @description 채팅 모델
  */
+
 class ChatModel {
     var id: String? = null
     private var userModel: UserModel? = null

@@ -11,6 +11,10 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.shimhg02.solorestorant.R
 
+/**
+ * @notice Test 그룹
+ * @description 이벤트 메인화면 프레그먼트
+ */
 
 class TestEventMainFragment : Fragment() {
 

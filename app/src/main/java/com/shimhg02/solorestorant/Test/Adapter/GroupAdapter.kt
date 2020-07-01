@@ -25,6 +25,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @description 그룹 어댑터
+ */
 
 class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<GroupAdapter.ViewHolder>() {
 
@@ -65,9 +68,8 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
                 val editor = pref.edit()
                 var dialog = AlertDialog.Builder(itemView.context)
                 dialog.setTitle("정말 이 그룹에 참여하시겠습니까?")
-                dialog.setMessage("솰라솰라 우흥우흥 부엉부엉 포켓포켓 횡령횡")
+                dialog.setMessage("TEST:TEST")
                 dialog.setIcon(R.mipmap.ic_launcher)
-
                 var dialog_listener = object: DialogInterface.OnClickListener{
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         when(which){
@@ -75,8 +77,10 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
                                 Client.retrofitService.joinGroup(pref.getString("token","").toString(), data.groupUUID).enqueue(object :
                                     Callback<GroupJoinData> {
                                     override fun onResponse(call: Call<GroupJoinData>?, response: Response<GroupJoinData>?) {
-                                        when (response!!.code()) {
+                                        when (response?.code()) {
                                             200 -> {
+                                                System.out.println("테스트 200 성공")
+                                                Toast.makeText(itemView.context,"성공",Toast.LENGTH_SHORT).show()
                                                 var dialog = AlertDialog.Builder(itemView.context)
                                                 dialog.setTitle("그룹가입 성공")
                                                 dialog.setMessage("채팅방이 생성되었습니다.\n즐거운 시간 보내세요!")
@@ -84,6 +88,7 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
                                                 dialog.show()
                                             }
                                             201 -> {
+                                                Toast.makeText(itemView.context,"성공",Toast.LENGTH_SHORT).show()
                                                 var dialog = AlertDialog.Builder(itemView.context)
                                                 dialog.setTitle("그룹가입 성공")
                                                 dialog.setMessage("채팅방이 생성되었습니다.\n즐거운 시간 보내세요!")

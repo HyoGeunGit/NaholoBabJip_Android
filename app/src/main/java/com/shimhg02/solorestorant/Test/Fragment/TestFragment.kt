@@ -16,6 +16,10 @@ import com.shimhg02.solorestorant.Test.Data.TestData
 import com.shimhg02.solorestorant.Test.Adapter.TestRecommendAdapter
 import com.shimhg02.solorestorant.Test.Data.TestRecommendData
 
+/**
+ * @notice Test 그룹
+ * @description 피드 프레그먼트
+ */
 
 class TestFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
     private var recyclerView: RecyclerView? = null

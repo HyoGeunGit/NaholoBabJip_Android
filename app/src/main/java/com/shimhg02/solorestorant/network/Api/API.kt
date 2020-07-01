@@ -8,7 +8,11 @@ import com.shimhg02.solorestorant.network.Data.LogIn
 import retrofit2.Call
 import retrofit2.http.*
 
-interface   API {
+/**
+ * @description API 관리 인터페이스
+ */
+
+interface API {
 
     @POST("/signin")
     @FormUrlEncoded

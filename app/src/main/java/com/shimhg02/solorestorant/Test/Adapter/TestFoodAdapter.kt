@@ -12,6 +12,11 @@ import com.shimhg02.solorestorant.ui.Activity.ImageViewer.ImageViewerActivity
 import kotlinx.android.synthetic.main.item_food.view.*
 
 
+/**
+ * @notice Test그룹
+ * @description 음식 이미지 어댑터
+ */
+
 class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.Adapter<TestFoodAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {

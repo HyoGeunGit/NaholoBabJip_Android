@@ -1,5 +1,9 @@
 package com.shimhg02.solorestorant.Test.Data
 
+/**
+ * @description 그룹 참여 데이터
+ */
+
 data class GroupJoinData(
     val _id: String,
     val category: String,

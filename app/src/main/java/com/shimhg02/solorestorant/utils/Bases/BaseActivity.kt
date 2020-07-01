@@ -7,6 +7,11 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * @description 베이스 액티비티
+ */
+
+
 abstract class BaseActivity : AppCompatActivity() {
     var instance: BaseActivity? = null
     var mToolbarHeight = 0
