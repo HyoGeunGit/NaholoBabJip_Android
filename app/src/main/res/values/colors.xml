@@ -14,4 +14,5 @@
     <color name="ss_background_startColor">#ff9d9e9d</color>
     <color name="ss_background_endColor">#ff747674</color>
     <color name="ss_background_centerColor">#ff5a5d5a</color>
+    <color name="background">#dddddd</color>
 </resources>

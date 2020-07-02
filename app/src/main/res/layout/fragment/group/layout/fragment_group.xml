@@ -16,13 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
             android:layout_marginTop="70dp"
             android:layout_alignTop="@id/group_search_bar"
             tools:listitem="@layout/item_group"
             android:id="@+id/group_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:shimmer_demo_layout="@layout/layout_demo_grid"
+            app:shimmer_demo_duration="2000"
+            app:shimmer_demo_angle="20"
+            />
 
 
         <com.github.mmin18.widget.RealtimeBlurView

@@ -1,7 +1,7 @@
 package com.shimhg02.solorestorant.network.Data.ChatData
 
-import com.shimhg02.solorestorant.Test.Data.FileModel
-import com.shimhg02.solorestorant.Test.Data.MapModel
+import com.shimhg02.solorestorant.network.Data.ChatData.ImageFileModel.FileModel
+import com.shimhg02.solorestorant.network.Data.ChatData.LocationFileModel.MapModel
 
 
 /**

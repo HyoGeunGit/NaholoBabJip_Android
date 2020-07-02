@@ -78,6 +78,8 @@ dependencies {
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
     implementation 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
     implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
     testImplementation 'junit:junit:4.12'
 
     //Moshi

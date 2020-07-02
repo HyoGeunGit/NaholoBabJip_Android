@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.ui.Activity.Group.AddGroupActivity
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.shimhg02.solorestorant.Adapter.Group.GroupAdapter
+import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
+import com.shimhg02.solorestorant.ui.Activity.Group.AddGroupActivity
 import kotlinx.android.synthetic.main.fragment_group.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -31,7 +31,7 @@ import retrofit2.Response
 class GroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
 
     private var isFabOpen = false
-    private var recyclerView: RecyclerView? = null
+    private var recyclerView: ShimmerRecyclerView? = null
     private var adapter: GroupAdapter? = null
     private val items = java.util.ArrayList<GroupData>()
     val PREFERENCE = "com.shimhg02.honbab"
@@ -43,9 +43,9 @@ class GroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 
         val pref = activity!!.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
         recyclerView = view!!.findViewById(R.id.group_list)
         recyclerView?.setHasFixedSize(true)
+        recyclerView?.showShimmerAdapter()
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recyclerView?.adapter =
-            GroupAdapter(items)
+        recyclerView?.adapter = GroupAdapter(items)
         adapter = recyclerView!!.adapter as GroupAdapter?
 
 

@@ -6,8 +6,6 @@ import com.shimhg02.solorestorant.Test.Data.TestInfoData
 import com.shimhg02.solorestorant.network.Data.LocationData.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
-import com.shimhg02.solorestorant.network.Data.StoryData.StoryDataSubList
-import com.shimhg02.solorestorant.network.Data.StoryData.StoryDataSubListItem
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -110,5 +108,5 @@ interface API {
     fun addStory(@Field("token") token : String, @Field("img") img : String) :   Call<ArrayList<GroupData>>
 
     @POST("/getStoryList")
-    fun getStory() : Call<List<List<StoryDataSubListItem>>>
+    fun getStory() : Call<ArrayList<StoryData>>
 }

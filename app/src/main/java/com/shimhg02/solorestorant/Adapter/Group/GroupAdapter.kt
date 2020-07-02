@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupJoinData
@@ -53,7 +54,8 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
             itemView.time_tv.text = data.time
             itemView.people_tv.text = data.users.size.toString() + "/" + data.maximum.toString()
             if(data.isAdult){
-                Glide.with(itemView.context).load("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Icon-not-under18.svg/1200px-Icon-not-under18.svg.png").into(itemView.image_is19)
+                Glide.with(itemView.context).load("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Icon-not-under18.svg/1200px-Icon-not-under18.svg.png").asBitmap().diskCacheStrategy(
+                    DiskCacheStrategy.ALL).thumbnail(0.1f).into(itemView.image_is19)
             }
             else{
                 itemView.image_is19.setImageResource(R.drawable.ic_plus)

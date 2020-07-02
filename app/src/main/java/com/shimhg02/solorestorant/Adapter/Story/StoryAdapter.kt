@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
-import com.shimhg02.solorestorant.network.Data.StoryData.StoryDataSubListItem
 import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
 import kotlinx.android.synthetic.main.item_story.view.*
 import retrofit2.Call
@@ -39,21 +41,21 @@ class StoryAdapter(val testDataList: ArrayList<StoryData>): RecyclerView.Adapter
 
     class ViewHolder(view: View, var testDataList:  ArrayList<StoryData>): RecyclerView.ViewHolder(view) {
         fun bindItems(data : StoryData){
-            System.out.println("LOGD TEST Adapter" + data.userName)
+            System.out.println("LOGD TEST Adapter" + data.imgUrl)
             val testDataAsset = arrayOf(
                 data.imgUrl
             )
-            System.out.println("LOGD1: " + testDataAsset)
+            System.out.println("LOGD2: " + testDataAsset)
             val a = Intent(itemView.context, StoryActivity::class.java) //TODO: StorieActivity 포맷 변경
-//            a.putExtra(StoryActivity.STATUS_RESOURCES_KEY,testDataAsset )
-//            a.putExtra(StoryActivity.STATUS_DURATION_KEY, 3000L)
-//            a.putExtra(StoryActivity.STATUS_DURATION_KEY, 3000L)
-//            a.putExtra(StoryActivity.IS_IMMERSIVE_KEY, true)
-//            a.putExtra(StoryActivity.IS_CACHING_ENABLED_KEY, true)
-//            a.putExtra(StoryActivity.STATUS_WRITER_KEY, data[data.size].userName)
-//            a.putExtra(StoryActivity.STATUS_PROFILE_KEY, data[data.size].userProfileImgUrl)
-//            a.putExtra(StoryActivity.IS_TEXT_PROGRESS_ENABLED_KEY, true)
-            Glide.with(itemView.context).load(data.imgUrl).into(itemView.image_story)
+            a.putExtra(StoryActivity.STATUS_RESOURCES_KEY, testDataAsset )
+            a.putExtra(StoryActivity.STATUS_DURATION_KEY, 3000L)
+            a.putExtra(StoryActivity.STATUS_DURATION_KEY, 3000L)
+            a.putExtra(StoryActivity.IS_IMMERSIVE_KEY, true)
+            a.putExtra(StoryActivity.IS_CACHING_ENABLED_KEY, true)
+            a.putExtra(StoryActivity.STATUS_WRITER_KEY, data.userName)
+            a.putExtra(StoryActivity.STATUS_PROFILE_KEY, data.userProfileImgUrl)
+            a.putExtra(StoryActivity.IS_TEXT_PROGRESS_ENABLED_KEY, true)
+            Glide.with(itemView.context).load(data.imgUrl).asBitmap().diskCacheStrategy(DiskCacheStrategy.ALL).thumbnail(0.1f).into(itemView.image_story)
             System.out.println("LOGD TEST: " + data.imgUrl)
             itemView.name_tv.setText(data.userName)
             itemView.setOnClickListener {
