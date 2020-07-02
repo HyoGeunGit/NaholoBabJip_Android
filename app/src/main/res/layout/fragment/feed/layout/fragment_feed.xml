@@ -37,16 +37,80 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
-                                    <androidx.recyclerview.widget.RecyclerView
-                                        android:layout_marginTop="12dp"
-                                        app:layout_constraintTop_toBottomOf="@id/text_story"
-                                        android:layout_gravity="center"
-                                        android:id="@+id/recycler_story"
-                                        android:orientation="horizontal"
-                                        tools:listitem="@layout/item_story"
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent">
+
+                                            <androidx.constraintlayout.widget.ConstraintLayout
+                                                android:id="@+id/addStory"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginTop="27dp"
+                                                android:background="@drawable/story_box"
+                                                android:layout_width="110dp"
+                                                android:layout_height="200dp">
+
+                                                    <androidx.cardview.widget.CardView
+                                                        android:backgroundTint="#B5B3B3"
+                                                        app:cardCornerRadius="37.5dp"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="match_parent">
+
+                                                            <ImageView
+                                                                android:backgroundTint="#8E8E8E"
+                                                                android:id="@+id/image_story"
+                                                                android:scaleX="0.8"
+                                                                android:scaleY="0.8"
+                                                                android:src="@drawable/ic_plus"
+                                                                android:layout_gravity="center"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"
+                                                                android:scaleType="centerCrop"/>
+
+                                                            <TextView
+                                                                android:shadowColor="#FFFFFF"
+                                                                android:shadowDx="1"
+                                                                android:shadowDy="1"
+                                                                android:shadowRadius="1"
+                                                                android:id="@+id/name_tv"
+                                                                android:layout_margin="20dp"
+                                                                android:textColor="#FFFFFF"
+                                                                android:textStyle="bold"
+                                                                android:text=""
+                                                                android:gravity="right|bottom"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"/>
+                                                    </androidx.cardview.widget.CardView>
+
+                                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="220dp"/>
+                                        android:layout_height="match_parent">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent">
+
+                                                    <androidx.recyclerview.widget.RecyclerView
+                                                        android:layout_marginTop="12dp"
+                                                        app:layout_constraintTop_toBottomOf="@id/text_story"
+                                                        android:layout_gravity="center"
+                                                        android:id="@+id/recycler_story"
+                                                        android:orientation="horizontal"
+                                                        tools:listitem="@layout/item_story"
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="220dp"/>
+
+                                            </LinearLayout>
+
                             </LinearLayout>
+
+                            </LinearLayout>
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,6 +175,7 @@
                         android:rowCount="4">
 
                             <Button
+                                android:id="@+id/btn_test1"
                                 android:layout_margin="11dp"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"

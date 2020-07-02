@@ -80,6 +80,7 @@ dependencies {
     implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+    implementation 'ja.burhanrashid52:photoeditor:1.0.0'
     testImplementation 'junit:junit:4.12'
 
     //Moshi
@@ -114,6 +115,8 @@ dependencies {
 
     //Ted
     implementation 'gun0912.ted:tedkeyboardobserver:1.0.0-alpha2'
+    implementation 'gun0912.ted:tedpermission:2.1.1'
+
 
     //FireBase
     implementation 'com.google.firebase:firebase-auth:19.3.1'

@@ -2,12 +2,20 @@ package com.shimhg02.solorestorant.ui.Fragment.Feed
 
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +23,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.Adapter.Story.StoryAdapter
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Adapter.TestRecommendAdapter
+import com.shimhg02.solorestorant.Test.ImageEditor.EditImageActivity
+import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Data.RecommendData.RecommendData
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
 import com.shimhg02.solorestorant.network.Retrofit.Client
+import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
+import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
+import com.shimhg02.solorestorant.utils.Base64.encodeBitmapIntoBase64
+import kotlinx.android.synthetic.main.fragment_feed.view.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
+
 
 /**
  * @notice Test 그룹
@@ -31,15 +49,15 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     private var recyclerView2: RecyclerView? = null
     private var recyclerView3: RecyclerView? = null
     private var adapterd2: TestRecommendAdapter? = null
+    private val GET_GALLERY_IMAGE = 200
     private var adapter: StoryAdapter? = null
+    val PREFERENCE = "com.shimhg02.honbab"
     private val items = java.util.ArrayList<StoryData>()
 
     @SuppressLint("WrongConstant")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val PREFERENCE = "com.shimhg02.honbab"
         val pref = activity!!.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
-
-
         val recommendTestDataList = arrayListOf( //테스트용 더미데이터2
             RecommendData(
                 "람다람",
@@ -73,6 +91,9 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
         recyclerView?.adapter =  StoryAdapter(items)
         adapter = recyclerView!!.adapter as StoryAdapter?
+        view.addStory.setOnClickListener {
+            addStory()
+        }
 
         Client.retrofitService.getStory().enqueue(object :
             retrofit2.Callback<ArrayList<StoryData>> {
@@ -112,7 +133,68 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         recyclerView3?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerView3?.adapter =  TestRecommendAdapter(recommendTestDataList2)
         adapterd2 = recyclerView3?.adapter as TestRecommendAdapter?
+
         return view
     }
 
+    fun addStory(){
+        val pref = view!!.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+        Client.retrofitService.checkStory(pref.getString("token","").toString()).enqueue(object :
+            Callback<Void> {
+            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                when (response!!.code()) {
+                    200 -> {
+                        Toast.makeText(view!!.context, "200OK", Toast.LENGTH_LONG).show()
+                        alertStoryDialog()
+                    }
+                    404-> {
+                        startActivity<EditImageActivity>()
+                    }
+                    500 -> Toast.makeText(view!!.context, "서버 점검중입니다. 잠시 후 다시 시도해 주세요.", Toast.LENGTH_LONG).show()
+                }
+            }
+            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+            }
+        })
+    }
+
+    private fun alertStoryDialog(){
+        var dialog = AlertDialog.Builder(view!!.context)
+        dialog.setTitle("이미 스토리가 있습니다.")
+        dialog.setMessage("나홀로 밥집은 6시간에 한번씩, 인당 1 스토리 체제로 밥먹을때마다 올리는 간단한 스토리를 지향하고 있습니다. \n따라서 스토리를 새로 작성하시면 기존 스토리에 덮어씌워집니다. \n그래도 작성하시겠습니까?")
+        dialog.setIcon(R.mipmap.ic_launcher)
+
+        var dialog_listener = object: DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                when(which){
+                    DialogInterface.BUTTON_POSITIVE ->{
+                        startActivity<EditImageActivity>()
+                    }
+                    DialogInterface.BUTTON_NEGATIVE ->{
+
+                    }
+                }
+            }
+        }
+
+        dialog.setPositiveButton("네",dialog_listener)
+        dialog.setNegativeButton("아니오",dialog_listener)
+        dialog.show()
+    }
+
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.data != null) {
+            val selectedImageUri: Uri? = data.data
+            var bitmap = MediaStore.Images.Media.getBitmap(getActivity()!!.getContentResolver(), selectedImageUri);
+            var base64IMGString = bitmap.encodeBitmapIntoBase64(Bitmap.CompressFormat.PNG)
+            Toast.makeText(view!!.context, base64IMGString, Toast.LENGTH_SHORT).show()
+            println("LOGD IMGSTR : " + base64IMGString)
+        }
+    }
 }

@@ -105,8 +105,12 @@ interface API {
 
     @POST("/addStory")
     @FormUrlEncoded
-    fun addStory(@Field("token") token : String, @Field("img") img : String) :   Call<ArrayList<GroupData>>
+    fun addStory(@Field("token") token : String, @Field("img") img : String) :   Call<Void>
 
     @POST("/getStoryList")
     fun getStory() : Call<ArrayList<StoryData>>
+
+    @POST("/findUserStory")
+    @FormUrlEncoded
+    fun checkStory(@Field("token") token : String) : Call<Void>
 }

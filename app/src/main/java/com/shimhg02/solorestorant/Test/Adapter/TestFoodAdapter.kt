@@ -37,7 +37,7 @@ class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.A
             System.out.println("PHOTO: "+data.photo.toString())
             Glide.with(itemView.context).load(data.photo).into(itemView.image_food)
             itemView.setOnClickListener {
-                val a = Intent(itemView.context, ImageViewerActivity::class.java) //TODO: StorieActivity 포맷 변경
+                val a = Intent(itemView.context, ImageViewerActivity::class.java) //TODO: StoryActivity 포맷 변경
                 a.putExtra("imageView",data.photo)
                 itemView.context.startActivity(a)
             }
