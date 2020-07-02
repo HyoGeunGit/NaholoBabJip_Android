@@ -99,6 +99,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                         editor.putString("userName", response.body()!!.name.toString())
                         editor.putString("token", response.body()!!.token.toString())
                         editor.putString("uuid", response.body()!!.uuid.toString())
+                        editor.putString("nick", response.body()!!.nick.toString())
                         editor.apply()
                         startActivity<MainActivity>()
                         finish()

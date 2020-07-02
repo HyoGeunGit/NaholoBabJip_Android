@@ -1,136 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:background="#FFF"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <androidx.appcompat.widget.SearchView
-        android:background="@drawable/textinput_login"
         android:id="@+id/group_search_bar"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+
     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-        android:layout_marginTop="70dp"
         android:layout_alignTop="@id/group_search_bar"
-        tools:listitem="@layout/item_group"
+        tools:listitem="@layout/item_chat_view"
         android:id="@+id/group_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:shimmer_demo_layout="@layout/layout_demo_grid"
         app:shimmer_demo_duration="2000"
-        app:shimmer_demo_angle="20"
-        />
+        app:shimmer_demo_angle="20" />
 
-
-    <com.github.mmin18.widget.RealtimeBlurView
-        android:id="@+id/blurView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:realtimeBlurRadius="20dp"
-        app:realtimeOverlayColor="#00FFFFFF" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_sub1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/fab_sub2"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#000"
-        android:visibility="invisible"
-        app:borderWidth="0dp"
-        app:fabSize="normal" />
-
-
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/fabsub1"
-        android:fontFamily="@font/hanna_11"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        android:text="그룹 생성"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignTop="@id/fab_sub1"
-        android:layout_toLeftOf="@id/fab_sub1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_sub2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/fab_sub3"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#000"
-        android:visibility="invisible"
-        app:borderWidth="0dp"
-        app:fabSize="normal" />
-
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/fabsub2"
-        android:fontFamily="@font/hanna_11"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        android:text="랜덤참가"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignTop="@id/fab_sub2"
-        android:layout_toLeftOf="@id/fab_sub2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_sub3"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/fab_main"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="#000"
-        app:borderWidth="0dp"
-        app:fabSize="normal" />
-
-    <TextView
-        android:visibility="invisible"
-        android:id="@+id/fabsub3"
-        android:fontFamily="@font/hanna_11"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        android:text="1대 1 매칭"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignTop="@id/fab_sub3"
-        android:layout_toLeftOf="@id/fab_sub3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="center"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_plus"
-        android:backgroundTint="#000"
-        app:fabSize="normal" />
-
-</RelativeLayout>
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.shimhg02.solorestorant.network.Api
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupJoinData
 import com.shimhg02.solorestorant.Test.Data.TestInfoData
+import com.shimhg02.solorestorant.network.Data.ChatData.ChatListData
 import com.shimhg02.solorestorant.network.Data.LocationData.LocationRepo
 import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
@@ -73,6 +74,11 @@ interface API {
     @POST("/getDetail")
     @FormUrlEncoded
     fun getDetail(@Field("place_id") placeid : String) :   Call<TestInfoData>
+
+
+    @POST("/readChatList")
+    @FormUrlEncoded
+    fun getChat(@Field("token") token : String) :   Call<ArrayList<ChatListData>>
 
     @POST("/getCategory ")
     @FormUrlEncoded

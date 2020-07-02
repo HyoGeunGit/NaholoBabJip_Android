@@ -58,10 +58,10 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private static final int IMAGE_GALLERY_REQUEST = 1;
     private static final int IMAGE_CAMERA_REQUEST = 2;
+    Intent intent;
     private static int PLACE_PICKER_REQUEST = 3;
-
     static final String TAG = ChatActivity.class.getSimpleName();
-    static final String CHAT_REFERENCE = "asdfasdf";
+    String CHAT_REFERENCE = null;
 
     //Firebase and GoogleApiClient
     private FirebaseAuth mFirebaseAuth;
@@ -95,9 +95,11 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        intent = getIntent();
+        CHAT_REFERENCE = intent.getStringExtra("chatUUID");
+        System.out.println("CHAT LOG TEST :"+intent.getStringExtra("chatUUID"));
         if (!FirebaseUtil.verificaConexao(this)){
-            FirebaseUtil.initToast(this,"Você não tem conexão com internet");
+            FirebaseUtil.initToast(this,"인터넷 연결이 불안정합니다.");
             finish();
         }else{
             bindViews();
@@ -360,7 +362,8 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
      * Verificar se usuario está logado
      */
     private void verificaUsuarioLogado(){
-           userModel = new UserModel("asdf","https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","tokendfdf", "");
+           intent = getIntent();
+           userModel = new UserModel(intent.getStringExtra("userName"),"https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","tokendfdf", "");
            lerMessagensFirebase();
     }
 

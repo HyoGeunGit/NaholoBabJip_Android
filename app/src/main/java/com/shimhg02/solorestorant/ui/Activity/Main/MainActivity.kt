@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.ui.Fragment.Feed.FeedFragment
 import com.shimhg02.solorestorant.Test.Fragment.MapTestFragment
+import com.shimhg02.solorestorant.ui.Fragment.Chat.ChatFragment
 import com.shimhg02.solorestorant.ui.Fragment.Event.EventMainFragment
 import com.shimhg02.solorestorant.ui.Fragment.Group.GroupFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tab2 -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_layout, MapTestFragment())
+                        .replace(R.id.main_layout, ChatFragment())
                         .commitAllowingStateLoss()
                     title_toolbar.text = "채팅!"
                     appbar.visibility = View.VISIBLE
