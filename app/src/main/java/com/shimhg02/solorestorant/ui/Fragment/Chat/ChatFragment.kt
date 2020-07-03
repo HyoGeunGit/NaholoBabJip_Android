@@ -3,6 +3,7 @@ package com.shimhg02.solorestorant.ui.Fragment.Chat
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.ChatData.ChatListData
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
+import kotlinx.android.synthetic.main.fragment_chat.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Response
@@ -43,7 +45,6 @@ class ChatFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     @SuppressLint("WrongConstant")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
-
         MobileAds.initialize(view.context, "ca-app-pub-3940256099942544/6300978111")
         mAdView = view.findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
