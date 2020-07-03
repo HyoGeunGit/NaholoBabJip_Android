@@ -83,6 +83,18 @@
                         <data android:scheme="@string/fb_login_protocol_scheme" />
                     </intent-filter>
                 </activity>
+        <service
+            android:name=".utils.Service.FCMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".utils.Service.FCMTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
         <activity android:name=".Test.ImageEditor.EditImageActivity"/>
         <activity android:name=".Test.Activity.ChatActivity"/>
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.Main.MainActivity"/>
