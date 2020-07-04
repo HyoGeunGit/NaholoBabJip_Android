@@ -105,6 +105,11 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                         finish()
                     }
                     203 -> {
+                        editor.putString("userName", response.body()!!.name.toString())
+                        editor.putString("token", response.body()!!.token.toString())
+                        editor.putString("uuid", response.body()!!.uuid.toString())
+                        editor.putString("nick", response.body()!!.nick.toString())
+                        editor.apply()
                         login_btn.isClickable = true
                         alertTermDialog()
                     }

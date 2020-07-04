@@ -120,7 +120,11 @@ interface API {
     @FormUrlEncoded
     fun checkStory(@Field("token") token : String) : Call<Void>
 
-    @POST("/changenickname")
+    @POST("/changenick")
     @FormUrlEncoded
     fun changeNick(@Field("token") token : String, @Field("nick") nick : String) : Call<Void>
+
+    @POST("/onetoone")
+    @FormUrlEncoded
+    fun oneToOne(@Field("token") token : String, @Field("isVip") isVip : Boolean, @Field("sex") sex : Boolean, @Field("uuid") uuid : String, @Field("groupUUID") groupUUID : String) : Call<Void>
 }

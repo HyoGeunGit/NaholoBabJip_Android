@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.shimhg02.solorestorant.Adapter.Group.GroupAdapter
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.EditNicknameActivity
 import com.shimhg02.solorestorant.Test.Activity.OnebyoneActivity
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
