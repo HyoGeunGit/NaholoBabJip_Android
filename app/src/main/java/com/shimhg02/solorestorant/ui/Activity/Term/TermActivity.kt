@@ -27,17 +27,9 @@ class TermActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_terms)
         acceptClick()
-
-        term_ok_btn.setOnClickListener {
-            if(access_radio.isChecked){
-                termAccept()
-            }
-            else{
-                Toast.makeText(this,"개인정보 수집 동의 항목에 체크해주세요", Toast.LENGTH_SHORT).show()
-            }
-        }
-
+        termCheck()
     }
+
     fun termAccept(){
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         SharedPref.openSharedPrep(this)
@@ -63,6 +55,7 @@ class TermActivity : AppCompatActivity() {
             }
         })
     }
+
     fun acceptClick(){
         access_radio.setOnClickListener {
             if(checked == 0){
@@ -77,4 +70,16 @@ class TermActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun termCheck(){
+        term_ok_btn.setOnClickListener {
+            if(access_radio.isChecked){
+                termAccept()
+            }
+            else{
+                Toast.makeText(this,"개인정보 수집 동의 항목에 체크해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }

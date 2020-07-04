@@ -51,12 +51,17 @@ class ChatFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         mAdView.loadAd(adRequest)
 
         val pref = activity!!.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putString("FCMUUID","")
+        editor.apply()
+        System.out.println("FCMUUID: " + pref.getString("FCMUUID",""))
         recyclerView = view!!.findViewById(R.id.group_list)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.showShimmerAdapter()
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerView?.adapter = ChatListAdapter(items)
         adapter = recyclerView!!.adapter as ChatListAdapter?
+
 
         Client.retrofitService.getChat( pref.getString("token","").toString()).enqueue(object :
             retrofit2.Callback<ArrayList<ChatListData>> {

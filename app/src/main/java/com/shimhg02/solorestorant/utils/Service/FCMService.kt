@@ -8,15 +8,24 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 
 class FCMService : FirebaseMessagingService() {
+
+    val PREFERENCE = "com.shimhg02.honbab"
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // Handle data payload of FCM messages.
+        val pref = getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
         Log.d(
             TAG,
             "FCM Message Id: " + remoteMessage.messageId
@@ -32,13 +41,18 @@ class FCMService : FirebaseMessagingService() {
             arrayOf(Intent(applicationContext, MainActivity::class.java)),
             PendingIntent.FLAG_ONE_SHOT
         )
-        createNotification(
-            remoteMessage.notification!!.title,
-            remoteMessage.notification!!.body, mPendingIntent
-        )
+        var FCMUTILS = remoteMessage.notification!!.title!!.split("@#$")
+        System.out.println("test1: " + FCMUTILS.get(1))
+        System.out.println("FCMUUID SER: " + pref.getString("FCMUUID",""))
+            if(pref.getString("FCMUUID","") != FCMUTILS.get(1)){
+                createNotification(
+                    FCMUTILS.get(0),
+                    remoteMessage.notification!!.body, mPendingIntent
+                )
+            }
     }
 
-    fun createNotification(
+    private fun createNotification(
         title: String?,
         content: String?,
         pendingIntent: PendingIntent?
@@ -61,7 +75,7 @@ class FCMService : FirebaseMessagingService() {
         }
         builder.setSmallIcon(R.mipmap.ic_launcher)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder.setSmallIcon(R.drawable.ic_launcher_foreground) //mipmap 사용시 Oreo 이상에서 시스템 UI 에러남
+            builder.setSmallIcon(R.drawable.ic_launcher_foreground)
             val channelName: CharSequence = "Nahonbab Channel"
             val description = "Channel for users"
             val importance = NotificationManager.IMPORTANCE_HIGH

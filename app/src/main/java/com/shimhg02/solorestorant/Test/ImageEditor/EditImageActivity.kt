@@ -107,7 +107,7 @@ class EditImageActivity :
             //.setDefaultTextTypeface(mTextRobotoTf)
             //.setDefaultEmojiTypeface(mEmojiTypeFace)
             .build() // build photo editor sdk
-         mPhotoEditor!!.setOnPhotoEditorListener(this)
+        mPhotoEditor!!.setOnPhotoEditorListener(this)
 
         //Set Image Dynamically
         mPhotoEditorView!!.source.setImageResource(R.drawable.rdr)
@@ -356,45 +356,45 @@ class EditImageActivity :
     }
 
     private fun saveImage() {
-            showLoading("저장중...")
-            val file = File(
-                Environment.getExternalStorageDirectory()
-                    .toString() + File.separator + ""
-                        + System.currentTimeMillis() + ".png"
-            )
-            try {
-                file.createNewFile()
-                val saveSettings = SaveSettings.Builder()
-                    .setClearViewsEnabled(true)
-                    .setTransparencyEnabled(true)
-                    .build()
-                if (ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    return
-                }
-                mPhotoEditor!!.saveAsFile(
-                    file.absolutePath,
-                    saveSettings,
-                    object : OnSaveListener {
-                        override fun onSuccess(imagePath: String) {
-                            hideLoading()
-                            showSnackbar("이미지 저장 완료!")
-                            mSaveImageUri = Uri.fromFile(File(imagePath))
-                            mPhotoEditorView!!.source.setImageURI(mSaveImageUri)
-                        }
-
-                        override fun onFailure(exception: Exception) {
-                            hideLoading()
-                            showSnackbar("이미지 저장 실패, 다시 시도해 주세요.")
-                        }
-                    })
-            } catch (e: IOException) {
-                e.printStackTrace()
-                hideLoading()
-                showSnackbar(e.message!!)
+        showLoading("저장중...")
+        val file = File(
+            Environment.getExternalStorageDirectory()
+                .toString() + File.separator + ""
+                    + System.currentTimeMillis() + ".png"
+        )
+        try {
+            file.createNewFile()
+            val saveSettings = SaveSettings.Builder()
+                .setClearViewsEnabled(true)
+                .setTransparencyEnabled(true)
+                .build()
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
             }
+            mPhotoEditor!!.saveAsFile(
+                file.absolutePath,
+                saveSettings,
+                object : OnSaveListener {
+                    override fun onSuccess(imagePath: String) {
+                        hideLoading()
+                        showSnackbar("이미지 저장 완료!")
+                        mSaveImageUri = Uri.fromFile(File(imagePath))
+                        mPhotoEditorView!!.source.setImageURI(mSaveImageUri)
+                    }
+
+                    override fun onFailure(exception: Exception) {
+                        hideLoading()
+                        showSnackbar("이미지 저장 실패, 다시 시도해 주세요.")
+                    }
+                })
+        } catch (e: IOException) {
+            e.printStackTrace()
+            hideLoading()
+            showSnackbar(e.message!!)
+        }
     }
 
     override fun onActivityResult(

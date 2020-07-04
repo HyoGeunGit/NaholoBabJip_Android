@@ -2,6 +2,7 @@ package com.shimhg02.solorestorant.Test.Activity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
     private DatabaseReference mFirebaseDatabaseReference;
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    String PREFERENCE = "com.shimhg02.honbab";
 
     //CLass Model
     private UserModel userModel;
@@ -95,8 +97,13 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         intent = getIntent();
         CHAT_REFERENCE = intent.getStringExtra("chatUUID");
+        editor.putString("FCMUUID",CHAT_REFERENCE);
+        editor.apply();
+        System.out.println("FCMUUID: " + pref.getString("FCMUUID",""));
         System.out.println("CHAT LOG TEST :"+intent.getStringExtra("chatUUID"));
         if (!FirebaseUtil.verificaConexao(this)){
             FirebaseUtil.initToast(this,"인터넷 연결이 불안정합니다.");
