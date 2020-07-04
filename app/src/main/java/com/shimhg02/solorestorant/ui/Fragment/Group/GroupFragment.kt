@@ -1,6 +1,7 @@
 package com.shimhg02.solorestorant.ui.Fragment.Group
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,9 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.shimhg02.solorestorant.Adapter.Group.GroupAdapter
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.OnebyoneActivity
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Group.AddGroupActivity
+import com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpInfoActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_group.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -140,7 +144,7 @@ class GroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 
             toggleFab();
         }
         view.fab_sub3.setOnClickListener {
-            toggleFab();
+            startActivity(Intent(activity, OnebyoneActivity::class.java))
         }
         return view
     }

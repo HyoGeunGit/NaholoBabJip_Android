@@ -119,4 +119,8 @@ interface API {
     @POST("/findUserStory")
     @FormUrlEncoded
     fun checkStory(@Field("token") token : String) : Call<Void>
+
+    @POST("/changenickname")
+    @FormUrlEncoded
+    fun changeNick(@Field("token") token : String, @Field("nick") nick : String) : Call<Void>
 }
