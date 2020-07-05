@@ -25,6 +25,8 @@ class OnebyoneActivity : AppCompatActivity() {
     lateinit var uuid: String
     var arrMessages: ArrayList<String> = ArrayList()
     var position = 0
+    private val FINISH_INTERVAL_TIME: Long = 2000
+    private var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +78,9 @@ class OnebyoneActivity : AppCompatActivity() {
         mSocket.disconnect()
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+        mSocket.close()
         mSocket.disconnect()
+        Log.d("SOCKET LIFECYCLE","DISCONNECT ONSTOP")
     }
 
     override fun onPause() {
@@ -85,6 +89,8 @@ class OnebyoneActivity : AppCompatActivity() {
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
         mSocket.close()
+        mSocket.close()
+        Log.d("SOCKET LIFECYCLE","DISCONNECT ONPAUSE")
     }
 
     override fun onDestroy() {
@@ -93,6 +99,8 @@ class OnebyoneActivity : AppCompatActivity() {
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
         mSocket.close()
+        mSocket.close()
+        Log.d("SOCKET LIFECYCLE","DISCONNECT ONDESTROY")
     }
 
     val onConnect: Emitter.Listener = Emitter.Listener {
@@ -130,6 +138,22 @@ class OnebyoneActivity : AppCompatActivity() {
                 position++
             }
         }, 5000)
+    }
+
+    override fun onBackPressed() {
+        val tempTime = System.currentTimeMillis()
+        val intervalTime: Long = tempTime - backPressedTime
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            mSocket.disconnect()
+            mSocket.off(Socket.EVENT_CONNECT, onConnect)
+            mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+            mSocket.close()
+            Log.d("SOCKET","DISCONNECT CUT")
+            finish()
+        } else {
+            backPressedTime = tempTime
+            Toast.makeText(applicationContext, "한번 더 누르면 1대 1 매칭이 종료됩니다..", Toast.LENGTH_SHORT).show()
+        }
     }
 
 //

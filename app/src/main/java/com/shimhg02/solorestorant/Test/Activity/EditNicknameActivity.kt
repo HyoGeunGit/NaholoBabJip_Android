@@ -31,6 +31,7 @@ class EditNicknameActivity : AppCompatActivity() {
                 when (response!!.code()) {
                     200 -> {
                         Toast.makeText(this@EditNicknameActivity,"Success",Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                 }
             }

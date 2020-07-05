@@ -264,14 +264,11 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             });
         }else{
-            //IS NULL
         }
 
     }
 
-    /**
-     * Envia o arvquivo para o firebase
-     */
+
     private void sendFileFirebase(StorageReference storageReference, final File file){
         if (storageReference != null){
             Uri photoURI = FileProvider.getUriForFile(ChatActivity.this,
@@ -294,7 +291,6 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             });
         }else{
-            //IS NULL
         }
 
     }
@@ -309,9 +305,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     }
 
-    /**
-     * Enviar foto tirada pela camera
-     */
+
     private void photoCameraIntent(){
         String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
         filePathImageCamera = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto+"camera.jpg");
@@ -323,9 +317,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivityForResult(it, IMAGE_CAMERA_REQUEST);
     }
 
-    /**
-     * Enviar foto pela galeria
-     */
+
     private void photoGalleryIntent(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -333,18 +325,13 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture_title)), IMAGE_GALLERY_REQUEST);
     }
 
-    /**
-     * Enviar msg de texto simples para chat
-     */
+
     private void sendMessageFirebase(){
         ChatModel model = new ChatModel(userModel,edMessage.getText().toString(), Calendar.getInstance().getTime().getTime()+"",null);
         mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(model);
         edMessage.setText(null);
     }
 
-    /**
-     * Ler collections chatmodel Firebase
-     */
     private void lerMessagensFirebase(){
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         final ChatFirebaseAdapter firebaseAdapter = new ChatFirebaseAdapter(mFirebaseDatabaseReference.child(CHAT_REFERENCE),userModel.getName(),this);
@@ -365,9 +352,7 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         rvListMessage.setAdapter(firebaseAdapter);
     }
 
-    /**
-     * Verificar se usuario está logado
-     */
+
     private void verificaUsuarioLogado(){
 
              SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
