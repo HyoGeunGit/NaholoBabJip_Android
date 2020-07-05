@@ -110,7 +110,7 @@ class GroupFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 
                 val repo = response!!.body()
                 when (response.code()) {
                     200 -> {
-                        repo!!.indices.forEach {
+                        repo?.indices?.forEach {
                             items += GroupData(
                                 repo[it].category,
                                 repo[it].groupName,

@@ -4,55 +4,57 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.json.JSONArray
+import org.json.JSONObject
 import java.net.URISyntaxException
+
 
 class OnebyoneActivity : AppCompatActivity() {
 
     val PREFERENCE = "com.shimhg02.honbab"
     private lateinit var mSocket: Socket
+    val socketURI = "http://13.59.89.201:8001"
     var isVip: Boolean = false
     var sex: Boolean = false
     lateinit var uuid: String
-    lateinit var groupUUID: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onebyone)
         try {
-            mSocket = IO.socket("http://13.59.89.201:8001")
+            mSocket = IO.socket(socketURI)
         } catch (e: URISyntaxException) {
             Log.e("OnebyoneActivity", e.reason)
         }
         mSocket.connect()
         mSocket.on(Socket.EVENT_CONNECT, onConnect)
-        mSocket.on("emitVip", emitVip)
-        mSocket.on("emitSex", emitSex)
-        mSocket.on("emitUuid", emitUuid)
-        mSocket.on("newGroup", newGroup)
     }
 
-    val emitVip: Emitter.Listener = Emitter.Listener {
-        mSocket.emit("isVip", isVip)
-    }
-
-    val emitSex: Emitter.Listener = Emitter.Listener {
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        sex = pref.getBoolean("sex", true)
-        mSocket.emit("sex", sex)
-    }
-
-    val emitUuid: Emitter.Listener = Emitter.Listener {
-        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        uuid = pref.getString("uuid", "").toString()
-        mSocket.emit("uuid", uuid)
+    internal var onMatched: Emitter.Listener = Emitter.Listener { args ->
+        runOnUiThread(Runnable {
+            val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+            val data = args[0] as JSONArray
+            val groupUUID: String
+            try {
+                Log.d("asdasd", data.toString())
+                groupUUID = data.getString(0)
+                var UUID = groupUUID.split("\"")
+                Log.d("new me",UUID[3])
+                val intent = Intent(this@OnebyoneActivity, ChatActivity::class.java)
+                intent.putExtra("chatUUID", UUID[3])
+                intent.putExtra("userName", pref.getString("nick",""))
+                startActivity(intent)
+                finish()
+            } catch (e: Exception) {
+                return@Runnable
+            }
+        })
     }
 
     val onConnect: Emitter.Listener = Emitter.Listener {
@@ -63,12 +65,13 @@ class OnebyoneActivity : AppCompatActivity() {
         uuid = pref.getString("uuid", "").toString()
         sex = pref.getBoolean("sex", true)
         mSocket.emit("join onetoone", false,sex,uuid)
+        mSocket.on("matching success", onMatched)
     }
-
-    val newGroup: Emitter.Listener = Emitter.Listener {
-        groupUUID = it[0].toString()
-        val intent = Intent(this@OnebyoneActivity, ChatActivity::class.java)
-        intent.putExtra("chatUUID", groupUUID)
-        startActivity(intent)
-    }
+//
+//    val newGroup: Emitter.Listener = Emitter.Listener {
+//        groupUUID = it[0].toString()
+//        val intent = Intent(this@OnebyoneActivity, ChatActivity::class.java)
+//        intent.putExtra("chatUUID", groupUUID)
+//        startActivity(intent)
+//    }
 }

@@ -369,8 +369,10 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
      * Verificar se usuario está logado
      */
     private void verificaUsuarioLogado(){
+
+             SharedPreferences pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
            intent = getIntent();
-           userModel = new UserModel(intent.getStringExtra("userName"),"https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","tokendfdf", "");
+           userModel = new UserModel(pref.getString("nick",""),"https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png","test", pref.getString("uuid",""));
            lerMessagensFirebase();
     }
 
