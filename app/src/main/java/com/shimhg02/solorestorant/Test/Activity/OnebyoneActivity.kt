@@ -11,6 +11,7 @@ import com.shimhg02.solorestorant.R
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
+import kotlinx.android.synthetic.main.activity_onebyone.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URISyntaxException
@@ -28,6 +29,7 @@ class OnebyoneActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onebyone)
+        setupLottie()
         try {
             mSocket = IO.socket(socketURI)
         } catch (e: URISyntaxException) {
@@ -59,6 +61,7 @@ class OnebyoneActivity : AppCompatActivity() {
                 intent.putExtra("chatUUID", UUID[3])
                 intent.putExtra("userName", pref.getString("nick",""))
                 startActivity(intent)
+
                 finish()
             } catch (e: Exception) {
                 return@Runnable
@@ -76,6 +79,13 @@ class OnebyoneActivity : AppCompatActivity() {
         mSocket.emit("join onetoone", false,sex,uuid)
         mSocket.on("matching success", onMatched)
     }
+
+    fun setupLottie(){
+        animation_view.setAnimation("one_load.json")
+        animation_view.playAnimation()
+        animation_view.loop(true)
+    }
+
 //
 //    val newGroup: Emitter.Listener = Emitter.Listener {
 //        groupUUID = it[0].toString()

@@ -62,6 +62,7 @@ dependencies {
     def retrofit2_version = "2.5.0"
     def okhttp3_version = "3.12.0"
     def kotlinCoroutineVersion = "1.0.1"
+    def lottieVersion = "3.4.1"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -74,7 +75,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.9.0-SNAPSHOT'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'com.airbnb.android:lottie:2.8.0'
+    implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
     implementation 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
     implementation 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
