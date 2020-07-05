@@ -2,18 +2,16 @@ package com.shimhg02.solorestorant.Test.Activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.shimhg02.solorestorant.R
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import kotlinx.android.synthetic.main.activity_onebyone.*
 import org.json.JSONArray
-import org.json.JSONObject
 import java.net.URISyntaxException
 
 
@@ -25,11 +23,15 @@ class OnebyoneActivity : AppCompatActivity() {
     var isVip: Boolean = false
     var sex: Boolean = false
     lateinit var uuid: String
+    var arrMessages: ArrayList<String> = ArrayList()
+    var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onebyone)
         setupLottie()
+        setTextData()
+        setTextAnimation()
         try {
             mSocket = IO.socket(socketURI)
         } catch (e: URISyntaxException) {
@@ -61,18 +63,39 @@ class OnebyoneActivity : AppCompatActivity() {
                 intent.putExtra("chatUUID", UUID[3])
                 intent.putExtra("userName", pref.getString("nick",""))
                 startActivity(intent)
-
+                mSocket.disconnect()
+                mSocket.off(Socket.EVENT_DISCONNECT, onConnect)
                 finish()
             } catch (e: Exception) {
                 return@Runnable
             }
         })
     }
+    override fun onStop() {
+        super.onStop()
+        mSocket.disconnect()
+        mSocket.off(Socket.EVENT_CONNECT, onConnect)
+        mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+        mSocket.disconnect()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mSocket.disconnect()
+        mSocket.off(Socket.EVENT_CONNECT, onConnect)
+        mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+        mSocket.close()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mSocket.disconnect()
+        mSocket.off(Socket.EVENT_CONNECT, onConnect)
+        mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+        mSocket.close()
+    }
 
     val onConnect: Emitter.Listener = Emitter.Listener {
-        //여기서 다시 "login" 이벤트를 서버쪽으로 username 과 함께 보냅니다.
-        //서버 측에서는 이 username을 whoIsON Array 에 추가를 할 것입니다.
-
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         uuid = pref.getString("uuid", "").toString()
         sex = pref.getBoolean("sex", true)
@@ -84,6 +107,29 @@ class OnebyoneActivity : AppCompatActivity() {
         animation_view.setAnimation("one_load.json")
         animation_view.playAnimation()
         animation_view.loop(true)
+    }
+
+    fun setTextData(){
+        arrMessages.add("처음보는 사람에겐 예의를 지켜주세요!")
+        arrMessages.add("두근두근 매칭... 과연 누구랑 될까요?")
+        arrMessages.add("이성간매칭을 구매하시면 이성이랑 매칭이됩니다!")
+        arrMessages.add("아 쓸내용이 없다")
+        arrMessages.add("옹기잇")
+    }
+
+    fun setTextAnimation(){
+        anime_text.animateText(arrMessages[position])
+        position++
+
+        var handler = Handler()
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                handler.postDelayed(this, 5000)
+                if (position >= arrMessages.size) position = 0
+                anime_text.animateText(arrMessages[position])
+                position++
+            }
+        }, 5000)
     }
 
 //
