@@ -3,6 +3,7 @@ package com.shimhg02.solorestorant.Test.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -40,12 +41,20 @@ class OnebyoneActivity : AppCompatActivity() {
         runOnUiThread(Runnable {
             val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
             val data = args[0] as JSONArray
-            val groupUUID: String
+            var sexes : String
             try {
                 Log.d("asdasd", data.toString())
-                groupUUID = data.getString(0)
-                var UUID = groupUUID.split("\"")
+                var UUID = data.toString().split("\"")
+                var datasex = UUID[10].split("}")
+                System.out.println("GROUP: ${UUID[3]} NAME: ${UUID[7]} SEX: ${datasex[0]}")
                 Log.d("new me",UUID[3])
+                Toast.makeText(this@OnebyoneActivity,"축하드립니다 ${UUID[7]}님과 매칭되셨습니다. 상대 성별은 ${
+                when(datasex[0].toString()) {
+                    ":true" -> "남자"
+                    ":false" -> "여자"
+                    else -> "성별 불능"
+                }
+                } 입니다.",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@OnebyoneActivity, ChatActivity::class.java)
                 intent.putExtra("chatUUID", UUID[3])
                 intent.putExtra("userName", pref.getString("nick",""))
