@@ -33,6 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -71,6 +72,8 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     private DatabaseReference mFirebaseDatabaseReference;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     String PREFERENCE = "com.shimhg02.honbab";
+    FirebaseDatabase mDatabases;
+    DatabaseReference dataRefs;
 
     //CLass Model
     private UserModel userModel;
@@ -329,7 +332,9 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     private void sendMessageFirebase(){
         ChatModel model = new ChatModel(userModel,edMessage.getText().toString(), Calendar.getInstance().getTime().getTime()+"",null);
         mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(model);
+        mFirebaseDatabaseReference.child(CHAT_REFERENCE).child("welcome").getRef().removeValue();
         edMessage.setText(null);
+        intent = getIntent();
     }
 
     private void lerMessagensFirebase(){

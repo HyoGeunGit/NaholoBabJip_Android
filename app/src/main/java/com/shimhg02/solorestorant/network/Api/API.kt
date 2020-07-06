@@ -29,7 +29,9 @@ interface API {
               @Field("birth") birth: String?,
               @Field("email") email: String?,
               @Field("nick") nickName: String?,
-              @Field("sex") sex: Boolean?) : Call<LogIn>
+              @Field("sex") sex: Boolean?,
+              @Field("profileImage") profileImg: String?
+              ): Call<LogIn>
 
 
     @POST("/social/facebook")

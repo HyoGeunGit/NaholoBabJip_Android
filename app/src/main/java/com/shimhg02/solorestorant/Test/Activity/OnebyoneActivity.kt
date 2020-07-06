@@ -76,19 +76,19 @@ class OnebyoneActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         mSocket.disconnect()
+        mSocket.off()
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
         mSocket.close()
-        mSocket.disconnect()
         Log.d("SOCKET LIFECYCLE","DISCONNECT ONSTOP")
     }
 
     override fun onPause() {
         super.onPause()
         mSocket.disconnect()
+        mSocket.off()
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
-        mSocket.close()
         mSocket.close()
         Log.d("SOCKET LIFECYCLE","DISCONNECT ONPAUSE")
     }
@@ -96,9 +96,9 @@ class OnebyoneActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mSocket.disconnect()
+        mSocket.off()
         mSocket.off(Socket.EVENT_CONNECT, onConnect)
         mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
-        mSocket.close()
         mSocket.close()
         Log.d("SOCKET LIFECYCLE","DISCONNECT ONDESTROY")
     }
@@ -128,7 +128,6 @@ class OnebyoneActivity : AppCompatActivity() {
     fun setTextAnimation(){
         anime_text.animateText(arrMessages[position])
         position++
-
         var handler = Handler()
         handler.postDelayed(object : Runnable {
             override fun run() {
@@ -145,6 +144,7 @@ class OnebyoneActivity : AppCompatActivity() {
         val intervalTime: Long = tempTime - backPressedTime
         if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
             mSocket.disconnect()
+            mSocket.off()
             mSocket.off(Socket.EVENT_CONNECT, onConnect)
             mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
             mSocket.close()
