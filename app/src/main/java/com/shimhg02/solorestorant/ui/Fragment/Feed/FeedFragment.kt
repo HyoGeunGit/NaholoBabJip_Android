@@ -40,6 +40,7 @@ import retrofit2.Response
  * @description 피드 프레그먼트
  */
 
+@Suppress("DEPRECATION")
 class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 사용합니다.
     private var recyclerView: RecyclerView? = null
     private var recyclerView2: RecyclerView? = null
@@ -53,7 +54,7 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     @SuppressLint("WrongConstant")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val PREFERENCE = "com.shimhg02.honbab"
-        val pref = activity!!.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+        val pref = requireActivity().getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
         val recommendTestDataList = arrayListOf( //테스트용 더미데이터2
             RecommendData(
                 "람다람",
@@ -82,7 +83,7 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
 
         val view = inflater.inflate(R.layout.fragment_feed, container, false)
 
-        recyclerView = view!!.findViewById(R.id.recycler_story)
+        recyclerView = view.findViewById(R.id.recycler_story)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
         recyclerView?.adapter =  StoryAdapter(items)
@@ -118,13 +119,13 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
             }
         })
 
-        recyclerView2 = view!!.findViewById(R.id.recommend_foodView)
+        recyclerView2 = view.findViewById(R.id.recommend_foodView)
         recyclerView2?.setHasFixedSize(true)
         recyclerView2?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerView2?.adapter =  TestRecommendAdapter(recommendTestDataList)
         adapterd2 = recyclerView2?.adapter as TestRecommendAdapter?
 
-        recyclerView3 = view!!.findViewById(R.id.recommend_foodView2)
+        recyclerView3 = view.findViewById(R.id.recommend_foodView2)
         recyclerView3?.setHasFixedSize(true)
         recyclerView3?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recyclerView3?.adapter =  TestRecommendAdapter(recommendTestDataList2)
@@ -134,8 +135,8 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     }
 
     fun addStory(){
-        val pref = view!!.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
-        Client.retrofitService.checkStory(pref.getString("token","").toString()).enqueue(object :
+        val pref = view?.context?.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+        Client.retrofitService.checkStory(pref?.getString("token","").toString()).enqueue(object :
             Callback<Void> {
             override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                 when (response!!.code()) {
@@ -156,7 +157,7 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     }
 
     private fun alertStoryDialog(){
-        var dialog = AlertDialog.Builder(view!!.context)
+        var dialog = AlertDialog.Builder(requireView().context)
         dialog.setTitle("이미 스토리가 있습니다.")
         dialog.setMessage("나홀로 밥집은 6시간에 한번씩, 인당 1 스토리 체제로 밥먹을때마다 올리는 간단한 스토리를 지향하고 있습니다. \n따라서 스토리를 새로 작성하시면 기존 스토리에 덮어씌워집니다. \n그래도 작성하시겠습니까?")
         dialog.setIcon(R.mipmap.ic_launcher)
@@ -187,10 +188,10 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
     ) {
         if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.data != null) {
             val selectedImageUri: Uri? = data.data
-            var bitmap = MediaStore.Images.Media.getBitmap(getActivity()!!.getContentResolver(), selectedImageUri);
+            var bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), selectedImageUri);
             var base64IMGString = bitmap.encodeBitmapIntoBase64(Bitmap.CompressFormat.PNG)
-            Toast.makeText(view!!.context, base64IMGString, Toast.LENGTH_SHORT).show()
-            println("LOGD IMGSTR : " + base64IMGString)
+            Toast.makeText(view?.context, base64IMGString, Toast.LENGTH_SHORT).show()
+            println("LOGD IMGSTR : $base64IMGString")
         }
     }
 }

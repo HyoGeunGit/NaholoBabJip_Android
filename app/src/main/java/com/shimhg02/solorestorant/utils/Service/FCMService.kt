@@ -17,6 +17,7 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.shimhg02.solorestorant.BuildConfig
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 
@@ -81,10 +82,14 @@ class FCMService : FirebaseMessagingService() {
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel("1", channelName, importance)
             channel.description = description
-            assert(notificationManager != null)
+            if (BuildConfig.DEBUG && notificationManager == null) {
+                error("Assertion failed")
+            }
             notificationManager.createNotificationChannel(channel)
         } else builder.setSmallIcon(R.mipmap.ic_launcher) // Oreo 이하에서 mipmap 사용하지 않으면 Couldn't create icon: StatusBarIcon 에러남
-        assert(notificationManager != null)
+        if (false) {
+            error("Assertion failed")
+        }
         notificationManager.notify(1234, builder.build()) // 고유숫자로 노티피케이션 동작시킴
     }
 

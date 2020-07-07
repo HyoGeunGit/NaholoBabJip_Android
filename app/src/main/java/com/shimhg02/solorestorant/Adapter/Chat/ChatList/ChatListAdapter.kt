@@ -41,7 +41,7 @@ class ChatListAdapter(val testDataList:ArrayList<ChatListData>): RecyclerView.Ad
         @SuppressLint("SetTextI18n")
         fun bindItems(data : ChatListData){
             val PREFERENCE = "com.shimhg02.honbab"
-            val pref = itemView!!.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+            val pref = itemView.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
             itemView.name_tv.text = data.groupName
             itemView.final_tv.text = data.lastMessage
             itemView.time_tv.text = converteTimestamp(data.timeStamp)

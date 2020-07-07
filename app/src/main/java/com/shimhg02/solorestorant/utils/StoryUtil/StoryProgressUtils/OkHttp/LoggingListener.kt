@@ -156,6 +156,6 @@ class LoggingListener<A, B> @JvmOverloads constructor(
     }
 
     init {
-        this.delegate = (delegate ?: get()) as RequestListener<A, B>
+        this.delegate = (delegate ?: get())
     }
 }

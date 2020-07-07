@@ -50,6 +50,9 @@ import retrofit2.Response
 import java.io.File
 import java.io.IOException
 
+@Suppress("DEPRECATED_IDENTITY_EQUALS", "NAME_SHADOWING", "DEPRECATION",
+    "NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS"
+)
 class EditImageActivity :
     BaseActivity(), OnPhotoEditorListener,
     View.OnClickListener, PropertiesBSFragment.Properties, EmojiListener,
@@ -550,6 +553,7 @@ class EditImageActivity :
     override fun onStickerClick(bitmap: Bitmap?) {
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         { // 마시멜로우 버전과 같거나 이상이라면

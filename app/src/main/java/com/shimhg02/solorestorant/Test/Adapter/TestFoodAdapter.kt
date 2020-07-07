@@ -44,7 +44,3 @@ class TestFoodAdapter(val testDataList:ArrayList<FoodImageRepo>): RecyclerView.A
         }
     }
 }
-
-private fun Any.putExtra(statusResourcesKey: String, testDataAsset: MutableList<String>) {
-
-}

@@ -92,8 +92,8 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
         var resultAdress = str?.split("end")
         if(!p0!!.isInfoWindowShown){
             cardview_googlemap.visibility = View.VISIBLE
-            if (resultAdress?.get(0)==null|| resultAdress.get(0) =="")  Glide.with(this.context).load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
-            else Glide.with(this.context).load(resultAdress?.get(0)).into(image_hello)
+            if (resultAdress?.get(0)==null|| resultAdress[0] =="")  Glide.with(this.context).load("https://lh3.googleusercontent.com/proxy/-l5EXoipH0EzWLvWzU6FYMmpE-_0YEkrIk1DedV3ArTnKTsdabs8pteGV4QfVaJNhm3ZIrxJuxpKTH47uuZ3YdsoH8E215eb-s60vMxIkD6A8XPEGPceinsqObWCqpvnz6l3Zj1aU5hT7z6Ny0xo").into(image_hello)
+            else Glide.with(this.context).load(resultAdress[0]).into(image_hello)
             name_tv.text = p0.title
             subtitle_tv.text = resultAdress?.get(1)
             if(name_tv.text == null|| name_tv.text == "" || subtitle_tv.text == null){
@@ -164,10 +164,10 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
 
 
     /**
-     * @description_function 마커 설정 함수
+     * @description_function 마커 설정 함수 location: LatLng
      */
-    private fun placeMarkerOnMap(location: LatLng) {
-        val markerOptions = MarkerOptions().position(location)
+    private fun placeMarkerOnMap(latLng: LatLng) {
+//        val markerOptions = MarkerOptions().position(location)
 //        val titleStr = getAddress(location)
 //        markerOptions.title(titleStr)
 //        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))

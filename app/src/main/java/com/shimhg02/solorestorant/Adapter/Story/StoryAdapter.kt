@@ -65,7 +65,3 @@ class StoryAdapter(val testDataList: ArrayList<StoryData>): RecyclerView.Adapter
 
     }
 }
-
-private fun Any.putExtra(statusResourcesKey: String, testDataAsset: MutableList<String>) {
-
-}

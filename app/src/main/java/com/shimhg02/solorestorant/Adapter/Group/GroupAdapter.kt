@@ -25,6 +25,7 @@ import retrofit2.Response
  * @description 그룹 어댑터
  */
 
+@Suppress("NAME_SHADOWING")
 class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<GroupAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -48,7 +49,7 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
         @SuppressLint("SetTextI18n")
         fun bindItems(data : GroupData){
             val PREFERENCE = "com.shimhg02.honbab"
-            val pref = itemView!!.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+            itemView.context.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
             itemView.name_tv.text = data.groupName
             itemView.location_tv.text = data.vicinity
             itemView.time_tv.text = data.time
@@ -81,7 +82,7 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
                                             200 -> {
                                                 System.out.println("테스트 200 성공")
                                                 Toast.makeText(itemView.context,"성공",Toast.LENGTH_SHORT).show()
-                                                var dialog = AlertDialog.Builder(itemView.context)
+                                                val dialog = AlertDialog.Builder(itemView.context)
                                                 dialog.setTitle("그룹가입 성공")
                                                 dialog.setMessage("채팅방이 생성되었습니다.\n즐거운 시간 보내세요!")
                                                 dialog.setIcon(R.mipmap.ic_launcher)
@@ -89,7 +90,7 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
                                             }
                                             201 -> {
                                                 Toast.makeText(itemView.context,"성공",Toast.LENGTH_SHORT).show()
-                                                var dialog = AlertDialog.Builder(itemView.context)
+                                                val dialog = AlertDialog.Builder(itemView.context)
                                                 dialog.setTitle("그룹가입 성공")
                                                 dialog.setMessage("채팅방이 생성되었습니다.\n즐거운 시간 보내세요!")
                                                 dialog.setIcon(R.mipmap.ic_launcher)
@@ -119,8 +120,4 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
             }
         }
     }
-}
-
-private fun Any.putExtra(statusResourcesKey: String, testDataAsset: MutableList<String>) {
-
 }

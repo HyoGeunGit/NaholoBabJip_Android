@@ -26,6 +26,7 @@ import retrofit2.Response
  */
 
 
+@Suppress("DEPRECATION")
 class TestInfoActivity : BaseActivity() {
     private val itemss = java.util.ArrayList<FoodImageRepo>()
     private var recyclerView: RecyclerView? = null
@@ -49,7 +50,6 @@ class TestInfoActivity : BaseActivity() {
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<TestInfoData>?, response: Response<TestInfoData>?) {
 
-                val repo = response!!.body()
                 when (response!!.code()) {
                     200 -> {
                         System.out.println("LOGDD" + response.body()!!.photo)
@@ -65,8 +65,10 @@ class TestInfoActivity : BaseActivity() {
                             }
                         System.out.println("LOGDD items" +  response.body()!!.reviews)
                     }
+
                     203-> {
                     }
+
                 }
             }
             override fun onFailure(call: Call<TestInfoData>?, t: Throwable?) {
@@ -74,7 +76,4 @@ class TestInfoActivity : BaseActivity() {
             }
         })
     }
-}
-
-private fun <T> Call<T>.enqueue(callback: Callback<TestInfoData>) {
 }

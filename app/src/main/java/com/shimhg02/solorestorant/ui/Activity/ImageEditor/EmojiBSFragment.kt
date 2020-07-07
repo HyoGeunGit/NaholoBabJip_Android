@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shimhg02.solorestorant.R
 import ja.burhanrashid52.photoeditor.PhotoEditor
 
+@Suppress("DEPRECATION")
 class EmojiBSFragment : BottomSheetDialogFragment() {
     private var mEmojiListener: EmojiListener? = null
 

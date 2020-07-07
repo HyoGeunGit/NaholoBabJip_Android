@@ -33,7 +33,9 @@ internal class DrawerAdapter(private val dataList: ArrayList<DrawerData>): Recyc
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         fun bindItems(data: DrawerData){
-            //각각의 아이템 클릭할때의 이벤트를 띄워줍니다.
+            data.docID
+            data.name
+            data.profileImg
         }
 
     }

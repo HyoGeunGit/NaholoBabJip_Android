@@ -16,6 +16,7 @@ import org.json.JSONArray
 import java.net.URISyntaxException
 
 
+@Suppress("DEPRECATION")
 class OnebyoneActivity : AppCompatActivity() {
 
     val PREFERENCE = "com.shimhg02.honbab"
@@ -48,7 +49,6 @@ class OnebyoneActivity : AppCompatActivity() {
         runOnUiThread(Runnable {
             val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
             val data = args[0] as JSONArray
-            var sexes : String
             try {
                 Log.d("asdasd", data.toString())
                 var UUID = data.toString().split("\"")

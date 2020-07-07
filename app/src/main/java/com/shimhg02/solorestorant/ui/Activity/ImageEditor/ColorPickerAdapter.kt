@@ -16,6 +16,7 @@ import com.shimhg02.solorestorant.R
 import java.util.*
 
 
+@Suppress("DEPRECATION")
 class ColorPickerAdapter internal constructor(
     private var context: Context,
     colorPickerColors: List<Int>

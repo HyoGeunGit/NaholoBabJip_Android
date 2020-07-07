@@ -22,7 +22,7 @@ class AddGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addgroup)
         val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
-        val editor = pref.edit()
+        pref.edit()
         send_btn.setOnClickListener {
 
             /**

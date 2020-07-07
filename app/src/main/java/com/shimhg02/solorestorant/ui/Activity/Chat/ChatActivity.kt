@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.shimhg02.solorestorant.ui.Activity.Chat
 
 import android.Manifest
@@ -478,7 +480,7 @@ class ChatActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedList
 
     override fun onNavigationItemSelected(item: MenuItem):Boolean {
         // Handle navigation view item clicks here.
-        val id = item.itemId
+        item.itemId
         val drawer = drawer_layout
         drawer.closeDrawer(GravityCompat.START)
         return true

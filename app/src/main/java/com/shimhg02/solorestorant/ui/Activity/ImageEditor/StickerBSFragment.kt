@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shimhg02.solorestorant.R
 
+@Suppress("DEPRECATION")
 class StickerBSFragment : BottomSheetDialogFragment() {
     private var mStickerListener: StickerListener? = null
     fun setStickerListener(stickerListener: StickerListener?) {
@@ -124,16 +125,16 @@ class StickerBSFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun convertEmoji(emoji: String): String {
-        var returnedEmoji = ""
-        returnedEmoji = try {
-            val convertEmojiToInt = emoji.substring(2).toInt(16)
-            getEmojiByUnicode(convertEmojiToInt)
-        } catch (e: NumberFormatException) {
-            ""
-        }
-        return returnedEmoji
-    }
+//    private fun convertEmoji(emoji: String): String {
+//        var returnedEmoji = ""
+//        returnedEmoji = try {
+//            val convertEmojiToInt = emoji.substring(2).toInt(16)
+//            getEmojiByUnicode(convertEmojiToInt)
+//        } catch (e: NumberFormatException) {
+//            ""
+//        }
+//        return returnedEmoji
+//    }
 
     private fun getEmojiByUnicode(unicode: Int): String {
         return String(Character.toChars(unicode))
