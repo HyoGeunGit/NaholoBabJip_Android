@@ -49,6 +49,7 @@ class ChatListAdapter(val testDataList:ArrayList<ChatListData>): RecyclerView.Ad
             System.out.println("LOGD GROUPUUID: ${data.groupUUID}")
             intent.putExtra("chatUUID", data.groupUUID.toString())
             intent.putExtra("userName", pref.getString("nick",""))
+            intent.putExtra("chatName", data.groupName)
             itemView.setOnClickListener {
                 itemView.context.startActivity(intent)
             }

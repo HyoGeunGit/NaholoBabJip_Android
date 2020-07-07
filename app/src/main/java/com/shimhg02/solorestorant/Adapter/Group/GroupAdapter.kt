@@ -52,7 +52,7 @@ class GroupAdapter(val testDataList:ArrayList<GroupData>): RecyclerView.Adapter<
             itemView.name_tv.text = data.groupName
             itemView.location_tv.text = data.vicinity
             itemView.time_tv.text = data.time
-            itemView.people_tv.text = data.users.size.toString() + "/" + data.maximum.toString()
+            itemView.people_tv.text = data.users    .size.toString() + "/" + data.maximum.toString()
             if(data.isAdult){
                 Glide.with(itemView.context).load("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Icon-not-under18.svg/1200px-Icon-not-under18.svg.png").asBitmap().diskCacheStrategy(
                     DiskCacheStrategy.ALL).thumbnail(0.1f).into(itemView.image_is19)

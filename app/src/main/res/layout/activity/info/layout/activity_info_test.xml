@@ -13,6 +13,7 @@
         android:id="@+id/tv_1"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <TextView
         android:textColor="#000"
         android:textSize="15dp"
@@ -20,6 +21,7 @@
         android:id="@+id/tv_2"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <TextView
         android:textColor="#000"
         android:textSize="15dp"
@@ -27,6 +29,7 @@
         android:id="@+id/tv_3"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <TextView
         android:textColor="#000"
         android:textSize="15dp"
@@ -41,10 +44,12 @@
         android:id="@+id/recyfood"
         android:layout_width="match_parent"
         android:layout_height="150dp"/>
+
     <TextView
         android:id="@+id/tv_5"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <TextView
         android:id="@+id/tv_6"
         android:layout_width="match_parent"

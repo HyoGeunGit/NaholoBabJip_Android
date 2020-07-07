@@ -110,7 +110,7 @@ class EditImageActivity :
         mPhotoEditor!!.setOnPhotoEditorListener(this)
 
         //Set Image Dynamically
-        mPhotoEditorView!!.source.setImageResource(R.drawable.rdr)
+        mPhotoEditorView!!.source.setImageResource(R.drawable.chiken)
     }
 
     private fun handleIntentImage(source: ImageView) {
@@ -321,7 +321,7 @@ class EditImageActivity :
                             this@EditImageActivity.getContentResolver(),
                             mSaveImageUri
                         )
-                        showLoading("업로드중...")
+                        showLoading("업로드중... \n치킨을 드셨나요? 맛있으셨을것 같아요! ")
                         var base64ImgString =  bitmap.encodeBitmapIntoBase64(Bitmap.CompressFormat.PNG)
                         System.out.println("TEST IMG: $base64ImgString")
                         Client.retrofitService.addStory(pref.getString("token","").toString(), base64ImgString).enqueue(object : Callback<Void> {

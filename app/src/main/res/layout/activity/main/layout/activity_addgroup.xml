@@ -10,26 +10,31 @@
         android:hint="그룹 이름"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <EditText
         android:id="@+id/people_tv"
         android:hint="최대 인원 수"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <EditText
         android:id="@+id/time_tv"
         android:hint="시간범위"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <EditText
         android:id="@+id/vicinity_tv"
         android:hint="거리 이름"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <Button
         android:id="@+id/adult_tv"
         android:text="adult on"
         android:layout_width="match_parent"
         android:layout_height="60dp"/>
+
     <EditText
         android:id="@+id/category_tv"
         android:hint="음식 카테고리"

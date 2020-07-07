@@ -345,7 +345,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                 }
             }
         }
-
         dialog.setPositiveButton("네",dialog_listener)
         dialog.setNegativeButton("아니오",dialog_listener)
         dialog.show()
