@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.ImageEditor
+package com.shimhg02.solorestorant.ui.Activity.ImageEditor
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.ImageEditor.ColorPickerAdapter.OnColorPickerClickListener
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.ColorPickerAdapter.OnColorPickerClickListener
 
 class PropertiesBSFragment : BottomSheetDialogFragment(), OnSeekBarChangeListener {
     private var mProperties: Properties? =

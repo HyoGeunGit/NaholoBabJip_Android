@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.ChatActivity
+import com.shimhg02.solorestorant.ui.Activity.Chat.ChatActivity
 import com.shimhg02.solorestorant.network.Data.ChatData.ChatListData
 import kotlinx.android.synthetic.main.item_chat_view.view.*
 

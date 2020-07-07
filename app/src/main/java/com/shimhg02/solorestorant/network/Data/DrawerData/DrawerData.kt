@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Data
+package com.shimhg02.solorestorant.network.Data.DrawerData
 
 /**
  * @description 드로워(채팅) 데이터

@@ -12,7 +12,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.shimhg02.solorestorant.R;
 import com.shimhg02.solorestorant.network.Data.ChatData.ChatModel;
-import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil;
+import com.shimhg02.solorestorant.utils.FireBase.FirebaseUtil;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 
 /**

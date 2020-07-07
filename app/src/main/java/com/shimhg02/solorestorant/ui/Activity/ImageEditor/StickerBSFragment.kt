@@ -1,11 +1,14 @@
-package com.shimhg02.solorestorant.Test.ImageEditor
+package com.shimhg02.solorestorant.ui.Activity.ImageEditor
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +16,15 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.shimhg02.solorestorant.R
-import ja.burhanrashid52.photoeditor.PhotoEditor
 
-class EmojiBSFragment : BottomSheetDialogFragment() {
-    private var mEmojiListener: EmojiListener? = null
+class StickerBSFragment : BottomSheetDialogFragment() {
+    private var mStickerListener: StickerListener? = null
+    fun setStickerListener(stickerListener: StickerListener?) {
+        mStickerListener = stickerListener
+    }
 
-    interface EmojiListener {
-        fun onEmojiClick(emojiUnicode: String?)
+    interface StickerListener {
+        fun onStickerClick(bitmap: Bitmap?)
     }
 
     private val mBottomSheetBehaviorCallback: BottomSheetCallback = object : BottomSheetCallback() {
@@ -60,26 +65,28 @@ class EmojiBSFragment : BottomSheetDialogFragment() {
             )
         )
         val rvEmoji: RecyclerView = contentView.findViewById(R.id.rvEmoji)
-        val gridLayoutManager = GridLayoutManager(activity, 5)
+        val gridLayoutManager = GridLayoutManager(activity, 3)
         rvEmoji.layoutManager = gridLayoutManager
-        val emojiAdapter =
-            EmojiAdapter()
-        rvEmoji.adapter = emojiAdapter
+        val stickerAdapter = StickerAdapter()
+        rvEmoji.adapter = stickerAdapter
     }
 
-    fun setEmojiListener(emojiListener: EmojiListener?) {
-        mEmojiListener = emojiListener
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
-    inner class EmojiAdapter :
-        RecyclerView.Adapter<EmojiAdapter.ViewHolder>() {
-        var emojisList = PhotoEditor.getEmojis(activity)
+    inner class StickerAdapter :
+        RecyclerView.Adapter<StickerAdapter.ViewHolder>() {
+        var stickerList = intArrayOf(R.drawable.aa, R.drawable.aa)
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
         ): ViewHolder {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.row_emoji, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.row_sticker, parent, false)
             return ViewHolder(
                 view
             )
@@ -89,26 +96,46 @@ class EmojiBSFragment : BottomSheetDialogFragment() {
             holder: ViewHolder,
             position: Int
         ) {
-            holder.txtEmoji.text = emojisList[position]
+            holder.imgSticker.setImageResource(stickerList[position])
         }
 
         override fun getItemCount(): Int {
-            return emojisList.size
+            return stickerList.size
         }
 
         inner class ViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
-            var txtEmoji: TextView
+            var imgSticker: ImageView
 
             init {
-                txtEmoji = itemView.findViewById(R.id.txtEmoji)
+                imgSticker = itemView.findViewById(R.id.imgSticker)
                 itemView.setOnClickListener {
-                    if (mEmojiListener != null) {
-                        mEmojiListener!!.onEmojiClick(emojisList[layoutPosition])
+                    if (mStickerListener != null) {
+                        mStickerListener!!.onStickerClick(
+                            BitmapFactory.decodeResource(
+                                resources,
+                                stickerList[layoutPosition]
+                            )
+                        )
                     }
                     dismiss()
                 }
             }
         }
+    }
+
+    private fun convertEmoji(emoji: String): String {
+        var returnedEmoji = ""
+        returnedEmoji = try {
+            val convertEmojiToInt = emoji.substring(2).toInt(16)
+            getEmojiByUnicode(convertEmojiToInt)
+        } catch (e: NumberFormatException) {
+            ""
+        }
+        return returnedEmoji
+    }
+
+    private fun getEmojiByUnicode(unicode: Int): String {
+        return String(Character.toChars(unicode))
     }
 }

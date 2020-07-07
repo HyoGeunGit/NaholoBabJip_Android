@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Adapter
+package com.shimhg02.solorestorant.Adapter.Drawer
 
 
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Data.DrawerData
+import com.shimhg02.solorestorant.network.Data.DrawerData.DrawerData
 import java.util.ArrayList
 
 
@@ -22,7 +22,9 @@ internal class DrawerAdapter(private val dataList: ArrayList<DrawerData>): Recyc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_drawer_friend, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(
+            v
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

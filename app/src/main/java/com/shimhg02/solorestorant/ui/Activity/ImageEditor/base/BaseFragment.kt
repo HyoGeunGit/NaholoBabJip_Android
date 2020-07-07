@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.ImageEditor.base
+package com.shimhg02.solorestorant.ui.Activity.ImageEditor.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

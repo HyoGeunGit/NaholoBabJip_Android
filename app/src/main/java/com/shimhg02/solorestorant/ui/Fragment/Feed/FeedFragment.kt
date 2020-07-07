@@ -23,16 +23,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.Adapter.Story.StoryAdapter
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.Test.Adapter.TestRecommendAdapter
-import com.shimhg02.solorestorant.Test.ImageEditor.EditImageActivity
-import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity
 import com.shimhg02.solorestorant.network.Data.RecommendData.RecommendData
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
-import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
 import com.shimhg02.solorestorant.utils.Base64.encodeBitmapIntoBase64
 import kotlinx.android.synthetic.main.fragment_feed.view.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback

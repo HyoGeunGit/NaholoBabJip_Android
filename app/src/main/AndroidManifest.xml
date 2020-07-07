@@ -96,8 +96,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Test.ImageEditor.EditImageActivity" />
-        <activity android:name=".Test.Activity.ChatActivity" />
+        <activity android:name="com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity" />
+        <activity android:name=".ui.Activity.Chat.ChatActivity" />
         <activity android:name=".Test.Activity.OnebyoneActivity" />
         <activity android:name=".ui.Activity.Main.MainActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpPhoneActivity" />

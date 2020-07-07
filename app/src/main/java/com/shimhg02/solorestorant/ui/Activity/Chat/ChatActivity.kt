@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Activity
+package com.shimhg02.solorestorant.ui.Activity.Chat
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.common.api.Response
 import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.BuildConfig
@@ -41,21 +40,15 @@ import com.google.firebase.storage.StorageReference
 import com.shimhg02.solorestorant.Adapter.Chat.ChatFirebaseAdapter
 import com.shimhg02.solorestorant.Adapter.Chat.ClickListenerChatFirebase
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.ChatActivity
-import com.shimhg02.solorestorant.Test.Adapter.DrawerAdapter
-import com.shimhg02.solorestorant.Test.Data.DrawerData
-import com.shimhg02.solorestorant.Test.Utils.FirebaseUtil
+import com.shimhg02.solorestorant.utils.FireBase.FirebaseUtil
 import com.shimhg02.solorestorant.network.Data.ChatData.ChatModel
 import com.shimhg02.solorestorant.network.Data.ChatData.ImageFileModel.FileModel
 import com.shimhg02.solorestorant.network.Data.ChatData.LocationFileModel.MapModel
 import com.shimhg02.solorestorant.network.Data.ChatData.UserModel
-import com.shimhg02.solorestorant.network.Retrofit.Client
 import hani.momanii.supernova_emoji_library.Actions.EmojIconActions
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.content_chat.*
-import retrofit2.Call
-import retrofit2.Callback
 import java.io.File
 import java.util.*
 

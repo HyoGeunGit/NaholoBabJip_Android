@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.ImageEditor
+package com.shimhg02.solorestorant.ui.Activity.ImageEditor
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -29,14 +29,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.ImageEditor.EmojiBSFragment.EmojiListener
-import com.shimhg02.solorestorant.Test.ImageEditor.StickerBSFragment.StickerListener
-import com.shimhg02.solorestorant.Test.ImageEditor.base.BaseActivity
-import com.shimhg02.solorestorant.Test.ImageEditor.filters.FilterListener
-import com.shimhg02.solorestorant.Test.ImageEditor.filters.FilterViewAdapter
-import com.shimhg02.solorestorant.Test.ImageEditor.tools.EditingToolsAdapter
-import com.shimhg02.solorestorant.Test.ImageEditor.tools.EditingToolsAdapter.OnItemSelected
-import com.shimhg02.solorestorant.Test.ImageEditor.tools.ToolType
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.EmojiBSFragment.EmojiListener
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.StickerBSFragment.StickerListener
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.base.BaseActivity
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.filters.FilterListener
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.filters.FilterViewAdapter
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.tools.EditingToolsAdapter
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.tools.EditingToolsAdapter.OnItemSelected
+import com.shimhg02.solorestorant.ui.Activity.ImageEditor.tools.ToolType
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Main.MainActivity
 import com.shimhg02.solorestorant.utils.Base64.encodeBitmapIntoBase64

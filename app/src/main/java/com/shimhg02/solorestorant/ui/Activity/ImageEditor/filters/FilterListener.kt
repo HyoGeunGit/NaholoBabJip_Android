@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.ImageEditor.filters
+package com.shimhg02.solorestorant.ui.Activity.ImageEditor.filters
 
 import ja.burhanrashid52.photoeditor.PhotoFilter
 

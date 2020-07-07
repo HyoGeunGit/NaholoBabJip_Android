@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.ui.Activity.Chat.ChatActivity
 import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
