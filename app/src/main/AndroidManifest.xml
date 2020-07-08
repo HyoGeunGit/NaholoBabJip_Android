@@ -105,6 +105,7 @@
         <activity android:name=".ui.Activity.SignUp.SignUpIdActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpProfileActivity" />
         <activity android:name=".ui.Activity.Term.TermActivity" />
+        <activity android:name=".Test.Activity.CateFoodActivity"/>
         <activity android:name=".ui.Activity.Story.StoryActivity" />
         <activity android:name=".Test.Activity.TestInfoActivity" />
         <activity android:name=".ui.Activity.Group.AddGroupActivity" />

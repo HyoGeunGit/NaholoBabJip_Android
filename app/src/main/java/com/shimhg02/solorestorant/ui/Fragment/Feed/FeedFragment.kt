@@ -22,11 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.Adapter.Story.StoryAdapter
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Activity.CateFoodActivity
 import com.shimhg02.solorestorant.Test.Adapter.TestRecommendAdapter
 import com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity
 import com.shimhg02.solorestorant.network.Data.RecommendData.RecommendData
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
 import com.shimhg02.solorestorant.network.Retrofit.Client
+import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
 import com.shimhg02.solorestorant.utils.Base64.encodeBitmapIntoBase64
 import kotlinx.android.synthetic.main.fragment_feed.view.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -82,7 +84,6 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         )
 
         val view = inflater.inflate(R.layout.fragment_feed, container, false)
-
         recyclerView = view.findViewById(R.id.recycler_story)
         recyclerView?.setHasFixedSize(true)
         recyclerView?.layoutManager = LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
@@ -91,7 +92,23 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         view.addStory.setOnClickListener {
             addStory()
         }
-
+        val intentToCategory = Intent(activity, CateFoodActivity::class.java)
+        view.btn1.setOnClickListener {
+            intentToCategory.putExtra("foodName","치킨")
+            startActivity(intentToCategory)
+        }
+        view.btn2.setOnClickListener {
+            intentToCategory.putExtra("foodName","분식")
+            startActivity(intentToCategory)
+        }
+        view.btn3.setOnClickListener {
+            intentToCategory.putExtra("foodName","중식")
+            startActivity(intentToCategory)
+        }
+        view.btn4.setOnClickListener {
+            intentToCategory.putExtra("foodName","일식")
+            startActivity(intentToCategory)
+        }
         Client.retrofitService.getStory().enqueue(object :
             retrofit2.Callback<ArrayList<StoryData>> {
             override fun onResponse(call: Call<ArrayList<StoryData>>?, response: Response<ArrayList<StoryData>>?) {
@@ -179,7 +196,6 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         dialog.setNegativeButton("아니오",dialog_listener)
         dialog.show()
     }
-
 
     override fun onActivityResult(
         requestCode: Int,

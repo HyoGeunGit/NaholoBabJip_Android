@@ -175,25 +175,28 @@
                         android:rowCount="4">
 
                             <Button
-                                android:id="@+id/btn_test1"
+                                android:id="@+id/btn1"
                                 android:layout_margin="11dp"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:text=""/>
 
                             <Button
+                                android:id="@+id/btn2"
                                 android:layout_margin="11dp"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:text=""/>
 
                             <Button
+                                android:id="@+id/btn3"
                                 android:layout_margin="11dp"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:text=""/>
 
                             <Button
+                                android:id="@+id/btn4"
                                 android:layout_margin="11dp"
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"

@@ -33,7 +33,6 @@ class AddGroupActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<GroupData>?, response: Response<GroupData>?) {
                     when (response!!.code()) {
                         200 -> finish()
-
                         203 -> {
                         }
                     }
