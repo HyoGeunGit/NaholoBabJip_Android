@@ -1,6 +1,7 @@
 package com.shimhg02.solorestorant.Test.Fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
@@ -11,6 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -43,6 +46,8 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
+    val PREFERENCE = "com.shimhg02.honbab"
+
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -53,14 +58,13 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_testcategorylocation, container, false)
         val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
-        view.category_test_btn.setOnClickListener {
-            getCategoryData()
-        }
+        getCategoryData()
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 super.onLocationResult(p0)
@@ -146,6 +150,7 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     /**
      * @description_function 맵 셋업 함수
      */
+    @SuppressLint("UseRequireInsteadOfGet")
     private fun setUpMap() {
 
         if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -164,9 +169,9 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
 
 
     /**
-     * @description_function 마커 설정 함수 location: LatLng
+     * @description_function 마커 설정 함수
      */
-    private fun placeMarkerOnMap(latLng: LatLng) {
+    private fun placeMarkerOnMap(location: LatLng) {
 //        val markerOptions = MarkerOptions().position(location)
 //        val titleStr = getAddress(location)
 //        markerOptions.title(titleStr)
@@ -180,6 +185,7 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     /**
      * @description_function 로케이션 업데이트 함수
      */
+    @SuppressLint("UseRequireInsteadOfGet")
     private fun startLocationUpdates() {
 
         if (ActivityCompat.checkSelfPermission(activity!!,
@@ -197,6 +203,7 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     /**
      * @description_function 로케이션 리퀘스트 생성 함수
      */
+    @SuppressLint("UseRequireInsteadOfGet")
     private fun createLocationRequest() {
         locationRequest = LocationRequest()
         locationRequest.interval = 10000
@@ -249,12 +256,15 @@ class CateMapTestFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerCl
     /**
      * @description_function 카테고리 데이터 받아오는 함수
      */
+    @SuppressLint("UseRequireInsteadOfGet")
     fun getCategoryData(){
+        val pref = activity!!.getSharedPreferences(PREFERENCE, AppCompatActivity.MODE_PRIVATE)
+        System.out.println("LOG CATE: " + pref.getString("foodName",""))
         var gpsTracker =
             GpsTracker(this.context)
         val latitude: Double = gpsTracker.getLatitude()
         val longitude: Double = gpsTracker.getLongitude()
-        Client.retrofitService.getCategory(latitude.toString(),longitude.toString(),1000, category_test_edtv.text.toString()).enqueue(object : Callback<ArrayList<LocationRepo>> {
+        Client.retrofitService.getCategory(latitude.toString(),longitude.toString(),1000, pref.getString("foodName","").toString()).enqueue(object : Callback<ArrayList<LocationRepo>> {
             override fun onResponse(call: Call<ArrayList<LocationRepo>>?, response: Response<ArrayList<LocationRepo>>?) {
                 val repo = response!!.body()
 

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.shimhg02.solorestorant.R
+import com.shimhg02.solorestorant.Test.Fragment.CateMapTestFragment
 import com.shimhg02.solorestorant.Test.Fragment.MapTestFragment
 import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import kotlinx.android.synthetic.main.activity_catefood_recommend.*
@@ -20,12 +21,13 @@ class CateFoodActivity : BaseActivity() {
     private lateinit var toast: Toast
     private var backKeyPressedTime: Long = 200
     private var mViewPager: ViewPager? = null
+    val PREFERENCE = "com.shimhg02.honbab"
 
     @SuppressLint("ShowToast")
     override fun onCreate() {
         mViewPager = findViewById(R.id.viewPager)
         mViewPager!!.adapter = PagerAdapter(supportFragmentManager)
-        mViewPager!!.currentItem = 1
+        mViewPager!!.currentItem =  intent.getIntExtra("foodNum",0)
 
         val tabLayout = findViewById<View>(R.id.tabs) as TabLayout
         tabLayout.setupWithViewPager(mViewPager)
@@ -46,8 +48,13 @@ class CateFoodActivity : BaseActivity() {
         mViewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab){
+                val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+                val editor = pref.edit()
                 val pos = tab.position
+                editor.putString("foodName", tabLayout.getTabAt(pos)!!.text.toString())
+                editor.apply()
                 food_category_text.text = tabLayout.getTabAt(pos)!!.text.toString()
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) { }
@@ -78,7 +85,7 @@ class CateFoodActivity : BaseActivity() {
 
             return when (position) {
                 in 0..12 ->
-                    MapTestFragment()
+                    CateMapTestFragment()
 
                 else ->
                     MapTestFragment()

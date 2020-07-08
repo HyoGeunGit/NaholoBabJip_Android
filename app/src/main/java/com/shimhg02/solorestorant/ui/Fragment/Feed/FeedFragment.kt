@@ -94,19 +94,19 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
         }
         val intentToCategory = Intent(activity, CateFoodActivity::class.java)
         view.btn1.setOnClickListener {
-            intentToCategory.putExtra("foodName","치킨")
+            intentToCategory.putExtra("foodNum",1)
             startActivity(intentToCategory)
         }
         view.btn2.setOnClickListener {
-            intentToCategory.putExtra("foodName","분식")
+            intentToCategory.putExtra("foodNum",2)
             startActivity(intentToCategory)
         }
         view.btn3.setOnClickListener {
-            intentToCategory.putExtra("foodName","중식")
+            intentToCategory.putExtra("foodNum",3)
             startActivity(intentToCategory)
         }
         view.btn4.setOnClickListener {
-            intentToCategory.putExtra("foodName","일식")
+            intentToCategory.putExtra("foodNum",4)
             startActivity(intentToCategory)
         }
         Client.retrofitService.getStory().enqueue(object :
@@ -158,7 +158,6 @@ class FeedFragment : Fragment() { //프레그먼트를 띄우기 위해 주로 �
             override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                 when (response!!.code()) {
                     200 -> {
-                        Toast.makeText(view!!.context, "200OK", Toast.LENGTH_LONG).show()
                         alertStoryDialog()
                     }
                     404-> {
