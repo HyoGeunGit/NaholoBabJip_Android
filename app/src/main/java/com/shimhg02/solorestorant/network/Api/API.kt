@@ -129,4 +129,8 @@ interface API {
     @POST("/onetoone")
     @FormUrlEncoded
     fun oneToOne(@Field("token") token : String, @Field("isVip") isVip : Boolean, @Field("sex") sex : Boolean, @Field("uuid") uuid : String, @Field("groupUUID") groupUUID : String) : Call<Void>
+
+    @POST("/changeFCM")
+    @FormUrlEncoded
+    fun addFcmToken(@Field("token") token : String, @Field("FCM") FCM : String) : Call<Void>
 }

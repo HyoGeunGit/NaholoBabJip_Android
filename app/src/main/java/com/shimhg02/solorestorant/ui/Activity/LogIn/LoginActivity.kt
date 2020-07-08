@@ -22,6 +22,8 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.network.Data.LoginData.LogIn
 import com.shimhg02.solorestorant.network.Retrofit.Client
@@ -30,6 +32,7 @@ import com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpPhoneActivity
 import com.shimhg02.solorestorant.ui.Activity.Term.TermActivity
 import com.shimhg02.solorestorant.utils.Bases.BaseActivity
 import com.shimhg02.solorestorant.utils.Preference.SharedPref
+import com.shimhg02.solorestorant.utils.Service.FCMTokenService
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
@@ -42,6 +45,7 @@ import java.util.*
  */
 
 
+@Suppress("DEPRECATION")
 class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener {
     val PREFERENCE = "com.shimhg02.honbab"
     override var viewId: Int = R.layout.activity_login
@@ -57,6 +61,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         facebookLogin()
         googleLogin()
         AutoLogin()
+        onTokenRefresh()
         System.out.println("token Test1 : "+ pref.getString("fbToken",""))
         System.out.println("token Test2 : "+ pref.getString("ggToken",""))
         login_btn.setOnClickListener { login() }
@@ -133,7 +138,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
     }
 
     private fun facebookOauthCall(){
-        FacebookSdk.sdkInitialize(getApplicationContext())
+        FacebookSdk.sdkInitialize(applicationContext)
         AppEventsLogger.activateApp(this)
     }
 
@@ -143,7 +148,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
         lateinit var auth: FirebaseAuth
         fb_btn.setOnClickListener {
             facebookOauthCall()
-            var FacebookLoginBtn = findViewById(R.id.fb_btn) as LoginButton
+            var FacebookLoginBtn = findViewById<LoginButton>(R.id.fb_btn)
             FacebookLoginBtn.setReadPermissions("email", "public_profile")
             FacebookLoginBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
                 override fun onSuccess(loginResult: LoginResult?) {
@@ -153,7 +158,6 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                             currentAccessToken: AccessToken
                         ) {
                             // Set the access token using
-                            // currentAccessToken when it's loaded or set.
                         }
                     }
                     var accessToken = AccessToken.getCurrentAccessToken()
@@ -168,7 +172,7 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     Toast.makeText(this@LoginActivity,"OnError",Toast.LENGTH_SHORT).show()
                 }
             })
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile"));
         }
     }
 
@@ -183,9 +187,9 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
                     val user = auth.currentUser
                         user!!.getIdToken(true)
                             .addOnCompleteListener { task ->
-                            if (task.isSuccessful()) {
+                            if (task.isSuccessful) {
                                 val idToken: String? = task.getResult()!!.getToken()
-                                System.out.println("TESTTOKEN$idToken")
+                                println("TESTTOKEN$idToken")
                                 Client.retrofitService.getFacebookAccess(idToken!!).enqueue(object : Callback<Void> {
                                     override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
                                         when (response!!.code()) {
@@ -366,6 +370,27 @@ class LoginActivity : BaseActivity(), GoogleApiClient.OnConnectionFailedListener
             } else {
             }
         }
+    }
+
+    fun onTokenRefresh() {
+        val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+        val token = FirebaseInstanceId.getInstance().token
+        Log.d("LOG TOKEN", "Token : $token")
+        FirebaseMessaging.getInstance().subscribeToTopic(FCMTokenService.FRIENDLY_ENGAGE_TOPIC);
+        Client.retrofitService.addFcmToken(pref.getString("token","").toString(),token.toString()).enqueue(object :
+            Callback<Void> {
+            override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
+                when (response!!.code()) {
+                    200 -> {
+                    }
+                    203-> {
+                    }
+                }
+            }
+            override fun onFailure(call: Call<Void>?, t: Throwable?) {
+
+            }
+        })
     }
 
     override fun onDestroy() {

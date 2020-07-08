@@ -44,7 +44,7 @@ class FCMService : FirebaseMessagingService() {
         )
         var FCMUTILS = remoteMessage.notification!!.title!!.split("@#$")
         System.out.println("test1: " + FCMUTILS.get(1))
-        System.out.println("FCMUUID SER: " + pref.getString("FCMUUID",""))
+        System.out.println("FCMUUID USER: " + pref.getString("FCMUUID",""))
             if(pref.getString("FCMUUID","") != FCMUTILS.get(1)){
                 createNotification(
                     FCMUTILS.get(0),

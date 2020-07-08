@@ -16,6 +16,6 @@ class FCMTokenService : FirebaseMessagingService() {
 
     companion object {
         private const val TAG = "MyFirebaseIIDService"
-        private const val FRIENDLY_ENGAGE_TOPIC = "friendly_engage"
+        const val FRIENDLY_ENGAGE_TOPIC = "friendly_engage"
     }
 }
