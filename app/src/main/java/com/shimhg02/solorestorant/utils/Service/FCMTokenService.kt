@@ -10,7 +10,7 @@ class FCMTokenService : FirebaseMessagingService() {
 
     fun onTokenRefresh() {
         val token = FirebaseInstanceId.getInstance().token
-        Log.d(TAG, "Token : $token")
+        Log.d(TAG, "Token Test : $token")
         FirebaseMessaging.getInstance().subscribeToTopic(FRIENDLY_ENGAGE_TOPIC);
     }
 
