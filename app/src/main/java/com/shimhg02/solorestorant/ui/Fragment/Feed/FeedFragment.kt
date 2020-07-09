@@ -22,13 +22,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shimhg02.solorestorant.Adapter.Story.StoryAdapter
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.CateFoodActivity
+import com.shimhg02.solorestorant.ui.Activity.CateFood.CateFoodActivity
 import com.shimhg02.solorestorant.Test.Adapter.TestRecommendAdapter
 import com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity
 import com.shimhg02.solorestorant.network.Data.RecommendData.RecommendData
 import com.shimhg02.solorestorant.network.Data.StoryData.StoryData
 import com.shimhg02.solorestorant.network.Retrofit.Client
-import com.shimhg02.solorestorant.ui.Activity.Story.StoryActivity
 import com.shimhg02.solorestorant.utils.Base64.encodeBitmapIntoBase64
 import kotlinx.android.synthetic.main.fragment_feed.view.*
 import org.jetbrains.anko.support.v4.startActivity

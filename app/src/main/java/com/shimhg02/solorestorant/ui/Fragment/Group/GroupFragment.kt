@@ -16,13 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.shimhg02.solorestorant.Adapter.Group.GroupAdapter
 import com.shimhg02.solorestorant.R
-import com.shimhg02.solorestorant.Test.Activity.EditNicknameActivity
-import com.shimhg02.solorestorant.Test.Activity.OnebyoneActivity
+import com.shimhg02.solorestorant.ui.Activity.OneByOne.OnebyoneActivity
 import com.shimhg02.solorestorant.network.Data.GroupData.GroupData
 import com.shimhg02.solorestorant.network.Retrofit.Client
 import com.shimhg02.solorestorant.ui.Activity.Group.AddGroupActivity
-import com.shimhg02.solorestorant.ui.Activity.SignUp.SignUpInfoActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_group.view.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call

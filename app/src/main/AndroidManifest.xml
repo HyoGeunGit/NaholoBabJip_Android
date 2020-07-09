@@ -98,14 +98,14 @@
 
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity" />
         <activity android:name=".ui.Activity.Chat.ChatActivity" />
-        <activity android:name=".Test.Activity.OnebyoneActivity" />
+        <activity android:name=".ui.Activity.OneByOne.OnebyoneActivity" />
         <activity android:name=".ui.Activity.Main.MainActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpPhoneActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpInfoActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpIdActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpProfileActivity" />
         <activity android:name=".ui.Activity.Term.TermActivity" />
-        <activity android:name=".Test.Activity.CateFoodActivity"/>
+        <activity android:name=".ui.Activity.CateFood.CateFoodActivity"/>
         <activity android:name=".ui.Activity.Story.StoryActivity" />
         <activity android:name=".Test.Activity.TestInfoActivity" />
         <activity android:name=".ui.Activity.Group.AddGroupActivity" />

@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Activity
+package com.shimhg02.solorestorant.ui.Activity.OneByOne
 
 import android.content.Intent
 import android.os.Bundle

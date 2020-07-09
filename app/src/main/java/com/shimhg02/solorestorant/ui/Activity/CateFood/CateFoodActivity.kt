@@ -1,4 +1,4 @@
-package com.shimhg02.solorestorant.Test.Activity
+package com.shimhg02.solorestorant.ui.Activity.CateFood
 
 import android.annotation.SuppressLint
 import android.view.View
