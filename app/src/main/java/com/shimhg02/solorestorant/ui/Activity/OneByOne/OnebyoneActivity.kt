@@ -1,10 +1,16 @@
 package com.shimhg02.solorestorant.ui.Activity.OneByOne
 
+import android.app.Notification
+import android.app.PictureInPictureParams
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.util.Rational
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.shimhg02.solorestorant.R
 import com.shimhg02.solorestorant.ui.Activity.Chat.ChatActivity
@@ -29,6 +35,8 @@ class OnebyoneActivity : AppCompatActivity() {
     var position = 0
     private val FINISH_INTERVAL_TIME: Long = 2000
     private var backPressedTime: Long = 0
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val mPipBuilder = PictureInPictureParams.Builder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +44,7 @@ class OnebyoneActivity : AppCompatActivity() {
         setupLottie()
         setTextData()
         setTextAnimation()
+
         try {
             mSocket = IO.socket(socketURI)
         } catch (e: URISyntaxException) {
@@ -74,13 +83,16 @@ class OnebyoneActivity : AppCompatActivity() {
             }
         })
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStop() {
         super.onStop()
-        mSocket.disconnect()
-        mSocket.off()
-        mSocket.off(Socket.EVENT_CONNECT, onConnect)
-        mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
-        mSocket.close()
+        mPipBuilder.setAspectRatio(Rational(one_by_view.width, one_by_view.height))
+        enterPictureInPictureMode(mPipBuilder.build())
+//        mSocket.disconnect()
+//        mSocket.off()
+//        mSocket.off(Socket.EVENT_CONNECT, onConnect)
+//        mSocket.off(Socket.EVENT_DISCONNECT, onMatched)
+//        mSocket.close()
         Log.d("SOCKET LIFECYCLE","DISCONNECT ONSTOP")
     }
 

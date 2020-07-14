@@ -98,7 +98,11 @@
 
         <activity android:name="com.shimhg02.solorestorant.ui.Activity.ImageEditor.EditImageActivity" />
         <activity android:name=".ui.Activity.Chat.ChatActivity" />
-        <activity android:name=".ui.Activity.OneByOne.OnebyoneActivity" />
+        <activity
+            android:name=".ui.Activity.OneByOne.OnebyoneActivity"
+            android:configChanges= "screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true" />
         <activity android:name=".ui.Activity.Main.MainActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpPhoneActivity" />
         <activity android:name=".ui.Activity.SignUp.SignUpInfoActivity" />
